@@ -209,6 +209,22 @@ for _, row in merged.iterrows():
         xref="x", yref="y"
     ))
 
+# --- TOTAL MARKET BOX (Top Right) ---
+total_mkt_size = df['Market_Size'].sum()
+
+fig.add_annotation(
+    x=0.99, y=0.99,
+    xref="paper", yref="paper",
+    text=f"<b>Total Maharashtra Market</b><br><span style='font-size:20px'>{total_mkt_size} MT</span>",
+    showarrow=False,
+    align="right",
+    font=dict(size=14, color="black", family="Arial Black"),
+    bgcolor="rgba(255,255,255,0.8)",
+    bordercolor="black",
+    borderwidth=1,
+    borderpad=10
+)
+
 # 1. Market Size Legend (Circles/Squares)
 market_ranges = [
     ('0–50 MT', '#dbeafe'), ('50–150 MT', '#93c5fd'), 
