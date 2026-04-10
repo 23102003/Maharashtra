@@ -215,7 +215,7 @@ total_mkt_size = df['Market_Size'].sum()
 fig.add_annotation(
     x=0.99, y=0.99,
     xref="paper", yref="paper",
-    text=f"<b>Total Premium Market</b><br><span style='font-size:20px,font-color:#1e40af'>{total_mkt_size} MT</span>",
+    text=f"<b>Total Premium Market</b><br><span style='font-size:20px;color:#1e40af;'>{total_mkt_size} MT</span>",
     showarrow=False,
     align="right",
     font=dict(size=14, color="Black", family="Arial Black"),
