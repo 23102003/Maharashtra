@@ -89,7 +89,7 @@ def create_tooltip(row):
         if b != target_brand and row[b] > 0:
             b_sh = int((row[b]/row['Market_Size'])*100) if row['Market_Size'] > 0 else 0
             tip += f"{b}: {row[b]} MT ({b_sh}%)<br>"
-    tip += "<b>Distributors:</b><br>"
+    tip += "<br><b>Distributors:</b><br>"
     dist_data = row.get('Distributors_List', 'NA')
     
     if isinstance(dist_data, list):
@@ -174,7 +174,7 @@ for _, row in clusters.iterrows():
         x, y = poly.exterior.xy
         fig.add_trace(go.Scatter(
             x=list(x), y=list(y),
-            line=dict(color="black", width=3),
+            line=dict(color="black", width=2.5),
             hoverinfo='skip',
             showlegend=False,
             mode='lines'
