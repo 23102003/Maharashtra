@@ -215,14 +215,11 @@ total_mkt_size = df['Market_Size'].sum()
 fig.add_annotation(
     x=0.99, y=0.99,
     xref="paper", yref="paper",
-    text=f"<b>Total Maharashtra Market</b><br><span style='font-size:20px'>{total_mkt_size} MT</span>",
+    text=f"<b>Total Premium Market</b><br><span style='font-size:20px'>{total_mkt_size} MT</span>",
     showarrow=False,
     align="right",
-    font=dict(size=14, color="black", family="Arial Black"),
+    font=dict(size=14, color='#1e40af', family="Arial Black"),
     bgcolor="rgba(255,255,255,0.8)",
-    bordercolor="black",
-    borderwidth=1,
-    borderpad=10
 )
 
 # 1. Market Size Legend (Circles/Squares)
