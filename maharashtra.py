@@ -222,18 +222,20 @@ for _, row in merged.iterrows():
 #     bgcolor="rgba(255,255,255,0.8)",
 # )
 # --- TOTAL MARKET BOX (Top Right) ---
+# --- TOTAL MARKET BOX (Bottom Right to avoid overlap) ---
 total_mkt_size = df['Market_Size'].sum()
-# Calculate total volume and overall percentage for the selected brand
 total_brand_vol = df[target_brand].sum()
 total_brand_pct = (total_brand_vol / total_mkt_size * 100) if total_mkt_size > 0 else 0
 
 fig.add_annotation(
-    x=0.99, y=0.99,
-    xref="paper", yref="paper",
+    x=0.99,   # Keep it on the right side
+    y=0.01,   # Move it to the bottom (0 is bottom, 1 is top)
+    xref="paper", 
+    yref="paper",
     text=(
         f"<b>Total Premium Market</b><br>"
-        f"<b><span style='font-size:20px;color:#1e40af;'>{total_mkt_size} MT</span></b><br>"
-        f"<b>{target_brand} Share</b><br>"
+        f"<b><span style='font-size:20px;color:#1e40af;'>{total_mkt_size} MT</span></b><br><br>"
+        f"<b>{target_brand} Total Share</b><br>"
         f"<b><span style='font-size:18px;color:#1b5e20;'>{total_brand_vol} MT ({total_brand_pct:.0f}%)</span></b>"
     ),
     showarrow=False,
