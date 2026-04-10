@@ -5,7 +5,7 @@ import numpy as np
 import plotly.graph_objects as go
 
 # Set page config
-st.set_page_config(page_title="Maharashtra Analysis", layout="wide")
+st.set_page_config(page_title="Maharashtra Brand Analysis", layout="wide")
 
 # ---------------------------------------------------------
 # 1. DATA & CACHING
@@ -45,7 +45,7 @@ def get_geojson():
 df = get_data()
 maharashtra_districts = get_geojson()
 
-st.title("📊 Maharashtra Performance")
+st.title("📊 Maharashtra Performance Dashboard")
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 brand_cols = ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"]
@@ -78,7 +78,7 @@ distributor_lookup = {
 # Map this list into your main dataframe
 df['Distributors_List'] = df['District'].map(distributor_lookup)
 
-merged = maharashtra_districts.merge(df, left_on='district_upper', right_on='District', how='left')
+
 def create_tooltip(row):
     tip = f"<b>{row['District']}</b><br>"
     tip += f"Total Market: {row['Market_Size']} MT<br><br>"
@@ -119,6 +119,8 @@ def get_s_color(share):
 
 df['market_color'] = df['Market_Size'].apply(get_m_color)
 df['share_color'] = df[share_col_name].apply(get_s_color)
+
+merged = maharashtra_districts.merge(df, left_on='district_upper', right_on='District', how='left')
 
 cluster_map = {
     'AKOLA': 'Akola', 'BULDHANA': 'Akola', 'WASHIM': 'Akola', 'AMRAVATI': 'Nagpur', 'YAVATMAL': 'Nagpur',
