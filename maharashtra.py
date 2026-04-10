@@ -234,7 +234,7 @@ fig.add_annotation(
         f"<b>Total Premium Market</b><br>"
         f"<b><span style='font-size:20px;color:#1e40af;'>{total_mkt_size} MT</span></b><br>"
         f"<b>{target_brand} Share</b><br>"
-        f"<b><span style='font-size:18px;color:#1b5e20;'>{total_brand_vol} MT ({total_brand_pct}%)</span></b>"
+        f"<b><span style='font-size:18px;color:#1b5e20;'>{total_brand_vol} MT ({total_brand_pct:.0f}%)</span></b>"
     ),
     showarrow=False,
     align="right",
