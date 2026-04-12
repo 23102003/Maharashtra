@@ -359,7 +359,7 @@ st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 focus_df = merged[merged[share_col_name] < 50].copy()
 focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
 
-# 2. Format columns (District and Share remain separate as requested: "dont merge")
+# 2. Format columns
 focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
 focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
 
@@ -368,18 +368,18 @@ display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Disp
 display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
 display_df['Districts'] = display_df['Districts'].str.title()
 
-# 4. Track cluster changes for border logic
+# 4. Track cluster changes
 is_new_cluster = ~display_df['Cluster'].duplicated()
 display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
 
-# 5. Styling to remove index and remove column gaps
+# 5. Styling to kill Index and White Spaces
 def style_final_table(st_df):
     styled = st_df.style.set_table_styles([
         {
             'selector': '', 
             'props': [
-                ('border-collapse', 'collapse'), 
-                ('border-spacing', '0'), # Forces zero space between columns
+                ('border-collapse', 'collapse !important'), 
+                ('border-spacing', '0 !important'),
                 ('width', '100%')
             ]
         },
@@ -402,12 +402,14 @@ def style_final_table(st_df):
                 ('border-left', '1px solid black'), 
                 ('border-right', '1px solid black'), 
                 ('border-bottom', 'none'), 
-                ('border-top', 'none')
+                ('border-top', 'none'),
+                ('margin', '0'),
+                ('border-collapse', 'collapse')
             ]
         }
-    ]).hide(axis="index") # Hides the row numbers (index)
+    ]).hide(axis="index") # CRITICAL: This removes the numbered column
 
-    # Apply top border only to rows where a new cluster starts
+    # Apply top border only when cluster changes
     for i, row_is_new in enumerate(is_new_cluster):
         if row_is_new:
             styled.set_table_styles({
