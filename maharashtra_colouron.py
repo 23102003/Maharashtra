@@ -402,8 +402,8 @@ def style_final_table(st_df):
             'props': [
                 ('padding', '5px 10px'), 
                 ('color', 'black'), 
-                ('border-left', '5px solid black'), 
-                ('border-right', '5px solid black'), 
+                ('border-left', '1px solid black'), 
+                ('border-right', '1px solid black'), 
                 ('border-bottom', 'none'), 
                 ('border-top', 'none')
             ]
