@@ -422,5 +422,5 @@ def style_final_table(st_df):
     }, overwrite=False, axis=1)
     
     return styled
-
-st.table(style_final_table(display_df))
+    
+st.write(style_final_table(display_df), unsafe_allow_html=True)
