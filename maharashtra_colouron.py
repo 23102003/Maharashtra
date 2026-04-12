@@ -231,10 +231,10 @@ for _, row in merged.iterrows():
     ))
 
 annotations.append(dict(
-    x=74.74, y=19.25,
+    x=74.74, y=19.5,
     text="<b>AHMEDNAGAR</b>",
     showarrow=False,
-    font=dict(size=10, color="black", family="Arial Black"),
+    font=dict(size=10, color="black", family="Arial"),
     xref="x", yref="y"
 ))
 
