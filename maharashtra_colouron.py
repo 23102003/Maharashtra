@@ -398,7 +398,7 @@ def style_final_table(st_df):
         {
             'selector': 'td',
             'props': [
-                ('padding', '2px 10px'), 
+                ('padding', '2px 5px'), 
                 ('color', 'black'), 
                 ('border-left', '1px solid black'), 
                 ('border-right', '1px solid black'), 
