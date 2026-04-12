@@ -391,7 +391,7 @@ def style_final_table(st_df):
             'props': [
                 ('background-color', '#b8cce4'), 
                 ('color', 'black'), 
-                ('border', '1px solid black'), 
+                ('border', '5px solid black'), 
                 ('text-align', 'center'), 
                 ('font-weight', 'bold'), 
                 ('padding', '1px')
@@ -400,10 +400,10 @@ def style_final_table(st_df):
         {
             'selector': 'td',
             'props': [
-                ('padding', '1px 1px'), 
+                ('padding', '5px 10px'), 
                 ('color', 'black'), 
-                ('border-left', '1px solid black'), 
-                ('border-right', '1px solid black'), 
+                ('border-left', '5px solid black'), 
+                ('border-right', '5px solid black'), 
                 ('border-bottom', 'none'), 
                 ('border-top', 'none')
             ]
