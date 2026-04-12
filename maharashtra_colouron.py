@@ -350,28 +350,32 @@ st.plotly_chart(fig, use_container_width=True)
 #     st.dataframe(low_share_table, use_container_width=True)
 
 # ---------------------------------------------------------
-# 6. DYNAMIC KEY FOCUS AREAS (CALCULATED)
+# 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-# 1. Filter the merged dataframe for share < 50
-focus_areas_df = merged[merged[share_col_name] < 50].copy()
+# 1. Filter for districts with share < 50%
+focus_df = merged[merged[share_col_name] < 50].copy()
 
-# 2. Format the columns to match the target style: "Value MT (Share%)"
-focus_areas_df['Share Display'] = focus_areas_df.apply(
+# 2. Sort: Cluster (A-Z) then Share % (Ascending)
+focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
+
+# 3. Create formatted strings for both columns
+focus_df['Share_Display'] = focus_df.apply(
     lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1
 )
+focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)}MT")
 
-# 3. Select and Rename columns for the final display
-final_focus_table = focus_areas_df[['cluster', 'district', 'Share Display', 'Market_Size']]
-final_focus_table.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
+# 4. Prepare the display table
+display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
 
-# 4. Sort by Cluster and District for a clean layout
-final_focus_table = final_focus_table.sort_values(['Cluster', 'Districts'])
+# 5. Mask repeating Cluster names for the "merged" look
+display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
 
-# 5. Apply styling to mimic the provided image
-def style_calculated_table(st_df):
+# 6. Excel-style CSS
+def style_final_table(st_df):
     return st_df.style.set_table_styles([
         {
             'selector': 'th',
@@ -381,7 +385,7 @@ def style_calculated_table(st_df):
                 ('border', '1px solid black'), 
                 ('text-align', 'center'), 
                 ('font-weight', 'bold'),
-                ('padding', '10px')
+                ('text-transform', 'none')
             ]
         },
         {
@@ -389,11 +393,11 @@ def style_calculated_table(st_df):
             'props': [
                 ('border', '1px solid black'), 
                 ('text-align', 'left'),
-                ('padding', '8px')
+                ('padding', '5px 10px'),
+                ('color', 'black')
             ]
         }
     ]).hide(axis="index")
 
-# Display the calculated table
-st.write(f"The following districts have a **{target_brand}** market share of less than 50%, grouped by their respective clusters.")
-st.table(style_calculated_table(final_focus_table))
+# Render
+st.table(style_final_table(display_df))
