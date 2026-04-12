@@ -327,24 +327,73 @@ fig.update_layout(
 
 st.plotly_chart(fig, use_container_width=True)
 
+# # ---------------------------------------------------------
+# # 5. TABLES (Unchanged)
+# # ---------------------------------------------------------
+# st.divider()
+# t1, t2 = st.tabs([f"--- Districts with High {target_brand} Share (50%+) ---", f"--- Competitive Analysis: Low {target_brand} Share States ---"])
+
+# with t1:
+#     high_share_table = df[df[share_col_name] >= 50][['District', share_col_name, target_brand, 'Market_Size']].sort_values(by=share_col_name, ascending=False).reset_index(drop=True)
+#     high_share_table.columns = ['District',share_col_name, f'{target_brand} (MT)', 'Total Market (MT)']
+#     st.dataframe(high_share_table, use_container_width=True)
+
+# with t2:
+#     comp_cols = ["TATA_Prisma", "Tata_Liner", "TATA_Durashine", "Others"]
+#     low_share_df = df[df[share_col_name] < 50].copy()
+#     low_share_df['Top Competitor'] = low_share_df[comp_cols].idxmax(axis=1)
+#     low_share_df['Comp Vol (MT)'] = low_share_df[comp_cols].max(axis=1)
+#     low_share_df['Comp Share %'] = np.where(
+#         low_share_df['Market_Size'] == 0, 0, (low_share_df['Comp Vol (MT)'] / low_share_df['Market_Size']) * 100
+#     ).round(0).astype(int)
+#     low_share_table = low_share_df[['District', f'{target_brand} % share', 'Top Competitor', 'Comp Share %', 'Comp Vol (MT)', 'Market_Size']].sort_values(by=share_col_name).reset_index(drop=True)
+#     st.dataframe(low_share_table, use_container_width=True)
+
 # ---------------------------------------------------------
-# 5. TABLES (Unchanged)
+# 6. DYNAMIC KEY FOCUS AREAS (CALCULATED)
 # ---------------------------------------------------------
 st.divider()
-t1, t2 = st.tabs([f"--- Districts with High {target_brand} Share (50%+) ---", f"--- Competitive Analysis: Low {target_brand} Share States ---"])
+st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-with t1:
-    high_share_table = df[df[share_col_name] >= 50][['District', share_col_name, target_brand, 'Market_Size']].sort_values(by=share_col_name, ascending=False).reset_index(drop=True)
-    high_share_table.columns = ['District',share_col_name, f'{target_brand} (MT)', 'Total Market (MT)']
-    st.dataframe(high_share_table, use_container_width=True)
+# 1. Filter the merged dataframe for share < 50
+focus_areas_df = merged[merged[share_col_name] < 50].copy()
 
-with t2:
-    comp_cols = ["TATA_Prisma", "Tata_Liner", "TATA_Durashine", "Others"]
-    low_share_df = df[df[share_col_name] < 50].copy()
-    low_share_df['Top Competitor'] = low_share_df[comp_cols].idxmax(axis=1)
-    low_share_df['Comp Vol (MT)'] = low_share_df[comp_cols].max(axis=1)
-    low_share_df['Comp Share %'] = np.where(
-        low_share_df['Market_Size'] == 0, 0, (low_share_df['Comp Vol (MT)'] / low_share_df['Market_Size']) * 100
-    ).round(0).astype(int)
-    low_share_table = low_share_df[['District', f'{target_brand} % share', 'Top Competitor', 'Comp Share %', 'Comp Vol (MT)', 'Market_Size']].sort_values(by=share_col_name).reset_index(drop=True)
-    st.dataframe(low_share_table, use_container_width=True)
+# 2. Format the columns to match the target style: "Value MT (Share%)"
+focus_areas_df['Share Display'] = focus_areas_df.apply(
+    lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1
+)
+
+# 3. Select and Rename columns for the final display
+final_focus_table = focus_areas_df[['cluster', 'district', 'Share Display', 'Market_Size']]
+final_focus_table.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
+
+# 4. Sort by Cluster and District for a clean layout
+final_focus_table = final_focus_table.sort_values(['Cluster', 'Districts'])
+
+# 5. Apply styling to mimic the provided image
+def style_calculated_table(st_df):
+    return st_df.style.set_table_styles([
+        {
+            'selector': 'th',
+            'props': [
+                ('background-color', '#b8cce4'), 
+                ('color', 'black'), 
+                ('border', '1px solid black'), 
+                ('text-align', 'center'), 
+                ('font-weight', 'bold'),
+                ('padding', '10px')
+            ]
+        },
+        {
+            'selector': 'td',
+            'props': [
+                ('border', '1px solid black'), 
+                ('text-align', 'left'),
+                ('padding', '8px')
+            ]
+        }
+    ]).hide(axis="index")
+
+# Display the calculated table
+st.write(f"The following districts have a **{target_brand}** market share of less than 50%, grouped by their respective clusters.")
+st.table(style_calculated_table(final_focus_table))
