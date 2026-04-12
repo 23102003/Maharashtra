@@ -72,7 +72,7 @@ distributor_lookup = {
     'WARDHA': ['Yogesh', 'Arvind'], 'YAVATMAL': ['Yogesh', 'Arvind'],
     'DHULE': ['Manmohan', 'National'], 'JALGAON': ['Manmohan', 'National'],
     'NANDURBAR': ['Manmohan', 'National'], 'NASHIK': 'Manmohan Ispat',
-    'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'
+    'PUNE': 'Manmohan Ispat', 'EDNAGAR': 'Jai Associates'
 }
 
 # Map this list into your main dataframe
@@ -200,8 +200,6 @@ for _, row in merged.iterrows():
         display_name = "AURANGABAD"
     elif "DHARASHIV" in raw_name:
         display_name = "OSMANABAD"
-    elif "AHMEDNAGAR" in raw_name:
-        display_name = "AHMEDNAGAR"
     else:
         display_name = raw_name
     
