@@ -383,7 +383,7 @@ def style_final_table(st_df):
             'props': [
                 ('border-collapse', 'collapse'), 
                 ('border-spacing', '0'), # Forces zero space between columns
-                ('width', '70%')
+                ('width', '100%')
             ]
         },
         {
@@ -394,13 +394,13 @@ def style_final_table(st_df):
                 ('border', '1px solid black'), 
                 ('text-align', 'center'), 
                 ('font-weight', 'bold'), 
-                ('padding', '5px')
+                ('padding', '1px')
             ]
         },
         {
             'selector': 'td',
             'props': [
-                ('padding', '5px 10px'), 
+                ('padding', '1px 1px'), 
                 ('color', 'black'), 
                 ('border-left', '1px solid black'), 
                 ('border-right', '1px solid black'), 
