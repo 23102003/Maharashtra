@@ -157,7 +157,7 @@ for _, row in merged.iterrows():
                 x=list(x), y=list(y),
                 fill="toself",
                 fillcolor=row['market_color'] if pd.notna(row['market_color']) else 'whitesmoke',
-                line=dict(color="gray", width=0.5),
+                line=dict(color="#1e293b", width=0.5),
                 hoveron='fills',
                 text=row['hover_text'],
                 hoverinfo='text',
@@ -174,7 +174,7 @@ for _, row in clusters.iterrows():
         x, y = poly.exterior.xy
         fig.add_trace(go.Scatter(
             x=list(x), y=list(y),
-            line=dict(color="black", width=2.5),
+            line=dict(color="#1e293b", width=2.5),
             hoverinfo='skip',
             showlegend=False,
             mode='lines'
