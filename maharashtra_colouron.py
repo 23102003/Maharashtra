@@ -5,7 +5,7 @@ import numpy as np
 import plotly.graph_objects as go
 
 # Set page config
-st.set_page_config(page_title="Maharashtra Brand Analysis", layout="centered")
+st.set_page_config(page_title="Maharashtra Brand Analysis", layout="wide")
 
 # ---------------------------------------------------------
 # 1. DATA & CACHING
@@ -282,7 +282,7 @@ fig.update_layout(
     yaxis=dict(visible=False, scaleanchor="x", scaleratio=1),
     plot_bgcolor='white',
     margin=dict(l=0, r=0, t=0, b=0),
-    height=800,
+    height=600,
     showlegend=True,
     legend=dict(
         x=0.01,
