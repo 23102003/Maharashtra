@@ -199,7 +199,7 @@ for _, row in merged.iterrows():
     target_y = centroid.y + 0.15 if is_hub else centroid.y + 0.1
     
     # Define the display name logic
-    raw_name = row['district'].upper() if is_hub else row['district']
+    display_name = row['district'].upper() if is_hub else row['district']
     
     annotations.append(dict(
         x=target_x, 
