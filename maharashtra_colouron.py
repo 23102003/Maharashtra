@@ -391,7 +391,6 @@ def style_final_table(st_df):
                 ('background-color', '#b8cce4'), 
                 ('color', 'black'), 
                 ('border', '1px solid black'), 
-                ('text-align', 'center'), 
                 ('font-weight', 'bold'), 
                 ('padding', '5px')
             ]
