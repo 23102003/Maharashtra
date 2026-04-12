@@ -352,9 +352,6 @@ st.plotly_chart(fig, use_container_width=True)
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
-# ---------------------------------------------------------
-# 6. DYNAMIC KEY FOCUS AREAS (CLEAN GRID & NO INDEX)
-# ---------------------------------------------------------
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
