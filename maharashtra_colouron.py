@@ -194,7 +194,7 @@ for _, row in merged.iterrows():
         text=row['district'].upper() if is_hub else row['district'],
         showarrow=False,
         font=dict(size=13 if is_hub else 10, color="black", family="Arial Black" if is_hub else "Arial"),
-        xref="x_c" if is_hub else "x", xref="y_c" if is_hub else "y"
+        xref="x_c" if is_hub else "x", yref="y_c" if is_hub else "y"
     ))
     
     # 2. Share % with Rounded Box Annotation
