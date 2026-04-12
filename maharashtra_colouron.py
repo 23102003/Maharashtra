@@ -189,7 +189,7 @@ for _, row in merged.iterrows():
     
     # 1. District Name Annotation
     annotations.append(dict(
-        x=centroid.x, y=centroid.y + 0.08,
+        x=centroid.x, y=centroid.y + 0.1,
         text=row['district'].upper() if is_hub else row['district'],
         showarrow=False,
         font=dict(size=13 if is_hub else 10, color="black", family="Arial Black" if is_hub else "Arial"),
