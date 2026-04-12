@@ -190,10 +190,11 @@ for _, row in merged.iterrows():
     # 1. District Name Annotation
     annotations.append(dict(
         x=centroid.x, y=centroid.y + 0.1,
+        x_c=centroid.x,y=centroid.y + 0.15,
         text=row['district'].upper() if is_hub else row['district'],
         showarrow=False,
         font=dict(size=13 if is_hub else 10, color="black", family="Arial Black" if is_hub else "Arial"),
-        xref="x", yref="y"
+        xref="x_c" if is_hub else "x", xref="y_c" if is_hub else "y"
     ))
     
     # 2. Share % with Rounded Box Annotation
@@ -201,7 +202,7 @@ for _, row in merged.iterrows():
         x=centroid.x, y=centroid.y - 0.1,
         text=f"<b>{share_val}</b>",
         showarrow=False,
-        font=dict(size=12, color="white"),
+        font=dict(size=13, color="white"),
         bgcolor=row['share_color'],
         bordercolor="black",
         borderwidth=1,
