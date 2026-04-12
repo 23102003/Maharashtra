@@ -355,49 +355,31 @@ st.plotly_chart(fig, use_container_width=True)
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-# 1. Filter for districts with share < 50%
 focus_df = merged[merged[share_col_name] < 50].copy()
-
-# 2. Sort: Cluster (A-Z) then Share % (Ascending)
 focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
 
-# 3. Create formatted strings for both columns
-focus_df['Share_Display'] = focus_df.apply(
-    lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1
-)
-focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)}MT")
+focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
+focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
 
-# 4. Prepare the display table
 display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
 display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
+display_df['Districts'] = display_df['Districts'].str.title()
 
-# 5. Mask repeating Cluster names for the "merged" look
+is_new_cluster = ~display_df['Cluster'].duplicated()
 display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
 
-# 6. Excel-style CSS
 def style_final_table(st_df):
-    return st_df.style.set_table_styles([
-        {
-            'selector': 'th',
-            'props': [
-                ('background-color', '#b8cce4'), 
-                ('color', 'black'), 
-                ('border', '1px solid black'), 
-                ('text-align', 'center'), 
-                ('font-weight', 'bold'),
-                ('text-transform', 'none')
-            ]
-        },
-        {
-            'selector': 'td',
-            'props': [
-                ('border', '1px solid black'), 
-                ('text-align', 'left'),
-                ('padding', '5px 10px'),
-                ('color', 'black')
-            ]
-        }
+    styled = st_df.style.set_table_styles([
+        {'selector': '', 'props': [('border-collapse', 'collapse'), ('width', '100%')]},
+        {'selector': 'th', 'props': [('background-color', '#b8cce4'), ('color', 'black'), ('border', '1px solid black'), ('text-align', 'center'), ('font-weight', 'bold'), ('padding', '2px 10px')]},
+        {'selector': 'td', 'props': [('padding', '2px 10px'), ('color', 'black'), ('border-left', '1px solid black'), ('border-right', '1px solid black'), ('border-bottom', 'none'), ('border-top', 'none')]}
     ]).hide(axis="index")
 
-# Render
+    for i, row_is_new in enumerate(is_new_cluster):
+        if row_is_new:
+            styled.set_table_styles({display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]}, overwrite=False, axis=1)
+    
+    styled.set_table_styles({display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]}, overwrite=False, axis=1)
+    return styled
+
 st.table(style_final_table(display_df))
