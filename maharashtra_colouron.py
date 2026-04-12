@@ -380,7 +380,7 @@ def style_final_table(st_df):
             'props': [
                 ('border-collapse', 'collapse !important'), 
                 ('border-spacing', '0 !important'),
-                ('width', 'auto')
+                ('width', 'auto'),
                 ('margin-left', '0'),
                 ('margin-right', 'auto')
             ]
