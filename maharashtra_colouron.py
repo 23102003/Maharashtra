@@ -201,11 +201,11 @@ for _, row in merged.iterrows():
         x=centroid.x, y=centroid.y - 0.1,
         text=f"<b>{share_val}</b>",
         showarrow=False,
-        font=dict(size=13, color="white"),
+        font=dict(size=12, color="white"),
         bgcolor=row['share_color'],
         bordercolor="black",
         borderwidth=1,
-        borderpad=4,  # Adjusts the "roundness" feel and padding
+        borderpad=3,  # Adjusts the "roundness" feel and padding
         xref="x", yref="y"
     ))
 
