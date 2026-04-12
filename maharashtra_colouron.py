@@ -107,7 +107,7 @@ df['hover_text'] = df.apply(create_tooltip, axis=1)
 
 def get_m_color(size):
     if size <= 50: return "#dbeafe"
-    elif size <= 0: return "#93c5fd"
+    elif size <= 150: return "#93c5fd"
     elif size <= 300: return "#3b82f6"
     else: return "#1e40af"
 
