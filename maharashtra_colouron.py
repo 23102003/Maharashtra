@@ -5,7 +5,7 @@ import numpy as np
 import plotly.graph_objects as go
 
 # Set page config
-st.set_page_config(page_title="Maharashtra Brand Analysis", layout="wide")
+st.set_page_config(page_title="Maharashtra Brand Analysis", layout="centered")
 
 # ---------------------------------------------------------
 # 1. DATA & CACHING
@@ -45,7 +45,7 @@ def get_geojson():
 df = get_data()
 maharashtra_districts = get_geojson()
 
-st.title("📊 Maharashtra Performance Dashboard")
+st.title("📊 Maharashtra District wise Market Mapping")
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 brand_cols = ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"]
@@ -107,7 +107,7 @@ df['hover_text'] = df.apply(create_tooltip, axis=1)
 
 def get_m_color(size):
     if size <= 50: return "#dbeafe"
-    elif size <= 150: return "#93c5fd"
+    elif size <= 0: return "#93c5fd"
     elif size <= 300: return "#3b82f6"
     else: return "#1e40af"
 
@@ -249,7 +249,7 @@ fig.add_annotation(
 
 # 1. Market Size Legend (Circles/Squares)
 market_ranges = [
-    ('0–50 MT', '#dbeafe'), ('50–150 MT', '#93c5fd'), 
+    ('0–50 MT', '#dbeafe'), ('50–0 MT', '#93c5fd'), 
     ('150–300 MT', '#3b82f6'), ('300-650 MT', '#1e40af')
 ]
 
