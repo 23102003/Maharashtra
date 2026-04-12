@@ -196,8 +196,12 @@ for _, row in merged.iterrows():
     # Define the display name logic
     raw_name = row['district'].upper() if is_hub else row['district']
     # Check for the specific name to replace
-    display_name = "AURANGABAD" if "CHHATRAPATI SAMBHAJINAGAR" in raw_name.upper() else raw_name
-    display_name = "OSMANABAD" if "DHARASHIV" in raw_name.upper() else raw_name
+    if "CHHATRAPATI SAMBHAJINAGAR" in raw_name:
+        display_name = "AURANGABAD"
+    elif "DHARASHIV" in raw_name:
+        display_name = "OSMANABAD"
+    else:
+        display_name = raw_name
     
     annotations.append(dict(
         x=target_x, 
