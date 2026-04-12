@@ -14,7 +14,7 @@ st.set_page_config(page_title="Maharashtra Brand Analysis", layout="wide")
 def get_data():
     data = {
         "District": [
-            'AKOLA', 'BULDHANA','WASHIM', 'CHHATRAPATI SAMBHAJINAGAR', 'BEED', 'JALNA', 'LATUR', 'DHARASHIV',
+            'AKOLA', 'BULDHANA','WASHIM', 'AURANGABAD', 'BEED', 'JALNA', 'LATUR', 'OSMANABAD',
             'HINGOLI', 'NANDED','PARBHANI', 'KOLHAPUR', 'RATNAGIRI', 'SANGLI', 'SATARA', 'SINDHUDURG',
             'SOLAPUR','MUMBAI', 'MUMBAI SUBURBAN', 'PALGHAR', 'RAIGARH','THANE',
             'BHANDARA', 'CHANDRAPUR', 'AMRAVATI', 'GADCHIROLI', 'GONDIA', 'NAGPUR', 'WARDHA',
@@ -36,6 +36,11 @@ def get_geojson():
     url = "https://raw.githubusercontent.com/datta07/INDIAN-SHAPEFILES/master/INDIA/INDIA_DISTRICTS.geojson"
     india = gpd.read_file(url)
     mah = india[india['state'].str.upper() == 'MAHARASHTRA'].copy()
+    mah['district'] = mah['district'].str.upper().replace({
+        'CHHATRAPATI SAMBHAJINAGAR': 'AURANGABAD', 
+        'DHARASHIV': 'OSMANABAD'
+    })
+    mah['district_upper'] = mah['district']
     mah['district_upper'] = mah['district'].str.upper()
     return mah
 
@@ -195,13 +200,6 @@ for _, row in merged.iterrows():
     
     # Define the display name logic
     raw_name = row['district'].upper() if is_hub else row['district']
-    # Check for the specific name to replace
-    if "CHHATRAPATI SAMBHAJINAGAR" in raw_name:
-        display_name = "AURANGABAD"
-    elif "DHARASHIV" in raw_name:
-        display_name = "OSMANABAD"
-    else:
-        display_name = raw_name
     
     annotations.append(dict(
         x=target_x, 
