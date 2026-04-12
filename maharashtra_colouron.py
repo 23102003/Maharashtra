@@ -394,7 +394,7 @@ def style_final_table(st_df):
                 ('border', '1px solid black'), 
                 ('text-align', 'center'), 
                 ('font-weight', 'bold'), 
-                ('padding', '1px')
+                ('padding', '5px')
             ]
         },
         {
