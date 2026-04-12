@@ -200,6 +200,8 @@ for _, row in merged.iterrows():
         display_name = "AURANGABAD"
     elif "DHARASHIV" in raw_name:
         display_name = "OSMANABAD"
+    elif "AHMEDNAGAR" in raw_name:
+        display_name = "AHMEDNAGAR"
     else:
         display_name = raw_name
     
