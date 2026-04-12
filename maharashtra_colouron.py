@@ -193,10 +193,16 @@ for _, row in merged.iterrows():
     # Use a higher offset if it's a hub (0.15) vs a normal district (0.1)
     target_y = centroid.y + 0.15 if is_hub else centroid.y + 0.1
     
+    # Define the display name logic
+    raw_name = row['district'].upper() if is_hub else row['district']
+    # Check for the specific name to replace
+    display_name = "AURANGABAD" if "CHHATRAPATI SAMBHAJINAGAR" in raw_name.upper() else raw_name
+    display_name = "OSMANABAD" if "DHARASHIV" in raw_name.upper() else raw_name
+    
     annotations.append(dict(
         x=target_x, 
         y=target_y,
-        text=row['district'].upper() if is_hub else row['district'],
+        text=display_name,
         showarrow=False,
         font=dict(
             size=13 if is_hub else 10, 
