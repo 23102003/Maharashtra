@@ -391,7 +391,7 @@ def style_final_table(st_df):
             'props': [
                 ('background-color', '#b8cce4'), 
                 ('color', 'black'), 
-                ('border', '5px solid black'), 
+                ('border', '1px solid black'), 
                 ('text-align', 'center'), 
                 ('font-weight', 'bold'), 
                 ('padding', '1px')
