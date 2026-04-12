@@ -63,8 +63,8 @@ df[share_col_name] = df[share_col_name].round(0).astype(int)
 # ---------------------------------------------------------
 distributor_lookup = {
     'AKOLA': 'Hussain', 'BULDHANA': 'Hussain', 'WASHIM': 'Hussain',
-    'CHHATRAPATI SAMBHAJINAGAR': 'Prince Steel', 'BEED': 'NA',
-    'JALNA': 'NA', 'LATUR': 'Prince Steel', 'DHARASHIV': 'NA',
+    'AURANGABAD': 'Prince Steel', 'BEED': 'NA',
+    'JALNA': 'NA', 'LATUR': 'Prince Steel', 'OSMANABAD': 'NA',
     'HINGOLI': 'NA', 'NANDED': 'NA', 'PARBHANI': 'NA',
     'KOLHAPUR': 'KD Oswal', 'RATNAGIRI': ['KD', 'Yogi'], 'SANGLI': 'Yogi',
     'SATARA': 'Laxmi', 'SINDHUDURG': ['KD', 'Yogi'],
@@ -129,9 +129,9 @@ merged = maharashtra_districts.merge(df, left_on='district_upper', right_on='Dis
 
 cluster_map = {
     'AKOLA': 'Akola', 'BULDHANA': 'Akola', 'WASHIM': 'Akola', 'AMRAVATI': 'Nagpur', 'YAVATMAL': 'Nagpur',
-    'CHHATRAPATI SAMBHAJINAGAR': 'Chhatrapati Sambhajinagar', 'BEED': 'Chhatrapati Sambhajinagar',
-    'JALNA': 'Chhatrapati Sambhajinagar', 'LATUR': 'Chhatrapati Sambhajinagar', 'DHARASHIV': 'Chhatrapati Sambhajinagar',
-    'HINGOLI': 'Chhatrapati Sambhajinagar', 'NANDED': 'Chhatrapati Sambhajinagar', 'PARBHANI': 'Chhatrapati Sambhajinagar',
+    'AURANGABAD': 'Aurangabad', 'BEED': 'Aurangabad',
+    'JALNA': 'Aurangabad', 'LATUR': 'Aurangabad', 'OSMANABAD': 'Aurangabad',
+    'HINGOLI': 'Aurangabad', 'NANDED': 'Aurangabad', 'PARBHANI': 'Aurangabad',
     'KOLHAPUR': 'Kolhapur', 'RATNAGIRI': 'Kolhapur', 'SANGLI': 'Kolhapur', 'SATARA': 'Kolhapur',
     'SINDHUDURG': 'Kolhapur', 'SOLAPUR': 'Kolhapur',
     'MUMBAI': 'Mumbai', 'MUMBAI SUBURBAN': 'Mumbai', 'PALGHAR': 'Mumbai', 'RAIGARH': 'Mumbai', 'THANE': 'Mumbai',
