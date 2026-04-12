@@ -230,6 +230,14 @@ for _, row in merged.iterrows():
         xref="x", yref="y"
     ))
 
+annotations.append(dict(
+    x=74.74, y=19.25,
+    text="<b>AHMEDNAGAR</b>",
+    showarrow=False,
+    font=dict(size=10, color="black", family="Arial Black"),
+    xref="x", yref="y"
+))
+
 # --- TOTAL MARKET BOX (Top Right) ---
 # total_mkt_size = df['Market_Size'].sum()
 
