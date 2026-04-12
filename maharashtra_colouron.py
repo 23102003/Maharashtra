@@ -181,52 +181,96 @@ for _, row in clusters.iterrows():
         ))
 
 # C. LABELS AND BOXES (USING ANNOTATIONS FOR TOP LAYER RENDERING)
+# annotations = []
+# for _, row in merged.iterrows():
+#     centroid = row.geometry.centroid
+#     is_hub = row['district_upper'] == str(row['cluster']).upper()
+#     share_val = f"{int(row[share_col_name])}%" if pd.notna(row[share_col_name]) else "0%"
+    
+#     # 1. District Name Annotation
+#     # Calculate coordinates first based on the Hub status
+#     target_x = centroid.x
+#     # Use a higher offset if it's a hub (0.15) vs a normal district (0.1)
+#     target_y = centroid.y + 0.15 if is_hub else centroid.y + 0.1
+    
+#     # Define the display name logic
+#     raw_name = row['district'].upper() if is_hub else row['district']
+#     # Check for the specific name to replace
+#     if "CHHATRAPATI SAMBHAJINAGAR" in raw_name:
+#         display_name = "AURANGABAD"
+#     elif "DHARASHIV" in raw_name:
+#         display_name = "OSMANABAD"
+#     else:
+#         display_name = raw_name
+    
+#     annotations.append(dict(
+#         x=target_x, 
+#         y=target_y,
+#         text=display_name,
+#         showarrow=False,
+#         font=dict(
+#             size=13 if is_hub else 10, 
+#             color="black", 
+#             family="Arial Black" if is_hub else "Arial"
+#         ),
+#         xref="x", 
+#         yref="y"
+#     ))
+    
+    # # 2. Share % with Rounded Box Annotation
+    # annotations.append(dict(
+    #     x=centroid.x, y=centroid.y - 0.1,
+    #     text=f"<b>{share_val}</b>",
+    #     showarrow=False,
+    #     font=dict(size=13, color="white"),
+    #     bgcolor=row['share_color'],
+    #     bordercolor="black",
+    #     borderwidth=1,
+    #     borderpad=3,  # Adjusts the "roundness" feel and padding
+    #     xref="x", yref="y"
+    # ))
+# C. LABELS AND BOXES
 annotations = []
 for _, row in merged.iterrows():
-    centroid = row.geometry.centroid
-    is_hub = row['district_upper'] == str(row['cluster']).upper()
+    # Use representative_point() instead of centroid for better placement
+    point = row.geometry.representative_point()
+    
+    is_hub = str(row['district_upper']).strip() == str(row['cluster']).upper().strip()
     share_val = f"{int(row[share_col_name])}%" if pd.notna(row[share_col_name]) else "0%"
     
-    # 1. District Name Annotation
-    # Calculate coordinates first based on the Hub status
-    target_x = centroid.x
-    # Use a higher offset if it's a hub (0.15) vs a normal district (0.1)
-    target_y = centroid.y + 0.15 if is_hub else centroid.y + 0.1
+    # Define display name with force-check for Ahmednagar
+    raw_name = row['district']
+    u_name = str(raw_name).upper().strip()
     
-    # Define the display name logic
-    raw_name = row['district'].upper() if is_hub else row['district']
-    # Check for the specific name to replace
-    if "CHHATRAPATI SAMBHAJINAGAR" in raw_name:
+    if "CHHATRAPATI" in u_name or "SAMBHAJI" in u_name:
         display_name = "AURANGABAD"
-    elif "DHARASHIV" in raw_name:
+    elif "DHARASHIV" in u_name:
         display_name = "OSMANABAD"
     else:
         display_name = raw_name
-    
+
+    if is_hub:
+        display_name = display_name.upper()
+
+    # 1. District Name
     annotations.append(dict(
-        x=target_x, 
-        y=target_y,
-        text=display_name,
+        x=point.x, y=point.y + 0.12, # Slightly higher offset
+        text=f"<b>{display_name}</b>",
         showarrow=False,
-        font=dict(
-            size=13 if is_hub else 10, 
-            color="black", 
-            family="Arial Black" if is_hub else "Arial"
-        ),
-        xref="x", 
-        yref="y"
+        font=dict(size=12 if is_hub else 10, color="black", family="Arial Black" if is_hub else "Arial"),
+        xref="x", yref="y"
     ))
     
-    # 2. Share % with Rounded Box Annotation
+    # 2. Share % Box
     annotations.append(dict(
-        x=centroid.x, y=centroid.y - 0.1,
+        x=point.x, y=point.y - 0.08,
         text=f"<b>{share_val}</b>",
         showarrow=False,
-        font=dict(size=13, color="white"),
-        bgcolor=row['share_color'],
+        font=dict(size=12, color="white"),
+        bgcolor=row['share_color'] if pd.notna(row['share_color']) else "#525252",
         bordercolor="black",
         borderwidth=1,
-        borderpad=3,  # Adjusts the "roundness" feel and padding
+        borderpad=4,
         xref="x", yref="y"
     ))
 
