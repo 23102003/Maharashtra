@@ -188,13 +188,23 @@ for _, row in merged.iterrows():
     share_val = f"{int(row[share_col_name])}%" if pd.notna(row[share_col_name]) else "0%"
     
     # 1. District Name Annotation
+    # Calculate coordinates first based on the Hub status
+    target_x = centroid.x
+    # Use a higher offset if it's a hub (0.15) vs a normal district (0.1)
+    target_y = centroid.y + 0.15 if is_hub else centroid.y + 0.1
+    
     annotations.append(dict(
-        x=centroid.x, y=centroid.y + 0.1,
-        x_c=centroid.x,y_c=centroid.y + 0.15,
+        x=target_x, 
+        y=target_y,
         text=row['district'].upper() if is_hub else row['district'],
         showarrow=False,
-        font=dict(size=13 if is_hub else 10, color="black", family="Arial Black" if is_hub else "Arial"),
-        xref="x_c" if is_hub else "x", yref="y_c" if is_hub else "y"
+        font=dict(
+            size=13 if is_hub else 10, 
+            color="black", 
+            family="Arial Black" if is_hub else "Arial"
+        ),
+        xref="x", 
+        yref="y"
     ))
     
     # 2. Share % with Rounded Box Annotation
