@@ -423,4 +423,5 @@ def style_final_table(st_df):
     
     return styled
     
-st.table(style_final_table(display_df))
+# st.table(style_final_table(display_df))
+st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
