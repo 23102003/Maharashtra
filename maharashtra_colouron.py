@@ -355,63 +355,31 @@ st.plotly_chart(fig, use_container_width=True)
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-# Filter and Sort
 focus_df = merged[merged[share_col_name] < 50].copy()
 focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
 
-# COMBINED COLUMN: District - Brand Vol MT (Share%)
-focus_df['District_Share'] = focus_df.apply(
-    lambda x: f"{x['district'].title()} - {int(x[target_brand])} MT ({int(x[share_col_name])}%)", 
-    axis=1
-)
-
-# Total Market Display
+focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
 focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
 
-# Prepare display dataframe
-display_df = focus_df[['cluster', 'District_Share', 'Market_Size_Display']].copy()
-display_df.columns = ['Cluster', f'Districts - {target_brand} (Share%)', 'Total Market']
+display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
+display_df['Districts'] = display_df['Districts'].str.title()
 
-# Identify where a new cluster starts
 is_new_cluster = ~display_df['Cluster'].duplicated()
-
-# Mask repeating cluster names
 display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
 
 def style_final_table(st_df):
     styled = st_df.style.set_table_styles([
         {'selector': '', 'props': [('border-collapse', 'collapse'), ('width', '100%')]},
-        {'selector': 'th', 'props': [
-            ('background-color', '#b8cce4'), 
-            ('color', 'black'), 
-            ('border', '1px solid black'), 
-            ('text-align', 'center'), 
-            ('font-weight', 'bold'), 
-            ('padding', '2px 10px'),
-            ('text-transform', 'none')
-        ]},
-        {'selector': 'td', 'props': [
-            ('padding', '2px 10px'), 
-            ('color', 'black'), 
-            ('border-left', '1px solid black'), 
-            ('border-right', '1px solid black'), 
-            ('border-bottom', 'none'), 
-            ('border-top', 'none')
-        ]}
+        {'selector': 'th', 'props': [('background-color', '#b8cce4'), ('color', 'black'), ('border', '1px solid black'), ('text-align', 'center'), ('font-weight', 'bold'), ('padding', '2px 10px')]},
+        {'selector': 'td', 'props': [('padding', '2px 10px'), ('color', 'black'), ('border-left', '1px solid black'), ('border-right', '1px solid black'), ('border-bottom', 'none'), ('border-top', 'none')]}
     ]).hide(axis="index")
 
-    # Add a top border only when a new cluster starts
     for i, row_is_new in enumerate(is_new_cluster):
         if row_is_new:
-            styled.set_table_styles({
-                display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
-            }, overwrite=False, axis=1)
+            styled.set_table_styles({display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]}, overwrite=False, axis=1)
     
-    # Add a bottom border on the very last row
-    styled.set_table_styles({
-        display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
-    }, overwrite=False, axis=1)
-
+    styled.set_table_styles({display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]}, overwrite=False, axis=1)
     return styled
 
 st.table(style_final_table(display_df))
