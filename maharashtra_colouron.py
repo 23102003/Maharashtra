@@ -72,7 +72,7 @@ distributor_lookup = {
     'WARDHA': ['Yogesh', 'Arvind'], 'YAVATMAL': ['Yogesh', 'Arvind'],
     'DHULE': ['Manmohan', 'National'], 'JALGAON': ['Manmohan', 'National'],
     'NANDURBAR': ['Manmohan', 'National'], 'NASHIK': 'Manmohan Ispat',
-    'PUNE': 'Manmohan Ispat', 'EDNAGAR': 'Jai Associates'
+    'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'
 }
 
 # Map this list into your main dataframe
