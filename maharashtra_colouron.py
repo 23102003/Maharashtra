@@ -383,7 +383,7 @@ def style_final_table(st_df):
             'props': [
                 ('border-collapse', 'collapse'), 
                 ('border-spacing', '0'), # Forces zero space between columns
-                ('width', '100%')
+                ('width', '70%')
             ]
         },
         {
