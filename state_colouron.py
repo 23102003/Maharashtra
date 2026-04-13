@@ -306,20 +306,33 @@ annotations.append(dict(
 
 # 1. Legends
 for label, color in [('0–50 MT', '#dbeafe'), ('50–150 MT', '#93c5fd'), ('150–300 MT', '#3b82f6'), ('300+ MT', '#1e40af')]:
-    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color="black", symbol='square'),
+    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
                              legendgroup="Market", legendgrouptitle_text="Market Size (MT)", name=label))
 
 for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%', '#f57c00'), ('< 25%', '#d32f2f')]:
-    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color="black", symbol='square'),
+    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
                              legendgroup="Share", legendgrouptitle_text=f"{target_brand} %", name=label))
 
 fig.update_layout(
     annotations=annotations,
-    dragmode=False,
-    xaxis=dict(fixedrange=True, visible=False),
-    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1),
-    plot_bgcolor='white', margin=dict(l=0, r=0, t=0, b=0), height=600,
-    legend=dict(x=0.01, y=0.99, bgcolor="rgba(255,255,255,0.8)", bordercolor="Black", borderwidth=0)
+    dragmode=False, # Disables panning/dragging
+    xaxis=dict(fixedrange=True, visible=False), # Disables zooming on X
+    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
+    plot_bgcolor='white',
+    margin=dict(l=0, r=0, t=0, b=0),
+    height=600,
+    showlegend=True,
+    legend=dict(
+        x=0.01,
+        y=0.99,
+        # Move it here:
+        grouptitlefont=dict(color="black"), 
+        bgcolor="rgba(255,255,255,0.8)", 
+        bordercolor="Black",
+        borderwidth=0,
+        font=dict(size=12, color="black"), 
+        title_font_family="Arial Black",
+        itemsizing='constant')
 )
 
 st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
