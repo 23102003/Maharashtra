@@ -254,90 +254,56 @@ for _, row in clusters.iterrows():
 
 # C. LABELS AND BOXES (USING ANNOTATIONS FOR TOP LAYER RENDERING)
 annotations = []
+
+# 1. District and Share Labels (Looping through merged data)
 for _, row in merged.iterrows():
-    centroid = row.geometry.centroid
-    is_hub = row['district_upper'] == str(row['cluster']).upper()
-    share_val = f"{int(row[share_col_name])}%" if pd.notna(row[share_col_name]) else "0%"
-    
-    # 1. District Name Annotation
-    # Calculate coordinates first based on the Hub status
-    target_x = centroid.x
-    # Use a higher offset if it's a hub (0.15) vs a normal district (0.1)
-    target_y = centroid.y + 0.15 if is_hub else centroid.y + 0.1
-    
-    # Define the display name logic
-    display_name = row['district'].upper() if is_hub else row['district']
-    
+    if row.geometry:
+        centroid = row.geometry.centroid
+        is_hub = str(row['district_upper']).upper() == str(row['cluster']).upper()
+        share_val = f"{int(row[share_col_name])}%" if pd.notna(row[share_col_name]) else "0%"
+        
+        # District Name
+        target_x = centroid.x
+        target_y = centroid.y + 0.15 if is_hub else centroid.y + 0.1
+        display_name = row['district'].upper() if is_hub else row['district'].title()
+        
+        annotations.append(dict(
+            x=target_x, y=target_y, text=display_name, showarrow=False,
+            font=dict(size=13 if is_hub else 10, color="black", family="Arial Black" if is_hub else "Arial"),
+            xref="x", yref="y"
+        ))
+        
+        # Share % Box
+        annotations.append(dict(
+            x=centroid.x, y=centroid.y - 0.1, text=f"<b>{share_val}</b>",
+            showarrow=False, font=dict(size=13, color="white"),
+            bgcolor=row['share_color'], bordercolor="black", borderwidth=1, borderpad=3,
+            xref="x", yref="y"
+        ))
+
+# 2. State-Specific Manual Fixes (e.g., AHMEDNAGAR)
+if target_state == "Maharashtra":
     annotations.append(dict(
-        x=target_x, 
-        y=target_y,
-        text=display_name,
-        showarrow=False,
-        font=dict(
-            size=13 if is_hub else 10, 
-            color="black", 
-            family="Arial Black" if is_hub else "Arial"
-        ),
-        xref="x", 
-        yref="y"
-    ))
-    
-    # 2. Share % with Rounded Box Annotation
-    annotations.append(dict(
-        x=centroid.x, y=centroid.y - 0.1,
-        text=f"<b>{share_val}</b>",
-        showarrow=False,
-        font=dict(size=13, color="white"),
-        bgcolor=row['share_color'],
-        bordercolor="black",
-        borderwidth=1,
-        borderpad=3,  # Adjusts the "roundness" feel and padding
-        xref="x", yref="y"
+        x=74.74, y=19.3, text="<b>AHMEDNAGAR</b>", showarrow=False,
+        font=dict(size=10, color="black", family="Arial"), xref="x", yref="y"
     ))
 
-# annotations.append(dict(
-#     x=74.74, y=19.3,
-#     text="<b>AHMEDNAGAR</b>",
-#     showarrow=False,
-#     font=dict(size=10, color="black", family="Arial"),
-#     xref="x", yref="y"))
-
-# --- TOTAL MARKET BOX (Top Right) ---
-# total_mkt_size = df['Market_Size'].sum()
-
-# fig.add_annotation(
-#     x=0.99, y=0.99,
-#     xref="paper", yref="paper",
-#     text=f"<b>Total Premium Market</b><br><span style='font-size:20px;color:#1e40af;'>{total_mkt_size} MT</span>",
-#     showarrow=False,
-#     align="right",
-#     font=dict(size=14, color="Black", family="Arial Black"),
-#     bgcolor="rgba(255,255,255,0.8)",
-# )
-# --- TOTAL MARKET BOX (Bottom Right) ---
+# 3. Total Market Box (Paper Coordinates)
 total_mkt_size = df['Market_Size'].sum()
 total_brand_vol = df[target_brand].sum()
 total_brand_pct = (total_brand_vol / total_mkt_size * 100) if total_mkt_size > 0 else 0
 
-# CHANGE THIS: Append to annotations list instead of fig.add_annotation
 annotations.append(dict(
-    x=0.99,  
-    y=0.01,   
-    xref="paper", 
-    yref="paper",
+    x=0.99, y=0.01, xref="paper", yref="paper",
     text=(
         f"<b>Total Premium Market</b><br>"
         f"<b><span style='font-size:20px;color:#1e40af;'>{total_mkt_size} MT</span></b><br><br>"
         f"<b>{target_brand} Share</b><br>"
         f"<b><span style='font-size:18px;color:#1b5e20;'>{total_brand_vol} MT ({total_brand_pct:.0f}%)</span></b>"
     ),
-    showarrow=False,
-    align="right",
+    showarrow=False, align="right",
     font=dict(size=14, color="Black", family="Arial Black"),
-    bgcolor="rgba(255,255,255,0.9)",
-    bordercolor="black",
-    borderwidth=1,
-    borderpad=10
+    bgcolor="rgba(255,255,255,0.9)", bordercolor="black", borderwidth=1, borderpad=10
 ))
 
 # 1. Market Size Legend (Circles/Squares)
@@ -368,28 +334,25 @@ for label, color in share_ranges:
         name=label, showlegend=True
     ))
 
-# Final Layout Update
+# 4. Final Layout Update (Single Pass)
 fig.update_layout(
     annotations=annotations,
-    dragmode=False, # Disables panning/dragging
-    xaxis=dict(fixedrange=True, visible=False), # Disables zooming on X
-    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
+    dragmode=False,
+    xaxis=dict(fixedrange=True, visible=False),
+    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1),
     plot_bgcolor='white',
     margin=dict(l=0, r=0, t=0, b=0),
     height=600,
     showlegend=True,
     legend=dict(
-        x=0.01,
-        y=0.99,
-        # Move it here:
+        x=0.01, y=0.99,
         grouptitlefont=dict(color="black"), 
         bgcolor="rgba(255,255,255,0.8)", 
-        bordercolor="Black",
-        borderwidth=0,
+        bordercolor="Black", borderwidth=0,
         font=dict(size=12, color="black"), 
         title_font_family="Arial Black",
         itemsizing='constant'
-    )    
+    )
 )
 
 st.plotly_chart(
