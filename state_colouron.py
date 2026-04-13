@@ -36,7 +36,7 @@ def get_state_data(state_name):
     elif state_name == "Gujarat":
         data = {
             "District": [
-                'AHMEDABAD', 'ANAND', 'GANDHINAGAR', 'KHEDA', 'AMRELI', 'BHAVNAGAR', 'BOTAD', 'GIR SOMNATH', 'JUNAGADH', 'PORBANDAR',
+                'AHMADABAD', 'ANAND', 'GANDHINAGAR', 'KHEDA', 'AMRELI', 'BHAVNAGAR', 'BOTAD', 'GIR SOMNATH', 'JUNAGADH', 'PORBANDAR',
                 'JAMNAGAR', 'KACHCHH', 'MORBI', 'ARVALLI', 'BANAS KANTHA', 'MAHESANA', 'PATAN', 'SABAR KANTHA', 'DEVBHUMI DWARKA', 'RAJKOT','SURENDRANAGAR',
                 'DANG', 'NAVSARI', 'SURAT', 'TAPI', 'VALSAD', 'BHARUCH', 'CHHOTAUDEPUR', 'DOHAD', 'MAHISAGAR', 'NARMADA', 'PANCH MAHALS', 'VADODARA'
             ],
