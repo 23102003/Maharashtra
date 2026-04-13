@@ -305,7 +305,7 @@ annotations.append(dict(
 ))
 
 # 1. Legends
-for label, color in [('0–50 MT', '#dbeafe'), ('50–150 MT', '#93c5fd'), ('150–300 MT', '#3b82f6'), ('300-650 MT', '#1e40af')]:
+for label, color in [('0–50 MT', '#dbeafe'), ('50–150 MT', '#93c5fd'), ('150–300 MT', '#3b82f6'), ('300+ MT', '#1e40af')]:
     fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
                              legendgroup="Market", legendgrouptitle_text="Market Size (MT)", name=label))
 
