@@ -306,11 +306,11 @@ annotations.append(dict(
 
 # 1. Legends
 for label, color in [('0–50 MT', '#dbeafe'), ('50–150 MT', '#93c5fd'), ('150–300 MT', '#3b82f6'), ('300+ MT', '#1e40af')]:
-    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
+    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color="black", symbol='square'),
                              legendgroup="Market", legendgrouptitle_text="Market Size (MT)", name=label))
 
 for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%', '#f57c00'), ('< 25%', '#d32f2f')]:
-    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
+    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color="black", symbol='square'),
                              legendgroup="Share", legendgrouptitle_text=f"{target_brand} %", name=label))
 
 fig.update_layout(
