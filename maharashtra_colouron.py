@@ -322,7 +322,10 @@ fig.update_layout(
         font=dict(size=12, color="black"), 
         title_font_family="Arial Black",
         itemsizing='constant'
-    )
+    ),
+    dragmode=False, # Disables panning/dragging
+    xaxis=dict(fixedrange=True, visible=False), # Disables zooming on X
+    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
 )
 
 st.plotly_chart(
