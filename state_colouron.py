@@ -146,6 +146,24 @@ def create_tooltip(row):
     return tip
 
 df['hover_text'] = df.apply(create_tooltip, axis=1)
+
+def get_m_color(size):
+    if size <= 50: return "#dbeafe"
+    elif size <= 150: return "#93c5fd"
+    elif size <= 300: return "#3b82f6"
+    else: return "#1e40af"
+
+def get_s_color(share):
+    if share < 25: return "#d32f2f"
+    elif share < 50: return "#f57c00"
+    elif share < 75: return "#8bc34a"
+    else: return "#1b5e20"
+
+df['market_color'] = df['Market_Size'].apply(get_m_color)
+df['share_color'] = df[share_col_name].apply(get_s_color)
+
+merged = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
+
 # You can define a dictionary for Gujarat Clusters here
 cluster_config = {
     "Maharashtra": {
@@ -181,23 +199,6 @@ merged['cluster'] = merged['cluster'].fillna('Other')
 
 clusters = merged.dissolve(by='cluster')
 
-
-def get_m_color(size):
-    if size <= 50: return "#dbeafe"
-    elif size <= 150: return "#93c5fd"
-    elif size <= 300: return "#3b82f6"
-    else: return "#1e40af"
-
-def get_s_color(share):
-    if share < 25: return "#d32f2f"
-    elif share < 50: return "#f57c00"
-    elif share < 75: return "#8bc34a"
-    else: return "#1b5e20"
-
-df['market_color'] = df['Market_Size'].apply(get_m_color)
-df['share_color'] = df[share_col_name].apply(get_s_color)
-
-merged = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
 
 # ---------------------------------------------------------
 
