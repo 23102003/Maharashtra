@@ -219,10 +219,8 @@ fig = go.Figure()
 # A. DISTRICT POLYGONS
 for _, row in merged.iterrows():
     if row.geometry:
-        if row.geometry.geom_type == 'Polygon':
-            polys = [row.geometry]
-        else:
-            polys = row.geometry.geoms
+        geom = row.geometry
+        polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
         for poly in polys:
             x, y = poly.exterior.xy
             fig.add_trace(go.Scatter(
@@ -238,10 +236,8 @@ for _, row in merged.iterrows():
 
 # B. CLUSTER OUTLINES
 for _, row in clusters.iterrows():
-    if row.geometry.geom_type == 'Polygon':
-        polys = [row.geometry]
-    else:
-        polys = row.geometry.geoms
+    geom = row.geometry
+    polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
     for poly in polys:
         x, y = poly.exterior.xy
         fig.add_trace(go.Scatter(
@@ -252,43 +248,44 @@ for _, row in clusters.iterrows():
             mode='lines'
         ))
 
-# C. LABELS AND BOXES (USING ANNOTATIONS FOR TOP LAYER RENDERING)
+# C. LABELS AND BOXES
 annotations = []
-
-# 1. District and Share Labels (Looping through merged data)
 for _, row in merged.iterrows():
     if row.geometry:
         centroid = row.geometry.centroid
+        # Robust hub check
         is_hub = str(row['district_upper']).upper() == str(row['cluster']).upper()
         share_val = f"{int(row[share_col_name])}%" if pd.notna(row[share_col_name]) else "0%"
         
-        # District Name
-        target_x = centroid.x
-        target_y = centroid.y + 0.15 if is_hub else centroid.y + 0.1
-        display_name = row['district'].upper() if is_hub else row['district'].title()
-        
+        # 1. District Name
         annotations.append(dict(
-            x=target_x, y=target_y, text=display_name, showarrow=False,
+            x=centroid.x, y=centroid.y + (0.15 if is_hub else 0.1),
+            text=row['district'].upper() if is_hub else row['district'].title(),
+            showarrow=False,
             font=dict(size=13 if is_hub else 10, color="black", family="Arial Black" if is_hub else "Arial"),
             xref="x", yref="y"
         ))
         
-        # Share % Box
+        # 2. Share % Box
         annotations.append(dict(
-            x=centroid.x, y=centroid.y - 0.1, text=f"<b>{share_val}</b>",
-            showarrow=False, font=dict(size=13, color="white"),
-            bgcolor=row['share_color'], bordercolor="black", borderwidth=1, borderpad=3,
+            x=centroid.x, y=centroid.y - 0.1,
+            text=f"<b>{share_val}</b>",
+            showarrow=False,
+            font=dict(size=13, color="white"),
+            bgcolor=row['share_color'],
+            bordercolor="black", borderwidth=1, borderpad=3,
             xref="x", yref="y"
         ))
 
-# 2. State-Specific Manual Fixes (e.g., AHMEDNAGAR)
+# Manual Fix for Maharashtra only
 if target_state == "Maharashtra":
     annotations.append(dict(
-        x=74.74, y=19.3, text="<b>AHMEDNAGAR</b>", showarrow=False,
-        font=dict(size=10, color="black", family="Arial"), xref="x", yref="y"
+        x=74.74, y=19.3, text="<b>AHMEDNAGAR</b>",
+        showarrow=False, font=dict(size=10, color="black", family="Arial"),
+        xref="x", yref="y"
     ))
 
-# 3. Total Market Box (Paper Coordinates)
+# --- TOTAL MARKET BOX (Merged into annotations to prevent error) ---
 total_mkt_size = df['Market_Size'].sum()
 total_brand_vol = df[target_brand].sum()
 total_brand_pct = (total_brand_vol / total_mkt_size * 100) if total_mkt_size > 0 else 0
@@ -306,63 +303,25 @@ annotations.append(dict(
     bgcolor="rgba(255,255,255,0.9)", bordercolor="black", borderwidth=1, borderpad=10
 ))
 
-# 1. Market Size Legend (Circles/Squares)
-market_ranges = [
-    ('0–50 MT', '#dbeafe'), ('50–0 MT', '#93c5fd'), 
-    ('150–300 MT', '#3b82f6'), ('300-650 MT', '#1e40af')
-]
+# 1. Legends
+for label, color in [('0–50 MT', '#dbeafe'), ('50–150 MT', '#93c5fd'), ('150–300 MT', '#3b82f6'), ('300-650 MT', '#1e40af')]:
+    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
+                             legendgroup="Market", legendgrouptitle_text="Market Size (MT)", name=label))
 
-for label, color in market_ranges:
-    fig.add_trace(go.Scatter(
-        x=[None], y=[None], mode='markers',
-        marker=dict(size=10, color=color, symbol='square'),
-        legendgroup="Market", legendgrouptitle_text="Market Size (MT)",
-        name=label, showlegend=True
-    ))
+for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%', '#f57c00'), ('< 25%', '#d32f2f')]:
+    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
+                             legendgroup="Share", legendgrouptitle_text=f"{target_brand} %", name=label))
 
-# 2. Share % Legend
-share_ranges = [
-    ('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), 
-    ('25–50%', '#f57c00'), ('< 25%', '#d32f2f')
-]
-
-for label, color in share_ranges:
-    fig.add_trace(go.Scatter(
-        x=[None], y=[None], mode='markers',
-        marker=dict(size=10, color=color, symbol='square'),
-        legendgroup="Share", legendgrouptitle_text=f"{target_brand} Share %",
-        name=label, showlegend=True
-    ))
-
-# 4. Final Layout Update (Single Pass)
 fig.update_layout(
     annotations=annotations,
     dragmode=False,
     xaxis=dict(fixedrange=True, visible=False),
     yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1),
-    plot_bgcolor='white',
-    margin=dict(l=0, r=0, t=0, b=0),
-    height=600,
-    showlegend=True,
-    legend=dict(
-        x=0.01, y=0.99,
-        grouptitlefont=dict(color="black"), 
-        bgcolor="rgba(255,255,255,0.8)", 
-        bordercolor="Black", borderwidth=0,
-        font=dict(size=12, color="black"), 
-        title_font_family="Arial Black",
-        itemsizing='constant'
-    )
+    plot_bgcolor='white', margin=dict(l=0, r=0, t=0, b=0), height=600,
+    legend=dict(x=0.01, y=0.99, bgcolor="rgba(255,255,255,0.8)", bordercolor="Black", borderwidth=0)
 )
 
-st.plotly_chart(
-    fig, 
-    use_container_width=True, 
-    config={
-        'displayModeBar': False, # Hides the zoom/pan/save toolbar entirely
-        'staticPlot': False      # Set to True if you want to kill hover effects too
-    }
-)
+st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 # # ---------------------------------------------------------
 # # 5. TABLES (Unchanged)
 # # ---------------------------------------------------------
