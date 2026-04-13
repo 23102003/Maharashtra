@@ -36,14 +36,18 @@ def get_state_data(state_name):
     elif state_name == "Gujarat":
         data = {
             "District": [
-                'AHMEDABAD', 'AMRELI', 'ANAND', 'ARAVALLI', 'BANAS KANTHA', 'BHARUCH', 'BHAVNAGAR', 'BOTAD',
-                'CHHOTA UDAIPUR', 'DAHOD', 'DANGS', 'DEVBHUMI DWARKA', 'GANDHINAGAR', 'GIR SOMNATH', 'JAMNAGAR',
-                'JUNAGADH', 'KACHCHH', 'KHEDA', 'MAHISAGAR', 'MEHSANA', 'MORBI', 'NARMADA', 'NAVSARI', 'PANCH MAHALS',
-                'PATAN', 'PORBANDAR', 'RAJKOT', 'SABAR KANTHA', 'SURAT', 'SURENDRANAGAR', 'TAPI', 'VADODARA', 'VALSAD'
+                'AHMEDABAD', 'ANAND', 'GANDHINAGAR', 'KHEDA', 'AMRELI', 'BHAVNAGAR', 'BOTAD', 'GIR SOMNATH', 'JUNAGADH', 'PORBANDAR',
+                'JAMNAGAR', 'KACHCHH', 'MORBI', 'ARVALLI', 'BANAS KANTHA', 'MAHESANA', 'PATAN', 'SABAR KANTHA', 'DEVBHUMI DWARKA', 'RAJKOT','SURENDRANAGAR',
+                'DANG', 'NAVSARI', 'SURAT', 'TAPI', 'VALSAD', 'BHARUCH', 'CHHOTAUDEPUR', 'DOHAD', 'MAHISAGAR', 'NARMADA', 'PANCH MAHALS', 'VADODARA'
             ],
-            "Colouron+": [100]*33, "Everglow": [10]*33, "JSW_Radiance": [5]*33, 
-            "TATA_Prisma": [20]*33, "Tata_Liner": [0]*33, "TATA_Durashine": [50]*33, 
-            "JSW_CC_Liner": [0]*33, "Others": [10]*33
+            "Colouron+": [80, 50, 80, 50, 25, 25, 0, 0, 40, 10, 40, 40, 40, 10, 70, 80, 25, 30, 0, 400, 40, 1, 40, 700, 10, 200, 20, 0, 0, 5, 0, 5, 80],
+            "Everglow": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "JSW_CC_Liner": [0]*33,
+            "TATA_Durashine": [30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 10, 5, 2, 0, 0, 0, 0, 8, 50, 1, 15, 10, 0, 0, 2, 0, 0, 15],
+            "Tata_Liner": [100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 10, 0, 0, 10, 10, 0, 0, 0, 100, 0, 0, 0, 120, 0, 0, 20, 0, 0, 0, 0, 0, 50],
+            "TATA_Prisma": [100, 20, 30, 10, 20, 25, 10, 0, 25, 10, 0, 20, 50, 0, 20, 50, 10, 20, 0, 200, 40, 0, 10, 300, 0, 180, 40, 0, 0, 0, 0, 5, 120],
+            "JSW_Radiance": [0]*33,
+            "Others": [10, 5, 10, 5, 5, 10, 5, 2, 5, 10, 5, 0, 10, 0, 0, 0, 0, 0, 5, 10, 5, 0, 1, 10, 1, 0, 10, 0, 0, 0, 0, 0, 0]
         }
     return pd.DataFrame(data)
 
@@ -57,11 +61,8 @@ def get_geojson(state_name):
     state_gdf['district'] = state_gdf['district'].str.upper().replace({
         'CHHATRAPATI SAMBHAJINAGAR': 'AURANGABAD', 
         'DHARASHIV': 'OSMANABAD',
-        'BANASKANTHA': 'BANAS KANTHA',
-        'SABARKANTHA': 'SABAR KANTHA',
-        'PANCHMAHALS': 'PANCH MAHALS',
-        'DOHAD': 'DAHOD',
-        'KUTCH': 'KACHCHH'
+        'DANGS': 'DANG',
+        'DAHOD': 'DOHAD',
     })
     state_gdf['district_upper'] = state_gdf['district'].str.upper()
     return state_gdf
@@ -91,21 +92,21 @@ df[share_col_name] = df[share_col_name].round(0).astype(int)
 state_distributor_configs = {
     "Maharashtra": {
         'AKOLA': 'Hussain', 'BULDHANA': 'Hussain', 'WASHIM': 'Hussain',
-      'AURANGABAD': 'Prince Steel', 'BEED': 'NA',
-      'JALNA': 'NA', 'LATUR': 'Prince Steel', 'OSMANABAD': 'NA',
-      'HINGOLI': 'NA', 'NANDED': 'NA', 'PARBHANI': 'NA',
-      'KOLHAPUR': 'KD Oswal', 'RATNAGIRI': ['KD', 'Yogi'], 'SANGLI': 'Yogi',
-      'SATARA': 'Laxmi', 'SINDHUDURG': ['KD', 'Yogi'],
-      'SOLAPUR': ['Manmohan', 'Laxmi', 'Yogi'], 'MUMBAI': ['Arihant', 'Khyati'],
-      'MUMBAI SUBURBAN': ['Arihant', 'Khyati'], 'PALGHAR': ['Arihant', 'Khyati'],
-      'RAIGARH': ['Arihant', 'Khyati'], 'THANE': ['Arihant', 'Khyati'],
-      'BHANDARA': ['Yogesh', 'Arvind'], 'CHANDRAPUR': ['Yogesh', 'Arvind'],
-      'AMRAVATI': ['Yogesh', 'Arvind'], 'GADCHIROLI': ['Yogesh', 'Arvind'],
-      'GONDIA': ['Yogesh', 'Arvind'], 'NAGPUR': ['Yogesh', 'Arvind'],
-      'WARDHA': ['Yogesh', 'Arvind'], 'YAVATMAL': ['Yogesh', 'Arvind'],
-      'DHULE': ['Manmohan', 'National'], 'JALGAON': ['Manmohan', 'National'],
-      'NANDURBAR': ['Manmohan', 'National'], 'NASHIK': 'Manmohan Ispat',
-      'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'
+          'AURANGABAD': 'Prince Steel', 'BEED': 'NA',
+          'JALNA': 'NA', 'LATUR': 'Prince Steel', 'OSMANABAD': 'NA',
+          'HINGOLI': 'NA', 'NANDED': 'NA', 'PARBHANI': 'NA',
+          'KOLHAPUR': 'KD Oswal', 'RATNAGIRI': ['KD', 'Yogi'], 'SANGLI': 'Yogi',
+          'SATARA': 'Laxmi', 'SINDHUDURG': ['KD', 'Yogi'],
+          'SOLAPUR': ['Manmohan', 'Laxmi', 'Yogi'], 'MUMBAI': ['Arihant', 'Khyati'],
+          'MUMBAI SUBURBAN': ['Arihant', 'Khyati'], 'PALGHAR': ['Arihant', 'Khyati'],
+          'RAIGARH': ['Arihant', 'Khyati'], 'THANE': ['Arihant', 'Khyati'],
+          'BHANDARA': ['Yogesh', 'Arvind'], 'CHANDRAPUR': ['Yogesh', 'Arvind'],
+          'AMRAVATI': ['Yogesh', 'Arvind'], 'GADCHIROLI': ['Yogesh', 'Arvind'],
+          'GONDIA': ['Yogesh', 'Arvind'], 'NAGPUR': ['Yogesh', 'Arvind'],
+          'WARDHA': ['Yogesh', 'Arvind'], 'YAVATMAL': ['Yogesh', 'Arvind'],
+          'DHULE': ['Manmohan', 'National'], 'JALGAON': ['Manmohan', 'National'],
+          'NANDURBAR': ['Manmohan', 'National'], 'NASHIK': 'Manmohan Ispat',
+          'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'
     },
     "Gujarat": {
         'AHMEDABAD': 'Distributor A', 
@@ -168,21 +169,28 @@ merged = state_districts.merge(df, left_on='district_upper', right_on='District'
 cluster_config = {
     "Maharashtra": {
         'AKOLA': 'Akola', 'BULDHANA': 'Akola', 'WASHIM': 'Akola', 'AMRAVATI': 'Nagpur', 'YAVATMAL': 'Nagpur',
-      'AURANGABAD': 'Aurangabad', 'BEED': 'Aurangabad',
-      'JALNA': 'Aurangabad', 'LATUR': 'Aurangabad', 'OSMANABAD': 'Aurangabad',
-      'HINGOLI': 'Aurangabad', 'NANDED': 'Aurangabad', 'PARBHANI': 'Aurangabad',
-      'KOLHAPUR': 'Kolhapur', 'RATNAGIRI': 'Kolhapur', 'SANGLI': 'Kolhapur', 'SATARA': 'Kolhapur',
-      'SINDHUDURG': 'Kolhapur', 'SOLAPUR': 'Kolhapur',
-      'MUMBAI': 'Mumbai', 'MUMBAI SUBURBAN': 'Mumbai', 'PALGHAR': 'Mumbai', 'RAIGARH': 'Mumbai', 'THANE': 'Mumbai',
-      'BHANDARA': 'Nagpur', 'CHANDRAPUR': 'Nagpur', 'GADCHIROLI': 'Nagpur', 'GONDIA': 'Nagpur', 'NAGPUR': 'Nagpur', 'WARDHA': 'Nagpur',
-      'DHULE': 'Nashik', 'JALGAON': 'Nashik', 'NANDURBAR': 'Nashik', 'NASHIK': 'Nashik',
-      'PUNE': 'Pune', 'AHMEDNAGAR': 'Pune'
+          'AURANGABAD': 'Aurangabad', 'BEED': 'Aurangabad',
+          'JALNA': 'Aurangabad', 'LATUR': 'Aurangabad', 'OSMANABAD': 'Aurangabad',
+          'HINGOLI': 'Aurangabad', 'NANDED': 'Aurangabad', 'PARBHANI': 'Aurangabad',
+          'KOLHAPUR': 'Kolhapur', 'RATNAGIRI': 'Kolhapur', 'SANGLI': 'Kolhapur', 'SATARA': 'Kolhapur',
+          'SINDHUDURG': 'Kolhapur', 'SOLAPUR': 'Kolhapur',
+          'MUMBAI': 'Mumbai', 'MUMBAI SUBURBAN': 'Mumbai', 'PALGHAR': 'Mumbai', 'RAIGARH': 'Mumbai', 'THANE': 'Mumbai',
+          'BHANDARA': 'Nagpur', 'CHANDRAPUR': 'Nagpur', 'GADCHIROLI': 'Nagpur', 'GONDIA': 'Nagpur', 'NAGPUR': 'Nagpur', 'WARDHA': 'Nagpur',
+          'DHULE': 'Nashik', 'JALGAON': 'Nashik', 'NANDURBAR': 'Nashik', 'NASHIK': 'Nashik',
+          'PUNE': 'Pune', 'AHMEDNAGAR': 'Pune'
     },
     "Gujarat": {
-        'AHMEDABAD': 'Ahmedabad', 'GANDHINAGAR': 'Ahmedabad', 'KHEDA': 'Ahmedabad',
-        'SURAT': 'Surat', 'NAVSARI': 'Surat', 'VALSAD': 'Surat',
-        'RAJKOT': 'Rajkot', 'MORBI': 'Rajkot', 'JAMNAGAR': 'Rajkot'
-        # Add the rest of Gujarat districts to clusters here
+        'AHMADABAD': 'Ahmadabad', 'ANAND': 'Ahmadabad', 'GANDHINAGAR': 'Ahmadabad', 
+        'KHEDA': 'Ahmadabad', 'AMRELI': 'Bhavnagar', 'BHAVNAGAR': 'Bhavnagar', 
+        'BOTAD': 'Bhavnagar', 'GIR SOMNATH': 'Bhavnagar', 'JUNAGADH': 'Bhavnagar', 
+        'PORBANDAR': 'Bhavnagar', 'JAMNAGAR': 'Kachch', 'KACHCHH': 'Kachch', 
+        'MORBI': 'Kachch', 'ARVALLI': 'Mahesana', 'BANAS KANTHA': 'Mahesana', 
+        'MAHESANA': 'Mahesana', 'PATAN': 'Mahesana', 'SABAR KANTHA': 'Mahesana', 
+        'DEVBHUMI DWARKA': 'Rajkot', 'RAJKOT': 'Rajkot', 'SURENDRANAGAR': 'Rajkot', 
+        'DANG': 'Surat', 'NAVSARI': 'Surat', 'SURAT': 'Surat', 'TAPI': 'Surat', 
+        'VALSAD': 'Surat', 'BHARUCH': 'Vadodara', 'CHHOTAUDEPUR': 'Vadodara', 
+        'DOHAD': 'Vadodara', 'MAHISAGAR': 'Vadodara', 'NARMADA': 'Vadodara', 
+        'PANCH MAHALS': 'Vadodara', 'VADODARA': 'Vadodara'
     }
 }
 
@@ -193,9 +201,6 @@ current_cluster_map = cluster_config.get(target_state, {})
 
 # Now apply the map
 merged['cluster'] = merged['district_upper'].map(current_cluster_map)
-
-# Fill any districts that didn't have a cluster with 'Other' to avoid dissolve errors
-merged['cluster'] = merged['cluster'].fillna('Other')
 
 clusters = merged.dissolve(by='cluster')
 
