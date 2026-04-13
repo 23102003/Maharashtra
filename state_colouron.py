@@ -278,13 +278,13 @@ for _, row in merged.iterrows():
             xref="x", yref="y"
         ))
 
-# Manual Fix for Maharashtra only
-if target_state == "Maharashtra":
-    annotations.append(dict(
-        x=74.74, y=19.3, text="<b>AHMEDNAGAR</b>",
-        showarrow=False, font=dict(size=10, color="black", family="Arial"),
-        xref="x", yref="y"
-    ))
+# # Manual Fix for Maharashtra only
+# if target_state == "Maharashtra":
+#     annotations.append(dict(
+#         x=74.74, y=19.3, text="<b>AHMEDNAGAR</b>",
+#         showarrow=False, font=dict(size=10, color="black", family="Arial"),
+#         xref="x", yref="y"
+#     ))
 
 # --- TOTAL MARKET BOX (Merged into annotations to prevent error) ---
 total_mkt_size = df['Market_Size'].sum()
