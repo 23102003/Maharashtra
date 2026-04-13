@@ -168,8 +168,17 @@ cluster_config = {
     }
 }
 
+# current_cluster_map = cluster_config.get(target_state, {})
+# merged['cluster'] = merged['district_upper'].map(current_cluster_map)
+# clusters = merged.dissolve(by='cluster')
 current_cluster_map = cluster_config.get(target_state, {})
+
+# Now apply the map
 merged['cluster'] = merged['district_upper'].map(current_cluster_map)
+
+# Fill any districts that didn't have a cluster with 'Other' to avoid dissolve errors
+merged['cluster'] = merged['cluster'].fillna('Other')
+
 clusters = merged.dissolve(by='cluster')
 
 
