@@ -314,15 +314,15 @@ for _, row in merged.iterrows():
 #     font=dict(size=14, color="Black", family="Arial Black"),
 #     bgcolor="rgba(255,255,255,0.8)",
 # )
-# --- TOTAL MARKET BOX (Top Right) ---
-# --- TOTAL MARKET BOX (Bottom Right to avoid overlap) ---
+# --- TOTAL MARKET BOX (Bottom Right) ---
 total_mkt_size = df['Market_Size'].sum()
 total_brand_vol = df[target_brand].sum()
 total_brand_pct = (total_brand_vol / total_mkt_size * 100) if total_mkt_size > 0 else 0
 
-fig.add_annotation(
-    x=0.99,   # Keep it on the right side
-    y=0.01,   # Move it to the bottom (0 is bottom, 1 is top)
+# CHANGE THIS: Append to annotations list instead of fig.add_annotation
+annotations.append(dict(
+    x=0.99,  
+    y=0.01,   
     xref="paper", 
     yref="paper",
     text=(
@@ -338,7 +338,7 @@ fig.add_annotation(
     bordercolor="black",
     borderwidth=1,
     borderpad=10
-)
+))
 
 # 1. Market Size Legend (Circles/Squares)
 market_ranges = [
