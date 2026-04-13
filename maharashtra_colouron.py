@@ -305,8 +305,9 @@ for label, color in share_ranges:
 # Final Layout Update
 fig.update_layout(
     annotations=annotations,
-    xaxis=dict(visible=False),
-    yaxis=dict(visible=False, scaleanchor="x", scaleratio=1),
+    dragmode=False, # Disables panning/dragging
+    xaxis=dict(fixedrange=True, visible=False), # Disables zooming on X
+    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
     plot_bgcolor='white',
     margin=dict(l=0, r=0, t=0, b=0),
     height=600,
@@ -322,10 +323,7 @@ fig.update_layout(
         font=dict(size=12, color="black"), 
         title_font_family="Arial Black",
         itemsizing='constant'
-    ),
-    dragmode=False, # Disables panning/dragging
-    xaxis=dict(fixedrange=True, visible=False), # Disables zooming on X
-    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
+    )    
 )
 
 st.plotly_chart(
