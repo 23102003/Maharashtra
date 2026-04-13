@@ -325,8 +325,14 @@ fig.update_layout(
     )
 )
 
-st.plotly_chart(fig, use_container_width=True)
-
+st.plotly_chart(
+    fig, 
+    use_container_width=True, 
+    config={
+        'displayModeBar': False, # Hides the zoom/pan/save toolbar entirely
+        'staticPlot': False      # Set to True if you want to kill hover effects too
+    }
+)
 # # ---------------------------------------------------------
 # # 5. TABLES (Unchanged)
 # # ---------------------------------------------------------
