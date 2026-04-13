@@ -43,7 +43,7 @@ def get_state_data(state_name):
                 'DANG', 'NAVSARI', 'SURAT', 'TAPI', 'VALSAD', 'BHARUCH', 'CHHOTAUDEPUR', 'DOHAD', 'MAHISAGAR', 'NARMADA', 'PANCH MAHALS', 'VADODARA'
             ],
             "Popular": [70, 0, 40, 5, 35, 35, 0, 15, 0, 10, 45, 40, 25, 12, 20, 70, 2, 40, 0, 40, 10, 0, 15, 40, 0, 40, 35, 3, 0, 7, 0, 5, 65],
-            "VIL Brand": [0]*33, # Mostly zeros based on visible data
+            "VIL": [0]*33, # Mostly zeros based on visible data
             "Alucolour": [0]*33, # Mostly zeros based on visible data
             "Infinia": [0]*33,   # Mostly zeros based on visible data
             "APL Apollo Rooftuff": [20, 5, 10, 10, 10, 20, 0, 0, 15, 0, 20, 0, 10, 0, 0, 10, 5, 10, 0, 120, 0, 0, 0, 20, 0, 15, 20, 0, 0, 0, 0, 0, 5],
