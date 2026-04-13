@@ -285,8 +285,7 @@ for _, row in merged.iterrows():
 #     text="<b>AHMEDNAGAR</b>",
 #     showarrow=False,
 #     font=dict(size=10, color="black", family="Arial"),
-#     xref="x", yref="y")
-)
+#     xref="x", yref="y"))
 
 # --- TOTAL MARKET BOX (Top Right) ---
 # total_mkt_size = df['Market_Size'].sum()
