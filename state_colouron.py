@@ -155,6 +155,7 @@ def get_m_color(size):
     else: return "#1e40af"
 
 def get_s_color(share):
+    if pd.isna(share): return "gray"
     if share < 25: return "#d32f2f"
     elif share < 50: return "#f57c00"
     elif share < 75: return "#8bc34a"
@@ -272,7 +273,7 @@ for _, row in merged.iterrows():
             text=f"<b>{share_val}</b>",
             showarrow=False,
             font=dict(size=13, color="white"),
-            bgcolor=row['share_color'],
+            bgcolor=row['share_color'] if pd.notna(row['share_color']) else 'gray',
             bordercolor="black", borderwidth=1, borderpad=3,
             xref="x", yref="y"
         ))
