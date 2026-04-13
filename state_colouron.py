@@ -71,7 +71,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Maharashtra", "Gujarat"])
+target_state = st.sidebar.selectbox("Select State", ["Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 df = get_state_data(target_state)
