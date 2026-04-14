@@ -265,8 +265,8 @@ state_ranges = {
     ],
     "Uttar Pradesh": [
         (50, '0–50 MT', '#dbeafe'),
-        (150, '50–150 MT', '#93c5fd'),
-        (300, '150–300 MT', '#3b82f6'),
+        (100, '50–100 MT', '#93c5fd'),
+        (300, '100–300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ]
 }
@@ -489,8 +489,8 @@ for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%',
 fig.update_layout(
     annotations=annotations,
     dragmode=False, # Disables panning/dragging
-    xaxis=dict(fixedrange=True, visible=False), # Disables zooming on X
-    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
+    xaxis=dict(fixedrange=True, visible=True), # Disables zooming on X
+    yaxis=dict(fixedrange=True, visible=True, scaleanchor="x", scaleratio=1), # Disables zooming on Y
     plot_bgcolor='white',
     margin=dict(l=0, r=0, t=0, b=0),
     height=600,
@@ -508,7 +508,7 @@ fig.update_layout(
         itemsizing='constant')
 )
 
-st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': True})
 # # ---------------------------------------------------------
 # # 5. TABLES (Unchanged)
 # # ---------------------------------------------------------
