@@ -51,8 +51,8 @@ def get_state_data(state_name):
             "AM/NS Optigal 10 yW": [100, 20, 25, 10, 20, 25, 10, 5, 10, 50, 10, 20, 15, 0, 10, 20, 5, 10, 10, 150, 50, 0, 4, 40, 0, 20, 10, 0, 0, 0, 0, 10, 20],
             "Others": [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0]
         }
-     elif state_name == "Punjab":
-         data = {
+    elif state_name == "Punjab":
+        data = {
             "District": [
                 'AMRITSAR', 'GURDASPUR', 'HOSHIARPUR', 'JALANDHAR', 'KAPURTHALA', 
                 'PATHANKOT', 'SHAHID BHAGAT SINGH NAGAR', 'TARN TARAN', 'BARNALA', 
