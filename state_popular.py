@@ -150,6 +150,38 @@ def get_state_data(state_name):
             "AM/NS Optigal 10 yW": [0]*22,
             "Others": [0]*22
         }
+    elif state_name == "Himachal Pradesh":
+        data = {
+            "District": [
+                'BILASPUR','CHAMBA','HAMIRPUR','KANGRA','KULLU','LAHUL & SPITI','MANDI','UNA','KINNAUR','SHIMLA','SIRMAUR','SOLAN'
+            ],
+            "Popular": [10, 10, 10, 55, 20, 10, 20, 40, 10, 10, 10, 45],
+            "Alucolour": [0]*12,
+            "Infinia": [0]*12,
+            "APL Apollo Rooftuff": [10, 10, 30, 30, 15, 15, 20, 10, 10, 50, 15, 25],
+            "Jindal Sabrang": [25, 30, 40, 130, 20, 10, 70, 80, 10, 45, 15, 20],
+            "APL Coral": [0]*12,
+            "APL Jumbo": [0]*12,
+            "AM/NS Optigal 10 yW": [0]*12,
+            "Others": [0]*12
+        }
+    elif state_name == "Uttarakhand":
+        data = {
+            "District": [
+                'CHAMOLI', 'DEHRADUN', 'HARIDWAR', 'PAURI GARHWAL', 'RUDRA PRAYAG', 
+                'TEHRI GARHWAL', 'UTTAR KASHI', 'ALMORA', 'BAGESHWAR', 'CHAMPAWAT', 
+                'NAINITAL', 'PITHORAGARH', 'UDHAM SINGH NAGAR'
+            ],
+            "Popular": [20, 100, 30, 10, 10, 10, 10, 10, 20, 10, 20, 70, 160],
+            "Alucolour": [0]*13,
+            "Infinia": [0]*13,
+            "APL Apollo Rooftuff": [10, 100, 10, 20, 20, 20, 20, 10, 10, 10, 10, 10, 50],
+            "Jindal Sabrang": [10, 80, 10, 10, 20, 20, 20, 20, 10, 10, 20, 10, 60],
+            "APL Coral": [0]*13,
+            "APL Jumbo": [0]*13,
+            "AM/NS Optigal 10 yW": [0]*13,
+            "Others": [0]*13
+        }
     
     return pd.DataFrame(data)
 
@@ -165,7 +197,20 @@ def get_geojson(state_name):
         'DHARASHIV': 'OSMANABAD',
         'DANGS': 'DANG',
         'DAHOD': 'DOHAD',
-        'SAS NAGAR (SAHIBZADA AJIT SINGH NAGAR)':'S.A.S NAGAR'
+        'SAS NAGAR (SAHIBZADA AJIT SINGH NAGAR)':'S.A.S NAGAR',
+        'BIL>SPUR':'BILASPUR',
+        'HAM|RPUR':'HAMIRPUR',
+        'K>NGRA':'KANGRA',
+        'DEHRAD@N':'DEHRADUN',
+        'HARIDW>R':'HARIDWAR',
+        'PAURI GARHW>L':'PAURI GARHWAL',
+        'RUDRAPRAY>G':'RUDRA PRAYAG',
+        'TEHRI GARHW>L':'TEHRI GARHWAL',
+        'UTTARK>SHI':'UTTAR KASHI',
+        'B>GESHWAR':'BAGESHWAR',
+        'CHAMP>WAT':'CHAMPAWAT', 
+        'NAINIT>L':'NAINITAL',
+        'PITHOR>GARH':'PITHORAGARH'
     })
     state_gdf['district_upper'] = state_gdf['district'].str.upper()
     return state_gdf
@@ -174,7 +219,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Uttarakhand","Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Popular", "Alucolour", 
                                                             "Infinia", "APL Apollo Rooftuff", "Jindal Sabrang","APL Coral","APL Jumbo",
                                                             "AM/NS Optigal 10 yW", "Others"])
@@ -234,7 +279,13 @@ state_distributor_configs = {
     "Haryana": {
         'FARIDABAD': 'Distributor A'
         # Add your Jammu and Kashmir distributor list here...
-    }
+    },
+    "Himachal Pradesh": {
+        'BILASPUR': 'Distributor A'
+    },
+    "Uttarakhand": {
+        'BAGESHWAR': 'Distributor A'
+    }  
 }
 
 # 2. Get the specific lookup for the selected state
@@ -306,7 +357,18 @@ state_ranges = {
         (100, '50–100 MT', '#93c5fd'),
         (900, '100–900 MT', '#3b82f6'),
         (float('inf'), '900+ MT', '#1e40af')
-    ]
+    ],
+    "Himachal Pradesh": [
+        (25, '0–25 MT', '#dbeafe'),
+        (100, '25–100 MT', '#93c5fd'),
+        (200, '100–200 MT', '#3b82f6'),
+        (float('inf'), '200+ MT', '#1e40af')
+    ],
+    "Uttarakhand": [
+        (25, '0–25 MT', '#dbeafe'),
+        (50, '25–50 MT', '#93c5fd'),
+        (100, '50–100 MT', '#3b82f6'),
+        (float('inf'), '100+ MT', '#1e40af')
 }
 
 # 2. Updated color function
@@ -386,7 +448,17 @@ cluster_config = {
         'BHIWANI': 'Hisar', 'FATEHABAD': 'Hisar', 'HISAR': 'Hisar', 'JIND': 'Hisar', 'SIRSA': 'Hisar',
         'AMBALA': 'Kuruksheta', 'KAITHAL': 'Kuruksheta', 'KURUKSHETRA': 'Kuruksheta', 'PANCHKULA': 'Kuruksheta', 'YAMUNANAGAR': 'Kuruksheta',
         'CHARKI DADRI': 'Rohtak', 'JHAJJAR': 'Rohtak', 'KARNAL': 'Rohtak', 'PANIPAT': 'Rohtak', 'ROHTAK': 'Rohtak', 'SONIPAT': 'Rohtak'
-    }
+    },
+    "Himachal Pradesh": {
+        'BILASPUR':'Mandi','CHAMBA':'Mandi','HAMIRPUR':'Mandi','KANGRA':'Mandi','KULLU':'Mandi',
+        'LAHUL & SPITI':'Mandi','MANDI':'Mandi','UNA':'Mandi',
+        'KINNAUR':'Solan','SHIMLA':'Solan','SIRMAUR':'Solan','SOLAN':'Solan'
+    },
+    "Uttarakhand": {
+        'CHAMOLI':'Garhwal', 'DEHRADUN':'Garhwal', 'HARIDWAR':'Garhwal', 'PAURI GARHWAL':'Garhwal',
+        'RUDRA PRAYAG':'Garhwal', 'TEHRI GARHWAL':'Garhwal', 'UTTAR KASHI':'Garhwal',
+        'ALMORA':'Kumaon', 'BAGESHWAR':'Kumaon', 'CHAMPAWAT':'Kumaon', 
+        'NAINITAL':'Kumaon', 'PITHORAGARH':'Kumaon', 'UDHAM SINGH NAGAR':'Kumaon'
 }
 
 # current_cluster_map = cluster_config.get(target_state, {})
@@ -474,7 +546,9 @@ for _, row in merged.iterrows():
             "Punjab": 0,
             "Jammu and Kashmir": 0,
             "Uttar Pradesh": -0.05,
-            "Haryana":0   
+            "Haryana":0,
+            "Himachal Pradesh":0,
+            "Uttarakhand":0   
         }
         # Get the offset for the current state, default to -0.1 if not found
         current_offset = state_y_offsets.get(target_state, -0.1)
