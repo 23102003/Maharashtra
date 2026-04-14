@@ -141,7 +141,7 @@ def get_state_data(state_name):
             "District": [
                 'CHAMOLI', 'DEHRADUN', 'HARIDWAR', 'PAURI GARHWAL', 'RUDRA PRAYAG', 
                 'TEHRI GARHWAL', 'UTTAR KASHI', 'ALMORA', 'BAGESHWAR', 'CHAMPAWAT', 
-                'NAINITAL', 'PITHORAGARH', 'UDAM SINGH NAGAR'
+                'NAINITAL', 'PITHORAGARH', 'UDHAM SINGH NAGAR'
             ],
             "Colouron+": [10,20,40,0,0,0,0,0,0,0,0,0,40],
             "Everglow": [0]*13,
@@ -427,7 +427,7 @@ cluster_config = {
         'CHAMOLI':'Garhwal', 'DEHRADUN':'Garhwal', 'HARIDWAR':'Garhwal', 'PAURI GARHWAL':'Garhwal',
         'RUDRA PRAYAG':'Garhwal', 'TEHRI GARHWAL':'Garhwal', 'UTTAR KASHI':'Garhwal',
         'ALMORA':'Kumaon', 'BAGESHWAR':'Kumaon', 'CHAMPAWAT':'Kumaon', 
-        'NAINITAL':'Kumaon', 'PITHORAGARH':'Kumaon', 'UDAM SINGH NAGAR':'Kumaon'
+        'NAINITAL':'Kumaon', 'PITHORAGARH':'Kumaon', 'UDHAM SINGH NAGAR':'Kumaon'
     }
 }
 
