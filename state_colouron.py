@@ -96,33 +96,31 @@ def get_state_data(state_name):
                 'CHANDAULI', 'FATEHPUR', 'GHAZIPUR', 'JAUNPUR', 'KAUSHAMBI', 'MIRZAPUR', 'PRAYAGRAJ',
                 'SONBHADRA', 'VARANASI'
             ],
-            "Colouron+": [100, 4, 8, 4, 8, 0, 0, 32, 0, 0,
-                          8, 0, 8, 4, 8, 0, 0, 0, 56, 450,
-                          0, 32, 20, 0, 8, 30, 8, 0, 0, 0,
-                          0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                          5, 5, 5, 8, 9, 5, 10, 15, 5, 5,
-                          50, 5, 5, 10, 5, 15, 25, 5, 5, 3,
-                          0, 0, 0, 0, 0, 0, 0, 0, 0, 8],
-            "Everglow": [0,0,0,0,0,0,0,0,0,0,
-                         0,0,0,0,0,0,0,0,0,0,
-                         0,0,0,0,0,0,0,0,0,0,
-                         0,0,0,0,0,0,0,0,0,0,
-                         0,0,0,0,0,0,0,0,0,40,
-                         0,0,0,0,0,0,0,0,0,0,
-                         0,0,0,0,0,0,0,0,0
-                        ],
+            "Colouron+": [100, 4, 8, 4, 8, 0, 0, 32, 0, 0,8, 0, 8, 4, 8, 0, 0, 0, 56, 450,0, 32, 20, 0, 8, 30, 8, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 8, 9, 5, 10, 15, 5, 5,50, 5, 5, 10, 5, 15, 25, 5, 5, 3,0, 0, 0, 0, 0, 0, 0, 0, 0, 8],
+            "Everglow": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0],
             "JSW_CC_Liner": [0]*69,
-            "TATA_Durashine": [25, 1, 2, 1, 2, 0, 0, 3, 0, 0,
-                               2, 0, 2, 1, 2, 0, 0, 0, 14, 100,
-                               0, 8, 5, 0, 2, 0, 8, 0, 2, 3,
-                               0, 0, 0, 10, 0, 0, 0, 0, 0,
-                               3, 0, 3, 0, 5, 0, 0, 15, 0, 3,
-                               30, 3, 0, 0, 3, 0, 9, 0, 0, 0,
-                               0, 0, 0, 0, 0, 0, 0, 0, 0, 10],
+            "TATA_Durashine": [25, 1, 2, 1, 2, 0, 0, 3, 0, 0,2, 0, 2, 1, 2, 0, 0, 0, 14, 100, 0, 8, 5, 0, 2, 0, 8, 0, 2, 3,0, 0, 0, 10, 0, 0, 0, 0, 0, 3, 0, 3, 0, 5, 0, 0, 15, 0, 3,30, 3, 0, 0, 3, 0, 9, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 10],
             "Tata_Liner": [0]*69,
             "TATA_Prisma": [0]*69,
             "JSW_Radiance": [0]*69,
             "Others": [0]*69
+        }
+    elif state_name == "Haryana":
+        data = {
+            "District": [
+                'FARIDABAD', 'GURUGRAM', 'MAHENDRAGARH', 'NUH', 'PALWAL', 'REWARI', 
+                'BHIWANI', 'FATEHABAD', 'HISAR', 'JIND', 'SIRSA', 'AMBALA', 'KAITHAL', 
+                'KURUKSHETRA', 'PANCHKULA', 'YAMUNANAGAR', 'CHARKI DADRI', 'JHAJJAR', 
+                'KARNAL', 'PANIPAT', 'ROHTAK', 'SONIPAT'
+            ],
+            "Colouron+": [900, 41, 10, 10, 60, 40, 20, 20, 123, 20, 50, 50, 70, 10, 20, 10, 10, 30, 60, 30, 30, 40],
+            "Everglow": [0]*22,
+            "JSW_CC_Liner": [0]*22,
+            "TATA_Durashine": [50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Tata_Liner": [0]*22,
+            "TATA_Prisma": [0]*22,
+            "JSW_Radiance": [0]*22,
+            "Others": [0]*22
         }
     
     return pd.DataFrame(data)
@@ -148,7 +146,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 df = get_state_data(target_state)
@@ -201,6 +199,10 @@ state_distributor_configs = {
     },
     "Uttar Pradesh": {
         'AGRA': 'Distributor A'
+        # Add your Jammu and Kashmir distributor list here...
+    },
+    "Haryana": {
+        'FARIDABAD': 'Distributor A'
         # Add your Jammu and Kashmir distributor list here...
     }
 }
@@ -268,6 +270,12 @@ state_ranges = {
         (100, '50–100 MT', '#93c5fd'),
         (300, '100–300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
+    ],
+    "Haryan": [
+        (50, '0–50 MT', '#dbeafe'),
+        (100, '50–100 MT', '#93c5fd'),
+        (900, '100–900 MT', '#3b82f6'),
+        (float('inf'), '900+ MT', '#1e40af')
     ]
 }
 
@@ -342,6 +350,12 @@ cluster_config = {
         'AURAIYA': 'Kanpur', 'BANDA': 'Kanpur', 'CHITRAKOOT': 'Kanpur', 'ETAWAH': 'Kanpur', 'FARRUKHABAD': 'Kanpur', 'JALAUN': 'Kanpur', 'JHANSI': 'Kanpur', 'KANNAUJ': 'Kanpur', 'KANPUR DEHAT': 'Kanpur', 'KANPUR NAGAR': 'Kanpur', 'LALITPUR': 'Kanpur', 'MAHOBA': 'Kanpur',
         'BARA BANKI': 'Lucknow', 'HARDOI': 'Lucknow', 'KHERI': 'Lucknow', 'LUCKNOW': 'Lucknow', 'RAE BARELI': 'Lucknow', 'SITAPUR': 'Lucknow', 'UNNAO': 'Lucknow',
         'BHADOHI': 'Varanasi', 'CHANDAULI': 'Varanasi', 'FATEHPUR': 'Varanasi', 'GHAZIPUR': 'Varanasi', 'JAUNPUR': 'Varanasi', 'KAUSHAMBI': 'Varanasi', 'MIRZAPUR': 'Varanasi', 'PRAYAGRAJ': 'Varanasi', 'SONBHADRA': 'Varanasi', 'VARANASI': 'Varanasi'
+    },
+    "Haryana": {
+        'FARIDABAD': 'Faridabad', 'GURUGRAM': 'Faridabad', 'MAHENDRAGARH': 'Faridabad', 'NUH': 'Faridabad', 'PALWAL': 'Faridabad', 'REWARI': 'Faridabad',
+        'BHIWANI': 'Hisar', 'FATEHABAD': 'Hisar', 'HISAR': 'Hisar', 'JIND': 'Hisar', 'SIRSA': 'Hisar',
+        'AMBALA': 'Kuruksheta', 'KAITHAL': 'Kuruksheta', 'KURUKSHETRA': 'Kuruksheta', 'PANCHKULA': 'Kuruksheta', 'YAMUNANAGAR': 'Kuruksheta',
+        'CHARKI DADRI': 'Rohtak', 'JHAJJAR': 'Rohtak', 'KARNAL': 'Rohtak', 'PANIPAT': 'Rohtak', 'ROHTAK': 'Rohtak', 'SONIPAT': 'Rohtak'
     }
 }
 
@@ -426,7 +440,8 @@ for _, row in merged.iterrows():
             "Gujarat": -0.05,
             "Punjab": 0,
             "Jammu and Kashmir": 0,
-            "Uttar Pradesh": -0.05
+            "Uttar Pradesh": -0.05,
+            "Haryana":0
             
         }
         # Get the offset for the current state, default to -0.1 if not found
