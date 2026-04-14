@@ -148,11 +148,29 @@ def create_tooltip(row):
 
 df['hover_text'] = df.apply(create_tooltip, axis=1)
 
-def get_m_color(size):
-    if size <= 50: return "#dbeafe"
-    elif size <= 150: return "#93c5fd"
-    elif size <= 300: return "#3b82f6"
-    else: return "#1e40af"
+# 1. Define the dynamic ranges
+state_ranges = {
+    "Maharashtra": [
+        (50, '0–50 MT', '#dbeafe'),
+        (150, '50–150 MT', '#93c5fd'),
+        (300, '150–300 MT', '#3b82f6'),
+        (float('inf'), '300+ MT', '#1e40af')
+    ],
+    "Gujarat": [
+        (100, '0–100 MT', '#dbeafe'),
+        (400, '100–400 MT', '#93c5fd'),
+        (800, '400–800 MT', '#3b82f6'),
+        (float('inf'), '800+ MT', '#1e40af')
+    ]
+}
+
+# 2. Updated color function
+def get_m_color(size, state_name):
+    ranges = state_ranges.get(state_name, state_ranges["Maharashtra"])
+    for threshold, label, color in ranges:
+        if size <= threshold:
+            return color
+    return "#1e40af"
 
 def get_s_color(share):
     if pd.isna(share): return "gray"
@@ -161,7 +179,7 @@ def get_s_color(share):
     elif share < 75: return "#8bc34a"
     else: return "#1b5e20"
 
-df['market_color'] = df['Market_Size'].apply(get_m_color)
+df['market_color'] = df['Market_Size'].apply(lambda x: get_m_color(x, target_state))
 df['share_color'] = df[share_col_name].apply(get_s_color)
 
 merged = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
@@ -305,9 +323,16 @@ annotations.append(dict(
 ))
 
 # 1. Legends
-for label, color in [('0–50 MT', '#dbeafe'), ('50–150 MT', '#93c5fd'), ('150–300 MT', '#3b82f6'), ('300+ MT', '#1e40af')]:
-    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
-                             legendgroup="Market", legendgrouptitle_text="Market Size (MT)", name=label))
+current_ranges = state_ranges.get(target_state, state_ranges["Maharashtra"])
+for _, label, color in current_ranges:
+    fig.add_trace(go.Scatter(
+        x=[None], y=[None], 
+        mode='markers', 
+        marker=dict(size=10, color=color, symbol='square'),
+        legendgroup="Market", 
+        legendgrouptitle_text="Market Size (MT)", 
+        name=label
+    ))
 
 for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%', '#f57c00'), ('< 25%', '#d32f2f')]:
     fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
