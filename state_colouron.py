@@ -514,7 +514,7 @@ for _, row in merged.iterrows():
             "Jammu and Kashmir": 0,
             "Uttar Pradesh": -0.05,
             "Haryana":0,
-            "Himachal Pradesh":0
+            "Himachal Pradesh":0,
             "Uttarakhand":0
         }
         # Get the offset for the current state, default to -0.1 if not found
