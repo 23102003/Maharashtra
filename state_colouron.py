@@ -299,13 +299,13 @@ if len(missing_districts) > 0:
     st.warning(f"⚠️ Naming Mismatch: {len(missing_districts)} districts could not be mapped.")
     st.write("These names in your data don't match the GeoJSON names:")
     st.dataframe(missing_districts, use_container_width=True)
-# merged = merged[merged.geometry.notnull()]
+merged = merged[merged.geometry.notnull()]
 
-# # 2. Fix invalid geometries (self-intersections)
-# merged['geometry'] = merged.geometry.buffer(0)
+# 2. Fix invalid geometries (self-intersections)
+merged['geometry'] = merged.geometry.buffer(0)
 
-# # 3. Ensure everything is a GeoDataFrame again
-# merged = gpd.GeoDataFrame(merged, geometry='geometry')
+# 3. Ensure everything is a GeoDataFrame again
+merged = gpd.GeoDataFrame(merged, geometry='geometry')
 clusters = merged.dissolve(by='cluster')
 
 # ---------------------------------------------------------
