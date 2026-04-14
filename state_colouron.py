@@ -542,7 +542,7 @@ if target_state == "Punjab":
 
 if target_state == "Uttar Pradesh":
     annotations.append(dict(
-        x=60.77, y=30.57, text="<b>KANPUR</b>",
+        x=70.77, y=30.57, text="<b>KANPUR</b>",
         showarrow=False, font=dict(size=13, color="black", family="Arial Black"),
         xref="x", yref="y"
     ))
