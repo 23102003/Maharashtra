@@ -280,7 +280,7 @@ cluster_config = {
         'DODA': 'Jammu', 'JAMMU': 'Jammu', 'KATHUA': 'Jammu', 'KISHTWAR': 'Jammu', 'PUNCH': 'Jammu',
         'RAJAURI': 'Jammu', 'RAMBAN': 'Jammu', 'RIASI': 'Jammu', 'SAMBA': 'Jammu', 'UDHAMPUR': 'Jammu',
         'SHUPIYAN': 'Srinagar', 'ANANTNAG': 'Srinagar', 'BANDIPURA': 'Srinagar', 'BARAMULA': 'Srinagar', 'BADGAM': 'Srinagar',
-        'GANDERBAL': 'Srinagar', 'KUPWARA': 'Srinagar', 'KULGAM': 'Srinagar', 'PULWAMA': 'Srinagar', 'SRINAGAR': 'Srinagar'
+        'GANDERBAL': 'Srinagar', 'KUPWARA': 'Srinagar', 'KULGAM': 'Srinagar', 'PULWAMA': 'Srinagar', 'SRINAGAR': 'Srinagar','MIRPUR':'Other','MUZAFFARABAD':'Other'
     }
 }
 
@@ -291,7 +291,7 @@ current_cluster_map = cluster_config.get(target_state, {})
 
 # Now apply the map
 merged['cluster'] = merged['district_upper'].map(current_cluster_map)
-print(merged[merged.geometry.isnull()]['District'])
+
 clusters = merged.dissolve(by='cluster')
 
 
