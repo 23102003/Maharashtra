@@ -122,7 +122,21 @@ def get_state_data(state_name):
             "JSW_Radiance": [0]*22,
             "Others": [0]*22
         }
-    
+    elif state_name == "Himachal Pradesh":
+        data = {
+            "District": [
+                'BILASPUR','CHAMBA','HAMIRPUR','KANGRA','KULLU','LAHUL & SPITI','MANDI','UNA','KINNAUR','SHIMLA','SIRMAUR','SOLAN'
+            ],
+            "Colouron+": [0,5,5,5,10,0,10,5,0,30,10,20],
+            "Everglow": [0]*12,
+            "JSW_CC_Liner": [0]*12,
+            "TATA_Durashine": [40,25,60,200,30,10,100,30,10,100,30,60],
+            "Tata_Liner": [0]*12,
+            "TATA_Prisma": [0]*12,
+            "JSW_Radiance": [0]*12,
+            "Others": [0]*12
+        }
+           
     return pd.DataFrame(data)
 
 @st.cache_data
@@ -137,7 +151,10 @@ def get_geojson(state_name):
         'DHARASHIV': 'OSMANABAD',
         'DANGS': 'DANG',
         'DAHOD': 'DOHAD',
-        'SAS NAGAR (SAHIBZADA AJIT SINGH NAGAR)':'S.A.S NAGAR'
+        'SAS NAGAR (SAHIBZADA AJIT SINGH NAGAR)':'S.A.S NAGAR',
+        'BIL>SPUR':'BILASPUR',
+        'HAM|RPUR':'HAMIRPUR',
+        'K>NGRA':'KANGRA'
     })
     state_gdf['district_upper'] = state_gdf['district'].str.upper()
     return state_gdf
@@ -146,7 +163,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 df = get_state_data(target_state)
@@ -204,6 +221,9 @@ state_distributor_configs = {
     "Haryana": {
         'FARIDABAD': 'Distributor A'
         # Add your Jammu and Kashmir distributor list here...
+    },
+    "Himachal Pradesh": {
+        'BILASPUR': 'Distributor A'
     }
 }
 
@@ -276,6 +296,12 @@ state_ranges = {
         (100, '50–100 MT', '#93c5fd'),
         (900, '100–900 MT', '#3b82f6'),
         (float('inf'), '900+ MT', '#1e40af')
+    ],
+    "Himachal Pradesh": [
+        (25, '0–25 MT', '#dbeafe'),
+        (100, '25–100 MT', '#93c5fd'),
+        (200, '100–200 MT', '#3b82f6'),
+        (float('inf'), '200+ MT', '#1e40af')
     ]
 }
 
@@ -356,6 +382,11 @@ cluster_config = {
         'BHIWANI': 'Hisar', 'FATEHABAD': 'Hisar', 'HISAR': 'Hisar', 'JIND': 'Hisar', 'SIRSA': 'Hisar',
         'AMBALA': 'Kuruksheta', 'KAITHAL': 'Kuruksheta', 'KURUKSHETRA': 'Kuruksheta', 'PANCHKULA': 'Kuruksheta', 'YAMUNANAGAR': 'Kuruksheta',
         'CHARKI DADRI': 'Rohtak', 'JHAJJAR': 'Rohtak', 'KARNAL': 'Rohtak', 'PANIPAT': 'Rohtak', 'ROHTAK': 'Rohtak', 'SONIPAT': 'Rohtak'
+    },
+    "Himachal Pradesh": {
+        'BILASPUR':'Mandi','CHAMBA':'Mandi','HAMIRPUR':'Mandi','KANGRA':'Mandi','KULLU':'Mandi',
+        'LAHUL & SPITI':'Mandi','MANDI':'Mandi','UNA':'Mandi',
+        'KINNAUR':'Solan','SHIMLA':'Solan','SIRMAUR':'Solan','SOLAN':'Solan'
     }
 }
 
@@ -441,7 +472,8 @@ for _, row in merged.iterrows():
             "Punjab": 0,
             "Jammu and Kashmir": 0,
             "Uttar Pradesh": -0.05,
-            "Haryana":0
+            "Haryana":0,
+            "Himachal Pradesh":0
             
         }
         # Get the offset for the current state, default to -0.1 if not found
