@@ -23,7 +23,6 @@ def get_state_data(state_name):
             'YAVATMAL', 'DHULE', 'JALGAON', 'NANDURBAR', 'NASHIK', 'PUNE', 'AHMEDNAGAR'
         ],
         "Popular": [123,50,20,90,20,0,40,20,0,25,25,205,125,200,225,100,150,50,0,97,60,70,15,28,50,8,40,256,20,15,50,150,40,250,300,261],
-        "VIL": [0]*36,
         "Alucolour": [0]*36,
         "Infinia": [0]*36,
         "APL Apollo Rooftuff": [5,10,0,0,0,0,0,0,0,0,0,25,0,0,25,10,10,0,0,0,0,0,0,10,0,0,5,50,0,0,0,15,0,40,50,25],
@@ -43,7 +42,6 @@ def get_state_data(state_name):
                 'DANG', 'NAVSARI', 'SURAT', 'TAPI', 'VALSAD', 'BHARUCH', 'CHHOTAUDEPUR', 'DOHAD', 'MAHISAGAR', 'NARMADA', 'PANCH MAHALS', 'VADODARA'
             ],
             "Popular": [70, 0, 40, 5, 35, 35, 0, 15, 0, 10, 45, 40, 25, 12, 20, 70, 2, 40, 0, 40, 10, 0, 15, 40, 0, 40, 35, 3, 0, 7, 0, 5, 65],
-            "VIL": [0]*33, # Mostly zeros based on visible data
             "Alucolour": [0]*33, # Mostly zeros based on visible data
             "Infinia": [0]*33,   # Mostly zeros based on visible data
             "APL Apollo Rooftuff": [20, 5, 10, 10, 10, 20, 0, 0, 15, 0, 20, 0, 10, 0, 0, 10, 5, 10, 0, 120, 0, 0, 0, 20, 0, 15, 20, 0, 0, 0, 0, 0, 5],
@@ -53,6 +51,106 @@ def get_state_data(state_name):
             "AM/NS Optigal 10 yW": [100, 20, 25, 10, 20, 25, 10, 5, 10, 50, 10, 20, 15, 0, 10, 20, 5, 10, 10, 150, 50, 0, 4, 40, 0, 20, 10, 0, 0, 0, 0, 10, 20],
             "Others": [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0]
         }
+     elif state_name == "Punjab":
+        data = {
+            "District": [
+                'AMRITSAR', 'GURDASPUR', 'HOSHIARPUR', 'JALANDHAR', 'KAPURTHALA', 
+                'PATHANKOT', 'SHAHID BHAGAT SINGH NAGAR', 'TARN TARAN', 'BARNALA', 
+                'FATEHGARH SAHIB', 'LUDHIANA', 'MALER KOTLA', 'MANSA', 'PATIALA', 
+                'RUPNAGAR', 'S.A.S NAGAR', 'SANGRUR', 'BATHINDA', 'FARIDKOT', 
+                'FAZILKA', 'FIROZPUR', 'MOGA', 'SRI MUKTSAR SAHIB'
+            ],
+            "Popular": [15, 0, 20, 70, 20, 20, 5, 10, 15, 40, 80, 15, 10, 15, 5, 0, 5, 5, 5, 0, 15, 20, 0],
+            "Alucolour": [0, 0, 0, 10, 0, 10, 0, 0, 0, 10, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Infinia": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "APL Apollo Rooftuff": [5, 0, 5, 30, 10, 10, 10, 10, 5, 50, 30, 10, 5, 10, 10, 5, 5, 5, 5, 5, 10, 10, 5],
+            "Jindal Sabrang": [0, 0, 0, 120, 0, 20, 10, 10, 10, 80, 40, 5, 5, 10, 20, 0, 0, 5, 0, 5, 5, 0, 5],
+            "APL Coral": [0]*23,
+            "APL Jumbo": [0]*23,
+            "AM/NS Optigal 10 yW": [0]*23,
+            "Others": [0]*23
+        }
+    elif state_name == "Jammu and Kashmir":
+        data = {
+            "District": [
+                'DODA', 'JAMMU', 'KATHUA', 'KISHTWAR', 'PUNCH', 
+                'RAJAURI', 'RAMBAN', 'RIASI', 'SAMBA', 'UDHAMPUR', 
+                'SHUPIYAN', 'ANANTNAG', 'BANDIPURA', 'BARAMULA', 'BADGAM', 
+                'GANDERBAL', 'KUPWARA', 'KULGAM', 'PULWAMA', 'SRINAGAR'
+            ],
+           "Popular": [0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 20, 50, 20, 50, 20, 20, 20, 20, 20, 60],
+            "Alucolour": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Infinia": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "APL Apollo Rooftuff": [0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30],
+            "Jindal Sabrang": [20, 30, 20, 20, 10, 10, 20, 20, 20, 30, 20, 80, 10, 80, 30, 20, 20, 10, 20, 120],
+            "APL Coral": [0]*20,
+            "APL Jumbo": [0]*20,
+            "AM/NS Optigal 10 yW": [0]*20,
+            "Others": [0]*20
+        }
+    elif state_name == "Uttar Pradesh":
+        data = {
+            "District": [
+                'AGRA', 'ALIGARH', 'ETAH', 'FIROZABAD', 'HATHRAS', 'KASGANJ', 'MAINPURI', 'MATHURA',
+                'AMROHA', 'BAREILLY', 'BIJNOR', 'BUDAUN', 'PILIBHIT', 'RAMPUR', 'SAMBHAL', 'SHAHJAHANPUR',
+                'BAGHPAT', 'BULANDSHAHR', 'GAUTAM BUDDHA NAGAR', 'GHAZIABAD', 'HAPUR', 'MEERUT', 'MUZAFFARNAGAR',
+                'SAHARANPUR', 'SHAMLI', 'MORADABAD', 'AYODHYA', 'AZAMGARH', 'BAHRAICH', 'BALLIA', 'BASTI',
+                'DEORIA', 'GONDA', 'GORAKHPUR', 'KUSHINAGAR', 'MAHRAJGANJ', 'MAU', 'SHRAWASTI',
+                'SIDDHARTHNAGAR', 'SULTANPUR', 'AURAIYA', 'BANDA', 'CHITRAKOOT', 'ETAWAH', 'FARRUKHABAD',
+                'JALAUN', 'JHANSI', 'KANNAUJ', 'KANPUR DEHAT', 'KANPUR NAGAR', 'LALITPUR', 'MAHOBA',
+                'BARA BANKI', 'HARDOI', 'KHERI', 'LUCKNOW', 'RAE BARELI', 'SITAPUR', 'UNNAO', 'BHADOHI',
+                'CHANDAULI', 'FATEHPUR', 'GHAZIPUR', 'JAUNPUR', 'KAUSHAMBI', 'MIRZAPUR', 'PRAYAGRAJ',
+                'SONBHADRA', 'VARANASI'
+            ],
+            "Popular": [
+                145, 18, 6, 32, 22, 16, 3, 65, 8, 30, 11, 14, 4, 8, 6, 12, 19, 33, 72, 475,
+                3, 80, 105, 12, 6, 40, 35, 6, 0, 3, 18, 12, 0, 64, 3, 10, 12, 0, 0, 15,
+                10, 10, 10, 15, 10, 30, 45, 10, 35, 275, 10, 10, 15, 15, 65, 115, 30, 15, 15, 30,
+                10, 5, 14, 5, 6, 36, 95, 16, 158
+            ],
+            "Alucolour": [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 2, 5, 5, 5, 6, 5, 4, 6, 5, 2, 2, 3, 3, 5,
+                4, 6, 5, 5, 23, 12, 23, 9, 6, 32, 25, 9, 25, 12, 0, 20, 5, 2, 0, 6,
+                10, 6, 8, 4, 2, 10, 15, 6, 12
+            ],
+            "Infinia": [0]*69,
+            "APL Apollo Rooftuff": [
+                68, 8, 6, 28, 20, 14, 3, 78, 8, 26, 10, 13, 5, 7, 6, 12, 17, 29, 63, 435,
+                3, 10, 143, 11, 6, 3, 0, 5, 0, 10, 0, 0, 0, 20, 5, 0, 5, 0, 0, 0,
+                0, 15, 0, 45, 0, 0, 15, 0, 30, 70, 0, 30, 0, 20, 20, 50, 15, 20, 0, 10,
+                20, 0, 0, 0, 0, 0, 30, 10, 30
+            ],
+            "Jindal Sabrang": [
+                40, 5, 7, 10, 5, 20, 4, 40, 11, 38, 14, 18, 6, 10, 8, 16, 24, 43, 10, 125,
+                4, 45, 93, 15, 8, 4, 10, 20, 0, 10, 0, 10, 0, 40, 0, 0, 10, 0, 0, 0,
+                15, 20, 20, 50, 25, 50, 60, 30, 40, 80, 75, 15, 20, 20, 25, 80, 75, 25, 0, 50,
+                30, 30, 20, 10, 20, 20, 300, 15, 600
+            ],
+            "APL Coral": [0]*69,
+            "APL Jumbo": [0]*69,
+            "AM/NS Optigal 10 yW": [0]*69,
+            "Others": [0]*69
+        }
+    elif state_name == "Haryana":
+        data = {
+            "District": [
+                'FARIDABAD', 'GURUGRAM', 'MAHENDRAGARH', 'NUH', 'PALWAL', 'REWARI', 
+                'BHIWANI', 'FATEHABAD', 'HISAR', 'JIND', 'SIRSA', 'AMBALA', 'KAITHAL', 
+                'KURUKSHETRA', 'PANCHKULA', 'YAMUNANAGAR', 'CHARKI DADRI', 'JHAJJAR', 
+                'KARNAL', 'PANIPAT', 'ROHTAK', 'SONIPAT'
+            ],
+            "Popular": [504, 10, 5, 5, 5, 5, 5, 10, 30, 5, 10, 20, 30, 20, 5, 5, 5, 5, 40, 20, 5, 5],
+            "Alucolour": [0]*22,
+            "Infinia": [0]*22,
+            "APL Apollo Rooftuff": [500, 10, 10, 10, 100, 10, 20, 10, 50, 10, 10, 20, 50, 20, 5, 5, 5, 5, 60, 50, 20, 20],
+            "Jindal Sabrang": [200, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "APL Coral": [0]*22,
+            "APL Jumbo": [0]*22,
+            "AM/NS Optigal 10 yW": [0]*22,
+            "Others": [0]*22
+        }
+    
     return pd.DataFrame(data)
 
 @st.cache_data
@@ -67,6 +165,7 @@ def get_geojson(state_name):
         'DHARASHIV': 'OSMANABAD',
         'DANGS': 'DANG',
         'DAHOD': 'DOHAD',
+        'SAS NAGAR (SAHIBZADA AJIT SINGH NAGAR)':'S.A.S NAGAR'
     })
     state_gdf['district_upper'] = state_gdf['district'].str.upper()
     return state_gdf
@@ -75,8 +174,8 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Gujarat", "Maharashtra"])
-target_brand = st.sidebar.selectbox("Select Target Brand", ["Popular", "VIL", "Alucolour", 
+target_state = st.sidebar.selectbox("Select State", ["Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
+target_brand = st.sidebar.selectbox("Select Target Brand", ["Popular", "Alucolour", 
                                                             "Infinia", "APL Apollo Rooftuff", "Jindal Sabrang","APL Coral","APL Jumbo",
                                                             "AM/NS Optigal 10 yW", "Others"])
 
@@ -85,7 +184,7 @@ state_districts = get_geojson(target_state)
 
 st.title(f"📊 {target_state} District wise Market Mapping")
 
-brand_cols = ["Popular", "VIL", "Alucolour","Infinia", "APL Apollo Rooftuff", "Jindal Sabrang","APL Coral","APL Jumbo","AM/NS Optigal 10 yW", "Others"]
+brand_cols = ["Popular", "Alucolour","Infinia", "APL Apollo Rooftuff", "Jindal Sabrang","APL Coral","APL Jumbo","AM/NS Optigal 10 yW", "Others"]
 df['Market_Size'] = df[brand_cols].sum(axis=1)
 share_col_name = f'{target_brand} % share'
 df[share_col_name] = np.where(df['Market_Size'] == 0, 0, (df[target_brand] / df['Market_Size']) * 100)
@@ -119,6 +218,22 @@ state_distributor_configs = {
         'SURAT': ['Distributor B', 'Distributor C'],
         'RAJKOT': 'Distributor D'
         # Add your Gujarat distributor list here...
+    },
+    "Punjab": {
+        'AMRITSAR': 'Distributor A'
+        # Add your Punjab distributor list here...
+    },
+    "Jammu and Kashmir": {
+        'JAMMU': 'Distributor A'
+        # Add your Jammu and Kashmir distributor list here...
+    },
+    "Uttar Pradesh": {
+        'AGRA': 'Distributor A'
+        # Add your Jammu and Kashmir distributor list here...
+    },
+    "Haryana": {
+        'FARIDABAD': 'Distributor A'
+        # Add your Jammu and Kashmir distributor list here...
     }
 }
 
@@ -167,6 +282,30 @@ state_ranges = {
         (150, '50–150 MT', '#93c5fd'),
         (300, '150–300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
+    ],
+    "Punjab": [
+        (25, '0–25 MT', '#dbeafe'),
+        (100, '25–100 MT', '#93c5fd'),
+        (200, '100–200 MT', '#3b82f6'),
+        (float('inf'), '200+ MT', '#1e40af')
+    ],
+    "Jammu and Kashmir": [
+        (50, '0–50 MT', '#dbeafe'),
+        (150, '50–150 MT', '#93c5fd'),
+        (300, '150–300 MT', '#3b82f6'),
+        (float('inf'), '300+ MT', '#1e40af')
+    ],
+    "Uttar Pradesh": [
+        (50, '0–50 MT', '#dbeafe'),
+        (100, '50–100 MT', '#93c5fd'),
+        (300, '100–300 MT', '#3b82f6'),
+        (float('inf'), '300+ MT', '#1e40af')
+    ],
+    "Haryana": [
+        (50, '0–50 MT', '#dbeafe'),
+        (100, '50–100 MT', '#93c5fd'),
+        (900, '100–900 MT', '#3b82f6'),
+        (float('inf'), '900+ MT', '#1e40af')
     ]
 }
 
@@ -216,6 +355,37 @@ cluster_config = {
         'VALSAD': 'Surat', 'BHARUCH': 'Vadodara', 'CHHOTAUDEPUR': 'Vadodara', 
         'DOHAD': 'Vadodara', 'MAHISAGAR': 'Vadodara', 'NARMADA': 'Vadodara', 
         'PANCH MAHALS': 'Vadodara', 'VADODARA': 'Vadodara'
+    },
+    "Punjab": {
+        'AMRITSAR':'Amritsar', 'GURDASPUR':'Amritsar', 'HOSHIARPUR':'Amritsar', 
+        'JALANDHAR':'Amritsar', 'KAPURTHALA':'Amritsar', 
+        'PATHANKOT':'Amritsar', 'SHAHID BHAGAT SINGH NAGAR':'Amritsar', 'TARN TARAN':'Amritsar',
+        'BARNALA':'Chandigarh', 'FATEHGARH SAHIB':'Chandigarh', 'LUDHIANA':'Chandigarh',
+        'MALER KOTLA':'Chandigarh', 'MANSA':'Chandigarh', 'PATIALA':'Chandigarh', 
+        'RUPNAGAR':'Chandigarh', 'S.A.S NAGAR':'Chandigarh', 'SANGRUR':'Chandigarh',
+        'BATHINDA':'Faridkot', 'FARIDKOT':'Faridkot', 
+        'FAZILKA':'Faridkot', 'FIROZPUR':'Faridkot', 'MOGA':'Faridkot', 'SRI MUKTSAR SAHIB':'Faridkot'
+    },
+    "Jammu and Kashmir": {
+        'DODA': 'Jammu', 'JAMMU': 'Jammu', 'KATHUA': 'Jammu', 'KISHTWAR': 'Jammu', 'PUNCH': 'Jammu',
+        'RAJAURI': 'Jammu', 'RAMBAN': 'Jammu', 'RIASI': 'Jammu', 'SAMBA': 'Jammu', 'UDHAMPUR': 'Jammu',
+        'SHUPIYAN': 'Srinagar', 'ANANTNAG': 'Srinagar', 'BANDIPURA': 'Srinagar', 'BARAMULA': 'Srinagar', 'BADGAM': 'Srinagar',
+        'GANDERBAL': 'Srinagar', 'KUPWARA': 'Srinagar', 'KULGAM': 'Srinagar', 'PULWAMA': 'Srinagar', 'SRINAGAR': 'Srinagar'
+    },
+    "Uttar Pradesh": {
+        'AGRA': 'Agra', 'ALIGARH': 'Agra', 'ETAH': 'Agra', 'FIROZABAD': 'Agra', 'HATHRAS': 'Agra', 'KASGANJ': 'Agra', 'MAINPURI': 'Agra', 'MATHURA': 'Agra',
+        'AMROHA': 'Bareilly', 'BAREILLY': 'Bareilly', 'BIJNOR': 'Bareilly', 'BUDAUN': 'Bareilly', 'PILIBHIT': 'Bareilly', 'RAMPUR': 'Bareilly', 'SAMBHAL': 'Bareilly', 'SHAHJAHANPUR': 'Bareilly',
+        'BAGHPAT': 'Ghaziabad', 'BULANDSHAHR': 'Ghaziabad', 'GAUTAM BUDDHA NAGAR': 'Ghaziabad', 'GHAZIABAD': 'Ghaziabad', 'HAPUR': 'Ghaziabad', 'MEERUT': 'Ghaziabad', 'MUZAFFARNAGAR': 'Ghaziabad', 'SAHARANPUR': 'Ghaziabad', 'SHAMLI': 'Ghaziabad', 'MORADABAD': 'Ghaziabad',
+        'AYODHYA': 'Gorakhpur', 'AZAMGARH': 'Gorakhpur', 'BAHRAICH': 'Gorakhpur', 'BALLIA': 'Gorakhpur', 'BASTI': 'Gorakhpur', 'DEORIA': 'Gorakhpur', 'GONDA': 'Gorakhpur', 'GORAKHPUR': 'Gorakhpur', 'KUSHINAGAR': 'Gorakhpur', 'MAHRAJGANJ': 'Gorakhpur', 'MAU': 'Gorakhpur', 'SHRAWASTI': 'Gorakhpur', 'SIDDHARTHNAGAR': 'Gorakhpur', 'SULTANPUR': 'Gorakhpur',
+        'AURAIYA': 'Kanpur', 'BANDA': 'Kanpur', 'CHITRAKOOT': 'Kanpur', 'ETAWAH': 'Kanpur', 'FARRUKHABAD': 'Kanpur', 'JALAUN': 'Kanpur', 'JHANSI': 'Kanpur', 'KANNAUJ': 'Kanpur', 'KANPUR DEHAT': 'Kanpur', 'KANPUR NAGAR': 'Kanpur', 'LALITPUR': 'Kanpur', 'MAHOBA': 'Kanpur',
+        'BARA BANKI': 'Lucknow', 'HARDOI': 'Lucknow', 'KHERI': 'Lucknow', 'LUCKNOW': 'Lucknow', 'RAE BARELI': 'Lucknow', 'SITAPUR': 'Lucknow', 'UNNAO': 'Lucknow',
+        'BHADOHI': 'Varanasi', 'CHANDAULI': 'Varanasi', 'FATEHPUR': 'Varanasi', 'GHAZIPUR': 'Varanasi', 'JAUNPUR': 'Varanasi', 'KAUSHAMBI': 'Varanasi', 'MIRZAPUR': 'Varanasi', 'PRAYAGRAJ': 'Varanasi', 'SONBHADRA': 'Varanasi', 'VARANASI': 'Varanasi'
+    },
+    "Haryana": {
+        'FARIDABAD': 'Faridabad', 'GURUGRAM': 'Faridabad', 'MAHENDRAGARH': 'Faridabad', 'NUH': 'Faridabad', 'PALWAL': 'Faridabad', 'REWARI': 'Faridabad',
+        'BHIWANI': 'Hisar', 'FATEHABAD': 'Hisar', 'HISAR': 'Hisar', 'JIND': 'Hisar', 'SIRSA': 'Hisar',
+        'AMBALA': 'Kuruksheta', 'KAITHAL': 'Kuruksheta', 'KURUKSHETRA': 'Kuruksheta', 'PANCHKULA': 'Kuruksheta', 'YAMUNANAGAR': 'Kuruksheta',
+        'CHARKI DADRI': 'Rohtak', 'JHAJJAR': 'Rohtak', 'KARNAL': 'Rohtak', 'PANIPAT': 'Rohtak', 'ROHTAK': 'Rohtak', 'SONIPAT': 'Rohtak'
     }
 }
 
@@ -226,6 +396,13 @@ current_cluster_map = cluster_config.get(target_state, {})
 
 # Now apply the map
 merged['cluster'] = merged['district_upper'].map(current_cluster_map)
+merged = merged[merged.geometry.notnull()]
+
+# 2. Fix invalid geometries (self-intersections)
+merged['geometry'] = merged.geometry.buffer(0)
+
+# 3. Ensure everything is a GeoDataFrame again
+merged = gpd.GeoDataFrame(merged, geometry='geometry')
 
 clusters = merged.dissolve(by='cluster')
 
@@ -291,9 +468,21 @@ for _, row in merged.iterrows():
             xref="x", yref="y"
         ))
         
+         state_y_offsets = {
+            "Maharashtra": -0.1,
+            "Gujarat": -0.05,
+            "Punjab": 0,
+            "Jammu and Kashmir": 0,
+            "Uttar Pradesh": -0.05,
+            "Haryana":0   
+        }
+        # Get the offset for the current state, default to -0.1 if not found
+        current_offset = state_y_offsets.get(target_state, -0.1)
+        
         # 2. Share % Box
         annotations.append(dict(
-            x=centroid.x, y=centroid.y - 0.1,
+            x=centroid.x, 
+            y=centroid.y + current_offset, # Using the state-specific offset
             text=f"<b>{share_val}</b>",
             showarrow=False,
             font=dict(size=13, color="white"),
@@ -351,7 +540,7 @@ fig.update_layout(
     yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
     plot_bgcolor='white',
     margin=dict(l=0, r=0, t=0, b=0),
-    height=600,
+    height=800 if target_state=="Uttar Pradesh" else 600,
     showlegend=True,
     legend=dict(
         x=0.01,
@@ -398,19 +587,6 @@ st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 # 1. Filter and Sort
 focus_df = merged[merged[share_col_name] < 50].copy()
 focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
-
-# 2. Format columns
-focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
-focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
-
-# 3. Prepare display dataframe
-display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
-display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
-display_df['Districts'] = display_df['Districts'].str.title()
-
-# 4. Track cluster changes
-is_new_cluster = ~display_df['Cluster'].duplicated()
-display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
 
 # 5. Styling to kill Index and White Spaces
 def style_final_table(st_df):
@@ -461,8 +637,30 @@ def style_final_table(st_df):
     styled.set_table_styles({
         display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
     }, overwrite=False, axis=1)
-    
+        
     return styled
+
+if not focus_df.empty:
+    # 2. Format columns
+    focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
+    focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
     
-# st.table(style_final_table(display_df))
-st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
+    # 3. Prepare display dataframe
+    display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+    display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
+    display_df['Districts'] = display_df['Districts'].str.title()
+    
+    # 4. Track cluster changes
+    is_new_cluster = ~display_df['Cluster'].duplicated()
+    display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
+    
+    
+        
+    # st.table(style_final_table(display_df))
+    st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
+
+else:
+    # Show empty table with headers only
+    # empty_df = pd.DataFrame(columns=['Cluster', 'Districts', f'{target_brand} Share', 'Total Market'])
+    # st.markdown(style_final_table(empty_df).to_html(), unsafe_allow_html=True)
+    st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
