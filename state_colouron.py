@@ -629,6 +629,6 @@ if not focus_df.empty:
 
 else:
     # Show empty table with headers only
-    empty_df = pd.DataFrame(columns=['Cluster', 'Districts', f'{target_brand} Share', 'Total Market'])
-    st.markdown(style_final_table(empty_df).to_html(), unsafe_allow_html=True)
+    # empty_df = pd.DataFrame(columns=['Cluster', 'Districts', f'{target_brand} Share', 'Total Market'])
+    # st.markdown(style_final_table(empty_df).to_html(), unsafe_allow_html=True)
     st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
