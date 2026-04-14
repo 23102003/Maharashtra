@@ -136,6 +136,22 @@ def get_state_data(state_name):
             "JSW_Radiance": [0]*12,
             "Others": [0]*12
         }
+    elif state_name == "Himachal Pradesh":
+        data = {
+            "District": [
+                'CHAMOLI', 'DEHRADUN', 'HARIDWAR', 'PAURI GARHWAL', 'RUDRA PRAYAG', 
+                'TEHRI GARHWAL', 'UTTAR KASHI', 'ALMORA', 'BAGESHWAR', 'CHAMPAWAT', 
+                'NAINITAL', 'PITHORAGARH', 'UDAM SINGH NAGAR'
+            ],
+            "Colouron+": [10,20,40,0,0,0,0,0,0,0,0,0,40],
+            "Everglow": [0]*13,
+            "JSW_CC_Liner": [0]*13,
+            "TATA_Durashine": [0,30,20,10,0,0,0,0,0,0,0,0,50],
+            "Tata_Liner": [0]*13,
+            "TATA_Prisma": [0]*13,
+            "JSW_Radiance": [0]*13,
+            "Others": [0]*13
+        }
            
     return pd.DataFrame(data)
 
@@ -154,7 +170,17 @@ def get_geojson(state_name):
         'SAS NAGAR (SAHIBZADA AJIT SINGH NAGAR)':'S.A.S NAGAR',
         'BIL>SPUR':'BILASPUR',
         'HAM|RPUR':'HAMIRPUR',
-        'K>NGRA':'KANGRA'
+        'K>NGRA':'KANGRA',
+        'DEHRAD@N':'DEHRADUN',
+        'HARIDW>R':'HARIDWAR',
+        'PAURI GARHW>L':'PAURI GARHWAL',
+        'RUDRAPRAY>G':'RUDRA PRAYAG',
+        'TEHRI GARHW>L':'TEHRI GARHWAL',
+        'UTTARK>SHI':'UTTAR KASHI',
+        'B>GESHWAR':'BAGESHWAR',
+        'CHAMP>WAT':'CHAMPAWAT', 
+        'NAINIT>L':'NAINITAL',
+        'PITHOR>GARH':'PITHORAGARH'
     })
     state_gdf['district_upper'] = state_gdf['district'].str.upper()
     return state_gdf
@@ -163,7 +189,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Uttarakhand","Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 df = get_state_data(target_state)
@@ -224,7 +250,10 @@ state_distributor_configs = {
     },
     "Himachal Pradesh": {
         'BILASPUR': 'Distributor A'
-    }
+    },
+    "Uttarakhand": {
+        'BAGESHWAR': 'Distributor A'
+    }  
 }
 
 # 2. Get the specific lookup for the selected state
@@ -302,6 +331,12 @@ state_ranges = {
         (100, '25–100 MT', '#93c5fd'),
         (200, '100–200 MT', '#3b82f6'),
         (float('inf'), '200+ MT', '#1e40af')
+    ],
+    "Uttarakhand": [
+        (25, '0–25 MT', '#dbeafe'),
+        (50, '25–50 MT', '#93c5fd'),
+        (100, '50–100 MT', '#3b82f6'),
+        (float('inf'), '100+ MT', '#1e40af')
     ]
 }
 
@@ -387,6 +422,12 @@ cluster_config = {
         'BILASPUR':'Mandi','CHAMBA':'Mandi','HAMIRPUR':'Mandi','KANGRA':'Mandi','KULLU':'Mandi',
         'LAHUL & SPITI':'Mandi','MANDI':'Mandi','UNA':'Mandi',
         'KINNAUR':'Solan','SHIMLA':'Solan','SIRMAUR':'Solan','SOLAN':'Solan'
+    },
+    "Uttarakhand": {
+        'CHAMOLI':'Garhwal', 'DEHRADUN':'Garhwal', 'HARIDWAR':'Garhwal', 'PAURI GARHWAL':'Garhwal',
+        'RUDRA PRAYAG':'Garhwal', 'TEHRI GARHWAL':'Garhwal', 'UTTAR KASHI':'Garhwal',
+        'ALMORA':'Kumaon', 'BAGESHWAR':'Kumaon', 'CHAMPAWAT':'Kumaon', 
+        'NAINITAL':'Kumaon', 'PITHORAGARH':'Kumaon', 'UDAM SINGH NAGAR':'Kumaon'
     }
 }
 
@@ -474,7 +515,7 @@ for _, row in merged.iterrows():
             "Uttar Pradesh": -0.05,
             "Haryana":0,
             "Himachal Pradesh":0
-            
+            "Uttarakhand":0
         }
         # Get the offset for the current state, default to -0.1 if not found
         current_offset = state_y_offsets.get(target_state, -0.1)
