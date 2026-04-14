@@ -65,7 +65,7 @@ def get_state_data(state_name):
             "JSW_Radiance": [0]*23,
             "Others": [0,0,0,80,0,10,0,10,0,20,20,0,0,0,0,0,0,0,0,0,10,0,0]
         }
-    elif state_name == "JAMMU AND KASHMIR":
+    elif state_name == "Jammu and Kashmir":
         data = {
             "District": [
                 'DODA', 'JAMMU', 'KATHUA', 'KISHTWAR', 'PUNCH', 
@@ -106,7 +106,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["JAMMU AND KASHMIR","Punjab","Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 df = get_state_data(target_state)
@@ -153,7 +153,7 @@ state_distributor_configs = {
         'AMRITSAR': 'Distributor A'
         # Add your Punjab distributor list here...
     },
-    "JAMMU AND KASHMIR": {
+    "Jammu and Kashmir": {
         'JAMMU': 'Distributor A'
         # Add your Jammu and Kashmir distributor list here...
     }
@@ -211,7 +211,7 @@ state_ranges = {
         (200, '100–200 MT', '#3b82f6'),
         (float('inf'), '200+ MT', '#1e40af')
     ],
-    "JAMMU AND KASHMIR": [
+    "Jammu and Kashmir": [
         (50, '0–50 MT', '#dbeafe'),
         (150, '50–150 MT', '#93c5fd'),
         (300, '150–300 MT', '#3b82f6'),
@@ -276,7 +276,7 @@ cluster_config = {
         'BATHINDA':'Faridkot', 'FARIDKOT':'Faridkot', 
         'FAZILKA':'Faridkot', 'FIROZPUR':'Faridkot', 'MOGA':'Faridkot', 'SRI MUKTSAR SAHIB':'Faridkot'
     },
-    "JAMMU AND KASHMIR": {
+    "Jammu and Kashmir": {
         'DODA': 'Jammu', 'JAMMU': 'Jammu', 'KATHUA': 'Jammu', 'KISHTWAR': 'Jammu', 'PUNCH': 'Jammu',
         'RAJAURI': 'Jammu', 'RAMBAN': 'Jammu', 'RIASI': 'Jammu', 'SAMBA': 'Jammu', 'UDHAMPUR': 'Jammu',
         'SHUPIYAN': 'Srinagar', 'ANANTNAG': 'Srinagar', 'BANDIPURA': 'Srinagar', 'BARAMULA': 'Srinagar', 'BADGAM': 'Srinagar',
