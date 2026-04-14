@@ -540,6 +540,13 @@ if target_state == "Punjab":
         xref="x", yref="y"
     ))
 
+if target_state == "Uttar Pradesh":
+    annotations.append(dict(
+        x=60.77, y=30.57, text="<b>KANPUR</b>",
+        showarrow=False, font=dict(size=13, color="black", family="Arial Black"),
+        xref="x", yref="y"
+    ))
+
 # --- TOTAL MARKET BOX (Merged into annotations to prevent error) ---
 total_mkt_size = df['Market_Size'].sum()
 total_brand_vol = df[target_brand].sum()
