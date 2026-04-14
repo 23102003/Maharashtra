@@ -65,6 +65,23 @@ def get_state_data(state_name):
             "JSW_Radiance": [0]*23,
             "Others": [0,0,0,80,0,10,0,10,0,20,20,0,0,0,0,0,0,0,0,0,10,0,0]
         }
+    elif state_name == "Jammu and Kashmir":
+        data = {
+            "District": [
+                'DODA', 'JAMMU', 'KATHUA', 'KISHTWAR', 'PUNCH', 
+                'RAJAURI', 'RAMBAN', 'RIASI', 'SAMBA', 'UDHAMPUR', 
+                'SHUPIYAN', 'ANANTNAG', 'BANDIPURA', 'BARAMULA', 'BADGAM', 
+                'GANDERBAL', 'KUPWARA', 'KULGAM', 'PULWAMA', 'SRINAGAR'
+            ],
+            "Colouron+": [20, 30, 30, 20, 0, 0, 0, 0, 0, 0, 50, 230, 50, 150, 100, 50, 100, 50, 150, 350],
+            "Everglow": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 10],
+            "JSW_CC_Liner": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "TATA_Durashine": [20, 0, 0, 10, 0, 0, 10, 0, 0, 20, 0, 30, 0, 30, 0, 0, 0, 0, 0, 30],
+            "Tata_Liner": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "TATA_Prisma": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "JSW_Radiance": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Others": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50]
+        }
     
     return pd.DataFrame(data)
 
@@ -89,7 +106,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Punjab","Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 df = get_state_data(target_state)
@@ -135,6 +152,10 @@ state_distributor_configs = {
     "Punjab": {
         'AMRITSAR': 'Distributor A'
         # Add your Punjab distributor list here...
+    },
+    "Jammu and Kashmir": {
+        'JAMMU': 'Distributor A'
+        # Add your Jammu and Kashmir distributor list here...
     }
 }
 
@@ -189,6 +210,12 @@ state_ranges = {
         (100, '25–100 MT', '#93c5fd'),
         (200, '100–200 MT', '#3b82f6'),
         (float('inf'), '200+ MT', '#1e40af')
+    ],
+    "Jammu and Kashmir": [
+        (50, '0–50 MT', '#dbeafe'),
+        (150, '50–150 MT', '#93c5fd'),
+        (300, '150–300 MT', '#3b82f6'),
+        (float('inf'), '300+ MT', '#1e40af')
     ]
 }
 
@@ -248,6 +275,12 @@ cluster_config = {
         'RUPNAGAR':'Chandigarh', 'S.A.S NAGAR':'Chandigarh', 'SANGRUR':'Chandigarh',
         'BATHINDA':'Faridkot', 'FARIDKOT':'Faridkot', 
         'FAZILKA':'Faridkot', 'FIROZPUR':'Faridkot', 'MOGA':'Faridkot', 'SRI MUKTSAR SAHIB':'Faridkot'
+    },
+    "Jammu and Kashmir": {
+        'DODA': 'Jammu', 'JAMMU': 'Jammu', 'KATHUA': 'Jammu', 'KISHTWAR': 'Jammu', 'PUNCH': 'Jammu',
+        'RAJAURI': 'Jammu', 'RAMBAN': 'Jammu', 'RIASI': 'Jammu', 'SAMBA': 'Jammu', 'UDHAMPUR': 'Jammu',
+        'SHUPIYAN': 'Srinagar', 'ANANTNAG': 'Srinagar', 'BANDIPURA': 'Srinagar', 'BARAMULA': 'Srinagar', 'BADGAM': 'Srinagar',
+        'GANDERBAL': 'Srinagar', 'KUPWARA': 'Srinagar', 'KULGAM': 'Srinagar', 'PULWAMA': 'Srinagar', 'SRINAGAR': 'Srinagar'
     }
 }
 
