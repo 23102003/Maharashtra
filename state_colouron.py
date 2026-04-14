@@ -301,7 +301,7 @@ merged['geometry'] = merged.geometry.buffer(0)
 merged = gpd.GeoDataFrame(merged, geometry='geometry')
 clusters = merged.dissolve(by='cluster')
 
-
+print(merged[merged.geometry.isnull()]['District'])
 # ---------------------------------------------------------
 
 # (The rest of your script follows here, using 'state_districts' instead of 'maharashtra_districts' 
