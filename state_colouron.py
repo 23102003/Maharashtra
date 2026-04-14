@@ -325,7 +325,7 @@ for _, row in merged.iterrows():
         
         # 2. Share % Box
         annotations.append(dict(
-            x=centroid.x, y=centroid.y - 0.1,
+            x=centroid.x, y=centroid.y,
             text=f"<b>{share_val}</b>",
             showarrow=False,
             font=dict(size=13, color="white"),
