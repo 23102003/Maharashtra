@@ -535,7 +535,7 @@ for _, row in merged.iterrows():
 # Manual Fix for Maharashtra only
 if target_state == "Punjab":
     annotations.append(dict(
-        x=76.77, y=30.70, text="<b>CHANDIGARH</b>",
+        x=76.77, y=30.65, text="<b>CHANDIGARH</b>",
         showarrow=False, font=dict(size=13, color="black", family="Arial Black"),
         xref="x", yref="y"
     ))
