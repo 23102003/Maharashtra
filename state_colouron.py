@@ -246,8 +246,8 @@ cluster_config = {
         'BARNALA':'Chandigarh', 'FATEHGARH SAHIB':'Chandigarh', 'LUDHIANA':'Chandigarh',
         'MALER KOTLA':'Chandigarh', 'MANSA':'Chandigarh', 'PATIALA':'Chandigarh', 
         'RUPNAGAR':'Chandigarh', 'S.A.S NAGAR':'Chandigarh', 'SANGRUR':'Chandigarh',
-        'BATHINDA':'Faridkot', 'FARIDKOT''Faridkot', 
-        'FAZILKA''Faridkot', 'FIROZPUR''Faridkot', 'MOGA''Faridkot', 'SRI MUKTSAR SAHIB''Faridkot'
+        'BATHINDA':'Faridkot', 'FARIDKOT':'Faridkot', 
+        'FAZILKA':'Faridkot', 'FIROZPUR':'Faridkot', 'MOGA':'Faridkot', 'SRI MUKTSAR SAHIB':'Faridkot'
     }
 }
 
