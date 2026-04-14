@@ -52,7 +52,7 @@ def get_state_data(state_name):
             "Others": [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0]
         }
      elif state_name == "Punjab":
-        data = {
+         data = {
             "District": [
                 'AMRITSAR', 'GURDASPUR', 'HOSHIARPUR', 'JALANDHAR', 'KAPURTHALA', 
                 'PATHANKOT', 'SHAHID BHAGAT SINGH NAGAR', 'TARN TARAN', 'BARNALA', 
