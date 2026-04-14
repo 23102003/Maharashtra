@@ -131,7 +131,7 @@ state_distributor_configs = {
         'SURAT': ['Distributor B', 'Distributor C'],
         'RAJKOT': 'Distributor D'
         # Add your Gujarat distributor list here...
-    }
+    },
     "Punjab": {
         'AMRITSAR': 'Distributor A'
         # Add your Punjab distributor list here...
