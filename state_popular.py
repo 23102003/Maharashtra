@@ -447,7 +447,7 @@ cluster_config = {
     "Haryana": {
         'FARIDABAD': 'Faridabad', 'GURUGRAM': 'Faridabad', 'MAHENDRAGARH': 'Faridabad', 'NUH': 'Faridabad', 'PALWAL': 'Faridabad', 'REWARI': 'Faridabad',
         'BHIWANI': 'Hisar', 'FATEHABAD': 'Hisar', 'HISAR': 'Hisar', 'JIND': 'Hisar', 'SIRSA': 'Hisar',
-        'AMBALA': 'Kuruksheta', 'KAITHAL': 'Kuruksheta', 'KURUKSHETRA': 'Kuruksheta', 'PANCHKULA': 'Kuruksheta', 'YAMUNANAGAR': 'Kuruksheta',
+        'AMBALA': 'Kurukshetra', 'KAITHAL': 'Kurukshetra', 'KURUKSHETRA': 'Kurukshetra', 'PANCHKULA': 'Kurukshetra', 'YAMUNANAGAR': 'Kurukshetra',
         'CHARKI DADRI': 'Rohtak', 'JHAJJAR': 'Rohtak', 'KARNAL': 'Rohtak', 'PANIPAT': 'Rohtak', 'ROHTAK': 'Rohtak', 'SONIPAT': 'Rohtak'
     },
     "Himachal Pradesh": {
@@ -567,13 +567,33 @@ for _, row in merged.iterrows():
             xref="x", yref="y"
         ))
 
-# # Manual Fix for Maharashtra only
-# if target_state == "Maharashtra":
-#     annotations.append(dict(
-#         x=74.74, y=19.3, text="<b>AHMEDNAGAR</b>",
-#         showarrow=False, font=dict(size=10, color="black", family="Arial"),
-#         xref="x", yref="y"
-#     ))
+# Manual Fix for Maharashtra only
+if target_state == "Punjab":
+    annotations.append(dict(
+        x=76.77, y=30.57, text="<b>CHANDIGARH</b>",
+        showarrow=False, font=dict(size=13, color="black", family="Arial Black"),
+        xref="x", yref="y"
+    ))
+
+if target_state == "Uttar Pradesh":
+    annotations.append(dict(
+        x=78.7, y=26.4, text="<b>KANPUR</b>",
+        showarrow=False, font=dict(size=13, color="black", family="Arial Black"),
+        xref="x", yref="y"
+    ))
+
+if target_state == "Uttarakhand":
+    annotations.append(dict(
+        x=78.78, y=30.15, text="<b>GARHWAL</b>",
+        showarrow=False, font=dict(size=13, color="black", family="Arial Black"),
+        xref="x", yref="y"
+    ))
+if target_state == "Uttarakhand":
+    annotations.append(dict(
+        x=79.75, y=29.55, text="<b>KUMAON</b>",
+        showarrow=False, font=dict(size=13, color="black", family="Arial Black"),
+        xref="x", yref="y"
+    ))
 
 # --- TOTAL MARKET BOX (Merged into annotations to prevent error) ---
 total_mkt_size = df['Market_Size'].sum()
