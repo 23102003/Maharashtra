@@ -488,9 +488,9 @@ for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%',
 
 fig.update_layout(
     annotations=annotations,
-    dragmode=False, # Disables panning/dragging
-    xaxis=dict(fixedrange=True, visible=True), # Disables zooming on X
-    yaxis=dict(fixedrange=True, visible=True, scaleanchor="x", scaleratio=1), # Disables zooming on Y
+    dragmode='zoom', # Disables panning/dragging
+    xaxis=dict(fixedrange=True, visible=False), # Disables zooming on X
+    yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
     plot_bgcolor='white',
     margin=dict(l=0, r=0, t=0, b=0),
     height=600,
