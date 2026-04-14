@@ -488,12 +488,12 @@ for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%',
 
 fig.update_layout(
     annotations=annotations,
-    dragmode='zoom', # Disables panning/dragging
+    dragmode=False, # Disables panning/dragging
     xaxis=dict(fixedrange=True, visible=False), # Disables zooming on X
     yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1), # Disables zooming on Y
     plot_bgcolor='white',
     margin=dict(l=0, r=0, t=0, b=0),
-    height=600,
+    height=800 if target_state=="Uttar Pradesh" else 600,
     showlegend=True,
     legend=dict(
         x=0.01,
@@ -508,7 +508,7 @@ fig.update_layout(
         itemsizing='constant')
 )
 
-st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': True})
+st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 # # ---------------------------------------------------------
 # # 5. TABLES (Unchanged)
 # # ---------------------------------------------------------
