@@ -82,6 +82,48 @@ def get_state_data(state_name):
             "JSW_Radiance": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0],
             "Others": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50,0,0]
         }
+    elif state_name == "Uttar Pradesh":
+        data = {
+            "District": [
+                'AGRA', 'ALIGARH', 'ETAH', 'FIROZABAD', 'HATHRAS', 'KASGANJ', 'MAINPURI', 'MATHURA',
+                'AMROHA', 'BAREILLY', 'BIJNOR', 'BUDAUN', 'PILIBHIT', 'RAMPUR', 'SAMBHAL', 'SHAHJAHANPUR',
+                'BAGHPAT', 'BULANDSHAHR', 'GAUTAM BUDDHA NAGAR', 'GHAZIABAD', 'HAPUR', 'MEERUT', 'MUZAFFARNAGAR',
+                'SAHARANPUR', 'SHAMLI', 'MORADABAD', 'AYODHYA', 'AZAMGARH', 'BAHRAICH', 'BALLIA', 'BASTI',
+                'DEORIA', 'GONDA', 'GORAKHPUR', 'KUSHINAGAR', 'MAHRAJGANJ', 'MAU', 'SHRAWASTI',
+                'SIDDHARTHNAGAR', 'SULTANPUR', 'AURAIYA', 'BANDA', 'CHITRAKOOT', 'ETAWAH', 'FARRUKHABAD',
+                'JALAUN', 'JHANSI', 'KANNAUJ', 'KANPUR DEHAT', 'KANPUR NAGAR', 'LALITPUR', 'MAHOBA',
+                'BARA BANKI', 'HARDOI', 'KHERI', 'LUCKNOW', 'RAE BARELI', 'SITAPUR', 'UNNAO', 'BHADOHI',
+                'CHANDAULI', 'FATEHPUR', 'GHAZIPUR', 'JAUNPUR', 'KAUSHAMBI', 'MIRZAPUR', 'PRAYAGRAJ',
+                'SONBHADRA', 'VARANASI'
+            ],
+            "Colouron+": [100, 4, 8, 4, 8, 0, 0, 32, 0, 0,
+                          8, 0, 8, 4, 8, 0, 0, 0, 56, 450,
+                          0, 32, 20, 0, 8, 30, 8, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                          5, 5, 5, 8, 9, 5, 10, 15, 5, 5,
+                          50, 5, 5, 10, 5, 15, 25, 5, 5, 3,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 8],
+            "Everglow": [0,0,0,0,0,0,0,0,0,0,
+                         0,0,0,0,0,0,0,0,0,0,
+                         0,0,0,0,0,0,0,0,0,0,
+                         0,0,0,0,0,0,0,0,0,0,
+                         0,0,0,0,0,0,0,0,0,40,
+                         0,0,0,0,0,0,0,0,0,0,
+                         0,0,0,0,0,0,0,0,0
+                        ],
+            "JSW_CC_Liner": [0]*69,
+            "TATA_Durashine": [25, 1, 2, 1, 2, 0, 0, 3, 0, 0,
+                               2, 0, 2, 1, 2, 0, 0, 0, 14, 100,
+                               0, 8, 5, 0, 2, 0, 8, 0, 2, 3,
+                               0, 0, 0, 10, 0, 0, 0, 0, 0,
+                               3, 0, 3, 0, 5, 0, 0, 15, 0, 3,
+                               30, 3, 0, 0, 3, 0, 9, 0, 0, 0,
+                               0, 0, 0, 0, 0, 0, 0, 0, 0, 10],
+            "Tata_Liner": [0]*69,
+            "TATA_Prisma": [0]*69,
+            "JSW_Radiance": [0]*69,
+            "Others": [0]*69
+        }
     
     return pd.DataFrame(data)
 
@@ -106,7 +148,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Uttar Pradesh,"Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 df = get_state_data(target_state)
