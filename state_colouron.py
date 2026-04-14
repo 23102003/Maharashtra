@@ -594,6 +594,20 @@ def style_final_table(st_df):
         }
     ]).hide(axis="index") # CRITICAL: This removes the numbered column
 
+        # Apply top border only when cluster changes
+        for i, row_is_new in enumerate(is_new_cluster):
+            if row_is_new:
+                styled.set_table_styles({
+                    display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
+                }, overwrite=False, axis=1)
+        
+        # Bottom border for the last row
+        styled.set_table_styles({
+            display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
+        }, overwrite=False, axis=1)
+        
+    return styled
+
 if not focus_df.empty:
     # 2. Format columns
     focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
@@ -608,19 +622,7 @@ if not focus_df.empty:
     is_new_cluster = ~display_df['Cluster'].duplicated()
     display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
     
-    # Apply top border only when cluster changes
-    for i, row_is_new in enumerate(is_new_cluster):
-        if row_is_new:
-            styled.set_table_styles({
-                display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
-            }, overwrite=False, axis=1)
     
-    # Bottom border for the last row
-    styled.set_table_styles({
-        display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
-    }, overwrite=False, axis=1)
-    
-    return styled
         
     # st.table(style_final_table(display_df))
     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
