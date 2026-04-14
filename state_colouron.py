@@ -31,8 +31,6 @@ def get_state_data(state_name):
           "JSW_CC_Liner": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           "Others": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 50, 0, 0, 0, 25, 0, 25, 0, 25, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 25, 100, 0]        
       }
-    
-    # GUJARAT DATA (Placeholder - Replace with your actual data)
     elif state_name == "Gujarat":
         data = {
             "District": [
@@ -49,6 +47,25 @@ def get_state_data(state_name):
             "JSW_Radiance": [0]*33,
             "Others": [10, 5, 10, 5, 5, 10, 5, 2, 5, 10, 5, 0, 10, 0, 0, 0, 0, 0, 5, 10, 5, 0, 1, 10, 1, 0, 10, 0, 0, 0, 0, 0, 0]
         }
+    elif state_name == "Punjab":
+        data = {
+            "District": [
+                'AMRITSAR', 'GURDASPUR', 'HOSHIARPUR', 'JALANDHAR', 'KAPURTHALA', 
+                'PATHANKOT', 'SHAHID BHAGAT SINGH NAGAR', 'TARN TARAN', 'BARNALA', 
+                'FATEHGARH SAHIB', 'LUDHIANA', 'MALER KOTLA', 'MANSA', 'PATIALA', 
+                'RUPNAGAR', 'S.A.S NAGAR', 'SANGRUR', 'BATHINDA', 'FARIDKOT', 
+                'FAZILKA', 'FIROZPUR', 'MOGA', 'SRI MUKTSAR SAHIB'
+            ],
+            "Colouron+": [15,5,10,150,5,30,20,15,10,100,200,20,5,30,10,15,10,10,25,10,70,30,5],
+            "Everglow": [0]*23,
+            "JSW_CC_Liner": [0]*23,
+            "TATA_Durashine": [5,0,5,20,10,10,5,10,0,30,50,5,0,10,10,5,15,0,0,0,10,0,0],
+            "Tata_Liner": [0]*23,
+            "TATA_Prisma": [5,0,5,25,5,10,5,5,0,30,20,0,0,0,0,0,0,5,5,5,15,10,0],
+            "JSW_Radiance": [0]*23,
+            "Others": [0,0,0,80,0,10,0,10,0,20,20,0,0,0,0,0,0,0,0,0,10,0,0]
+        }
+    
     return pd.DataFrame(data)
 
 @st.cache_data
@@ -63,6 +80,7 @@ def get_geojson(state_name):
         'DHARASHIV': 'OSMANABAD',
         'DANGS': 'DANG',
         'DAHOD': 'DOHAD',
+        'SAS NAGAR (SAHIBZADA AJIT SINGH NAGAR)':'S.A.S NAGAR'
     })
     state_gdf['district_upper'] = state_gdf['district'].str.upper()
     return state_gdf
@@ -71,7 +89,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", ["Colouron+", "JSW_Radiance", "TATA_Prisma", "Tata_Liner", "TATA_Durashine", "JSW_CC_Liner", "Everglow", "Others"])
 
 df = get_state_data(target_state)
@@ -113,6 +131,10 @@ state_distributor_configs = {
         'SURAT': ['Distributor B', 'Distributor C'],
         'RAJKOT': 'Distributor D'
         # Add your Gujarat distributor list here...
+    }
+    "Punjab": {
+        'AMRITSAR': 'Distributor A'
+        # Add your Punjab distributor list here...
     }
 }
 
@@ -162,6 +184,12 @@ state_ranges = {
         (300, '150–300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ]
+    "Punjab": [
+        (25, '0–25 MT', '#dbeafe'),
+        (100, '25–100 MT', '#93c5fd'),
+        (200, '100–200 MT', '#3b82f6'),
+        (float('inf'), '200+ MT', '#1e40af')
+    ]
 }
 
 # 2. Updated color function
@@ -210,6 +238,16 @@ cluster_config = {
         'VALSAD': 'Surat', 'BHARUCH': 'Vadodara', 'CHHOTAUDEPUR': 'Vadodara', 
         'DOHAD': 'Vadodara', 'MAHISAGAR': 'Vadodara', 'NARMADA': 'Vadodara', 
         'PANCH MAHALS': 'Vadodara', 'VADODARA': 'Vadodara'
+    },
+    "Punjab": {
+        'AMRITSAR':'Amritsar', 'GURDASPUR':'Amritsar', 'HOSHIARPUR':'Amritsar', 
+        'JALANDHAR':'Amritsar', 'KAPURTHALA':'Amritsar', 
+        'PATHANKOT':'Amritsar', 'SHAHID BHAGAT SINGH NAGAR':'Amritsar', 'TARN TARAN':'Amritsar',
+        'BARNALA':'Chandigarh', 'FATEHGARH SAHIB':'Chandigarh', 'LUDHIANA':'Chandigarh',
+        'MALER KOTLA':'Chandigarh', 'MANSA':'Chandigarh', 'PATIALA':'Chandigarh', 
+        'RUPNAGAR':'Chandigarh', 'S.A.S NAGAR':'Chandigarh', 'SANGRUR':'Chandigarh',
+        'BATHINDA':'Faridkot', 'FARIDKOT''Faridkot', 
+        'FAZILKA''Faridkot', 'FIROZPUR''Faridkot', 'MOGA''Faridkot', 'SRI MUKTSAR SAHIB''Faridkot'
     }
 }
 
