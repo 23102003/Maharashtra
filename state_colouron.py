@@ -136,7 +136,7 @@ def get_state_data(state_name):
             "JSW_Radiance": [0]*12,
             "Others": [0]*12
         }
-    elif state_name == "Himachal Pradesh":
+    elif state_name == "Uttarakhand":
         data = {
             "District": [
                 'CHAMOLI', 'DEHRADUN', 'HARIDWAR', 'PAURI GARHWAL', 'RUDRA PRAYAG', 
