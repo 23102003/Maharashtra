@@ -415,7 +415,7 @@ cluster_config = {
     "Haryana": {
         'FARIDABAD': 'Faridabad', 'GURUGRAM': 'Faridabad', 'MAHENDRAGARH': 'Faridabad', 'NUH': 'Faridabad', 'PALWAL': 'Faridabad', 'REWARI': 'Faridabad',
         'BHIWANI': 'Hisar', 'FATEHABAD': 'Hisar', 'HISAR': 'Hisar', 'JIND': 'Hisar', 'SIRSA': 'Hisar',
-        'AMBALA': 'Kuruksheta', 'KAITHAL': 'Kuruksheta', 'KURUKSHETRA': 'Kuruksheta', 'PANCHKULA': 'Kuruksheta', 'YAMUNANAGAR': 'Kuruksheta',
+        'AMBALA': 'Kurukshetra', 'KAITHAL': 'Kurukshetra', 'KURUKSHETRA': 'Kurukshetra', 'PANCHKULA': 'Kurukshetra', 'YAMUNANAGAR': 'Kurukshetra',
         'CHARKI DADRI': 'Rohtak', 'JHAJJAR': 'Rohtak', 'KARNAL': 'Rohtak', 'PANIPAT': 'Rohtak', 'ROHTAK': 'Rohtak', 'SONIPAT': 'Rohtak'
     },
     "Himachal Pradesh": {
