@@ -291,14 +291,6 @@ current_cluster_map = cluster_config.get(target_state, {})
 
 # Now apply the map
 merged['cluster'] = merged['district_upper'].map(current_cluster_map)
-# 1. Remove rows where geometry is missing (from failed merges)
-missing_districts = merged[merged.geometry.isnull()]['District'].unique()
-
-# 2. Display them in Streamlit if any are found
-if len(missing_districts) > 0:
-    st.warning(f"⚠️ Naming Mismatch: {len(missing_districts)} districts could not be mapped.")
-    st.write("These names in your data don't match the GeoJSON names:")
-    st.dataframe(missing_districts, use_container_width=True)
 merged = merged[merged.geometry.notnull()]
 
 # 2. Fix invalid geometries (self-intersections)
