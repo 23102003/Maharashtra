@@ -291,7 +291,14 @@ current_cluster_map = cluster_config.get(target_state, {})
 
 # Now apply the map
 merged['cluster'] = merged['district_upper'].map(current_cluster_map)
+# 1. Remove rows where geometry is missing (from failed merges)
+merged = merged[merged.geometry.notnull()]
 
+# 2. Fix invalid geometries (self-intersections)
+merged['geometry'] = merged.geometry.buffer(0)
+
+# 3. Ensure everything is a GeoDataFrame again
+merged = gpd.GeoDataFrame(merged, geometry='geometry')
 clusters = merged.dissolve(by='cluster')
 
 
