@@ -322,10 +322,18 @@ for _, row in merged.iterrows():
             font=dict(size=13 if is_hub else 10, color="black", family="Arial Black" if is_hub else "Arial"),
             xref="x", yref="y"
         ))
+        state_y_offsets = {
+            "Maharashtra": -0.1,
+            "Gujarat": -0.05,
+            "Punjab": 0  # Adjust these numbers based on visual testing
+        }
+        # Get the offset for the current state, default to -0.1 if not found
+        current_offset = state_y_offsets.get(target_state, -0.1)
         
         # 2. Share % Box
         annotations.append(dict(
-            x=centroid.x, y=centroid.y,
+            x=centroid.x, 
+            y=centroid.y + current_offset, # Using the state-specific offset
             text=f"<b>{share_val}</b>",
             showarrow=False,
             font=dict(size=13, color="white"),
