@@ -292,16 +292,22 @@ current_cluster_map = cluster_config.get(target_state, {})
 # Now apply the map
 merged['cluster'] = merged['district_upper'].map(current_cluster_map)
 # 1. Remove rows where geometry is missing (from failed merges)
-merged = merged[merged.geometry.notnull()]
+missing_districts = merged[merged.geometry.isnull()]['District'].unique()
 
-# 2. Fix invalid geometries (self-intersections)
-merged['geometry'] = merged.geometry.buffer(0)
+# 2. Display them in Streamlit if any are found
+if len(missing_districts) > 0:
+    st.warning(f"⚠️ Naming Mismatch: {len(missing_districts)} districts could not be mapped.")
+    st.write("These names in your data don't match the GeoJSON names:")
+    st.dataframe(missing_districts, use_container_width=True)
+# merged = merged[merged.geometry.notnull()]
 
-# 3. Ensure everything is a GeoDataFrame again
-merged = gpd.GeoDataFrame(merged, geometry='geometry')
+# # 2. Fix invalid geometries (self-intersections)
+# merged['geometry'] = merged.geometry.buffer(0)
+
+# # 3. Ensure everything is a GeoDataFrame again
+# merged = gpd.GeoDataFrame(merged, geometry='geometry')
 clusters = merged.dissolve(by='cluster')
 
-print(merged[merged.geometry.isnull()]['District'])
 # ---------------------------------------------------------
 
 # (The rest of your script follows here, using 'state_districts' instead of 'maharashtra_districts' 
