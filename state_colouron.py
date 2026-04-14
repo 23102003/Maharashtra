@@ -365,7 +365,8 @@ for _, row in merged.iterrows():
         state_y_offsets = {
             "Maharashtra": -0.1,
             "Gujarat": -0.05,
-            "Punjab": 0  # Adjust these numbers based on visual testing
+            "Punjab": 0,
+            "Jammu and Kashmir": 0
         }
         # Get the offset for the current state, default to -0.1 if not found
         current_offset = state_y_offsets.get(target_state, -0.1)
