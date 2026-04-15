@@ -642,86 +642,137 @@ st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
+# st.divider()
+# st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
+
+# # 1. Filter and Sort
+# focus_df = merged[merged[share_col_name] < 50].copy()
+# focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
+
+# # 5. Styling to kill Index and White Spaces
+# def style_final_table(st_df):
+#     styled = st_df.style.set_table_styles([
+#         {
+#             'selector': '', 
+#             'props': [
+#                 ('border-collapse', 'collapse !important'), 
+#                 ('border-spacing', '0 !important'),
+#                 ('width', 'auto'),
+#                 ('margin-left', '0'),
+#                 ('margin-right', 'auto')
+#             ]
+#         },
+#         {
+#             'selector': 'th',
+#             'props': [
+#                 ('background-color', '#b8cce4'), 
+#                 ('color', 'black'), 
+#                 ('border', '1px solid black'), 
+#                 ('font-weight', 'bold'), 
+#                 ('padding', '2px 5px')
+#             ]
+#         },
+#         {
+#             'selector': 'td',
+#             'props': [
+#                 ('padding', '2px 5px'), 
+#                 ('color', 'black'), 
+#                 ('border-left', '1px solid black'), 
+#                 ('border-right', '1px solid black'), 
+#                 ('border-bottom', 'none'), 
+#                 ('border-top', 'none'),
+#                 ('margin', '0'),
+#                 ('border-collapse', 'collapse')
+#             ]
+#         }
+#     ]).hide(axis="index") # CRITICAL: This removes the numbered column
+
+#     # Apply top border only when cluster changes
+#     for i, row_is_new in enumerate(is_new_cluster):
+#         if row_is_new:
+#             styled.set_table_styles({
+#                 display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
+#             }, overwrite=False, axis=1)
+    
+#     # Bottom border for the last row
+#     styled.set_table_styles({
+#         display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
+#     }, overwrite=False, axis=1)
+        
+#     return styled
+
+# if not focus_df.empty:
+#     # 2. Format columns
+#     focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
+#     focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
+    
+#     # 3. Prepare display dataframe
+#     display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+#     display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
+#     display_df['Districts'] = display_df['Districts'].str.title()
+    
+#     # 4. Track cluster changes
+#     is_new_cluster = ~display_df['Cluster'].duplicated()
+#     display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
+    
+    
+        
+#     # st.table(style_final_table(display_df))
+#     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
+
+# else:
+#     # Show empty table with headers only
+#     st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
+# ---------------------------------------------------------
+# 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
+# ---------------------------------------------------------
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-# 1. Filter and Sort
+# 1. Filter
 focus_df = merged[merged[share_col_name] < 50].copy()
-focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
-
-# 5. Styling to kill Index and White Spaces
-def style_final_table(st_df):
-    styled = st_df.style.set_table_styles([
-        {
-            'selector': '', 
-            'props': [
-                ('border-collapse', 'collapse !important'), 
-                ('border-spacing', '0 !important'),
-                ('width', 'auto'),
-                ('margin-left', '0'),
-                ('margin-right', 'auto')
-            ]
-        },
-        {
-            'selector': 'th',
-            'props': [
-                ('background-color', '#b8cce4'), 
-                ('color', 'black'), 
-                ('border', '1px solid black'), 
-                ('font-weight', 'bold'), 
-                ('padding', '2px 5px')
-            ]
-        },
-        {
-            'selector': 'td',
-            'props': [
-                ('padding', '2px 5px'), 
-                ('color', 'black'), 
-                ('border-left', '1px solid black'), 
-                ('border-right', '1px solid black'), 
-                ('border-bottom', 'none'), 
-                ('border-top', 'none'),
-                ('margin', '0'),
-                ('border-collapse', 'collapse')
-            ]
-        }
-    ]).hide(axis="index") # CRITICAL: This removes the numbered column
-
-    # Apply top border only when cluster changes
-    for i, row_is_new in enumerate(is_new_cluster):
-        if row_is_new:
-            styled.set_table_styles({
-                display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
-            }, overwrite=False, axis=1)
-    
-    # Bottom border for the last row
-    styled.set_table_styles({
-        display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
-    }, overwrite=False, axis=1)
-        
-    return styled
 
 if not focus_df.empty:
-    # 2. Format columns
+    # --- NEW: Calculate Cluster Aggregates ---
+    # We calculate totals for the specific brand and market size per cluster
+    cluster_stats = merged.groupby('cluster').agg({
+        target_brand: 'sum',
+        'Market_Size': 'sum'
+    }).reset_index()
+
+    # Calculate the % share for the cluster
+    cluster_stats['Cluster_Share'] = np.where(
+        cluster_stats['Market_Size'] == 0, 
+        0, 
+        (cluster_stats[target_brand] / cluster_stats['Market_Size']) * 100
+    ).round(0).astype(int)
+
+    # Create the display string: "Cluster Name (Share% | Total MT)"
+    cluster_stats['Cluster_Display'] = cluster_stats.apply(
+        lambda x: f"<b>{x['cluster']}</b><br><span style='font-size:11px; color:#1e40af;'>{x['Cluster_Share']}% Share | {int(x['Market_Size'])} MT</span>", 
+        axis=1
+    )
+
+    # Merge stats back to focus_df
+    focus_df = focus_df.merge(cluster_stats[['cluster', 'Cluster_Display']], on='cluster', how='left')
+    # ------------------------------------------
+
+    # 2. Sort and Format columns
+    focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
     focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
     focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
-    
+
     # 3. Prepare display dataframe
-    display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
-    display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
+    display_df = focus_df[['Cluster_Display', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+    display_df.columns = ['Cluster Summary', 'Districts', f'{target_brand} Share', 'Total Market']
     display_df['Districts'] = display_df['Districts'].str.title()
-    
-    # 4. Track cluster changes
-    is_new_cluster = ~display_df['Cluster'].duplicated()
-    display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
-    
-    
-        
-    # st.table(style_final_table(display_df))
+
+    # 4. Track cluster changes to hide repetitive summary text
+    is_new_cluster = ~display_df['Cluster Summary'].duplicated()
+    display_df['Cluster Summary'] = np.where(display_df['Cluster Summary'].duplicated(), "", display_df['Cluster Summary'])
+
+    # 5. Display the styled table
     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
 
 else:
-    # Show empty table with headers only
-    # empty_df = pd.DataFrame(columns=['Cluster', 'Districts', f'{target_brand} Share', 'Total Market'])
-    # st.markdown(style_final_table(empty_df).to_html(), unsafe_allow_html=True)
     st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
