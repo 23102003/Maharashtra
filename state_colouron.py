@@ -756,32 +756,40 @@ if not focus_df.empty:
     display_df['Districts'] = display_df['Districts'].str.title()
 
     # --- NEW POSITIONING LOGIC ---
-    # --- UPDATED POSITIONING LOGIC ---
+    # --- UPDATED POSITIONING LOGIC (With Single-Row Handler) ---
     new_labels = []
-    cluster_counts = {} 
+    # Count how many focus districts are in each cluster
+    cluster_group_counts = display_df['Cluster Summary'].value_counts()
+    current_counts = {} 
 
     for idx, row in display_df.iterrows():
         c_name = row['Cluster Summary']
-        cluster_counts[c_name] = cluster_counts.get(c_name, 0) + 1
+        current_counts[c_name] = current_counts.get(c_name, 0) + 1
         
-        # Get stats for this cluster
+        # Get stats for this cluster (from focus_df only)
         stats = cluster_stats[cluster_stats['cluster'] == c_name].iloc[0]
         
-        # New Format: Brand MT (Share %) | Total MT
+        # Summary text format
         summary_text = (
             f"<span style='font-size:11px; color:#1e40af;'>"
             f"{int(stats[target_brand])} MT ({stats['Cluster_Share']}%) | {int(stats['Market_Size'])} MT"
             f"</span>"
         )
         
-        if cluster_counts[c_name] == 1:
-            # Row 1: Cluster Name
-            new_labels.append(f"<b>{c_name}</b>")
-        elif cluster_counts[c_name] == 2:
-            # Row 2: Brand Vol (Share %) | Total Vol
-            new_labels.append(summary_text)
+        # Check if this cluster only has one district in the table
+        total_in_cluster = cluster_group_counts[c_name]
+
+        if total_in_cluster == 1:
+            # FOR KANPUR TYPE: Combine name and stats in one cell
+            new_labels.append(f"<b>{c_name}</b><br>{summary_text}")
         else:
-            new_labels.append("")
+            # FOR VARANASI TYPE: Split across rows
+            if current_counts[c_name] == 1:
+                new_labels.append(f"<b>{c_name}</b>")
+            elif current_counts[c_name] == 2:
+                new_labels.append(summary_text)
+            else:
+                new_labels.append("")
 
     display_df['Cluster Summary'] = new_labels
     # ------------------------------
