@@ -729,49 +729,62 @@ def style_final_table(st_df):
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-# 1. Filter
 focus_df = merged[merged[share_col_name] < 50].copy()
 
 if not focus_df.empty:
-    # --- NEW: Calculate Cluster Aggregates ---
-    # We calculate totals for the specific brand and market size per cluster
+    # 1. Calculate Aggregates
     cluster_stats = merged.groupby('cluster').agg({
         target_brand: 'sum',
         'Market_Size': 'sum'
     }).reset_index()
 
-    # Calculate the % share for the cluster
     cluster_stats['Cluster_Share'] = np.where(
-        cluster_stats['Market_Size'] == 0, 
-        0, 
+        cluster_stats['Market_Size'] == 0, 0, 
         (cluster_stats[target_brand] / cluster_stats['Market_Size']) * 100
     ).round(0).astype(int)
 
-    # Create the display string: "Cluster Name (Share% | Total MT)"
-    cluster_stats['Cluster_Display'] = cluster_stats.apply(
-        lambda x: f"<b>{x['cluster']}</b><br><span style='font-size:11px; color:#1e40af;'>{x['Cluster_Share']}% Share | {int(x['Market_Size'])} MT</span>", 
-        axis=1
-    )
-
-    # Merge stats back to focus_df
-    focus_df = focus_df.merge(cluster_stats[['cluster', 'Cluster_Display']], on='cluster', how='left')
-    # ------------------------------------------
-
-    # 2. Sort and Format columns
+    # 2. Sort the main dataframe
     focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
+    
+    # 3. Format district columns
     focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
     focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
 
-    # 3. Prepare display dataframe
-    display_df = focus_df[['Cluster_Display', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+    # 4. Prepare Display Dataframe
+    display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
     display_df.columns = ['Cluster Summary', 'Districts', f'{target_brand} Share', 'Total Market']
     display_df['Districts'] = display_df['Districts'].str.title()
 
-    # 4. Track cluster changes to hide repetitive summary text
-    is_new_cluster = ~display_df['Cluster Summary'].duplicated()
-    display_df['Cluster Summary'] = np.where(display_df['Cluster Summary'].duplicated(), "", display_df['Cluster Summary'])
+    # --- NEW POSITIONING LOGIC ---
+    new_labels = []
+    # Track the occurrence count of each cluster to decide what to show in the cell
+    cluster_counts = {} 
 
-    # 5. Display the styled table
+    for idx, row in display_df.iterrows():
+        c_name = row['Cluster Summary']
+        cluster_counts[c_name] = cluster_counts.get(c_name, 0) + 1
+        
+        stats = cluster_stats[cluster_stats['cluster'] == c_name].iloc[0]
+        summary_text = f"<span style='font-size:11px; color:#1e40af;'>{stats['Cluster_Share']}% Share | {int(stats['Market_Size'])} MT</span>"
+        
+        if cluster_counts[c_name] == 1:
+            # First row: Just the Bold Name
+            new_labels.append(f"<b>{c_name}</b>")
+        elif cluster_counts[c_name] == 2:
+            # Second row: The Stats Summary
+            new_labels.append(summary_text)
+        else:
+            # Third row onwards: Empty
+            new_labels.append("")
+
+    display_df['Cluster Summary'] = new_labels
+    # ------------------------------
+
+    # Create the horizontal border tracker
+    # We need a fresh copy of the original cluster column to detect changes for borders
+    is_new_cluster = ~focus_df['cluster'].duplicated()
+
+    # Display
     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
 
 else:
