@@ -733,7 +733,7 @@ focus_df = merged[merged[share_col_name] < 50].copy()
 
 if not focus_df.empty:
     # 1. Calculate Aggregates
-    cluster_stats = merged.groupby('cluster').agg({
+    cluster_stats = focus_df.groupby('cluster').agg({
         target_brand: 'sum',
         'Market_Size': 'sum'
     }).reset_index()
