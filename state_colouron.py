@@ -756,25 +756,31 @@ if not focus_df.empty:
     display_df['Districts'] = display_df['Districts'].str.title()
 
     # --- NEW POSITIONING LOGIC ---
+    # --- UPDATED POSITIONING LOGIC ---
     new_labels = []
-    # Track the occurrence count of each cluster to decide what to show in the cell
     cluster_counts = {} 
 
     for idx, row in display_df.iterrows():
         c_name = row['Cluster Summary']
         cluster_counts[c_name] = cluster_counts.get(c_name, 0) + 1
         
+        # Get stats for this cluster
         stats = cluster_stats[cluster_stats['cluster'] == c_name].iloc[0]
-        summary_text = f"<span style='font-size:11px; color:#1e40af;'>{stats['Cluster_Share']}% Share | {int(stats['Market_Size'])} MT</span>"
+        
+        # New Format: Brand MT (Share %) | Total MT
+        summary_text = (
+            f"<span style='font-size:11px; color:#1e40af;'>"
+            f"{int(stats[target_brand])} MT ({stats['Cluster_Share']}%) | {int(stats['Market_Size'])} MT"
+            f"</span>"
+        )
         
         if cluster_counts[c_name] == 1:
-            # First row: Just the Bold Name
+            # Row 1: Cluster Name
             new_labels.append(f"<b>{c_name}</b>")
         elif cluster_counts[c_name] == 2:
-            # Second row: The Stats Summary
+            # Row 2: Brand Vol (Share %) | Total Vol
             new_labels.append(summary_text)
         else:
-            # Third row onwards: Empty
             new_labels.append("")
 
     display_df['Cluster Summary'] = new_labels
