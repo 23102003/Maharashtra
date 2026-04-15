@@ -673,16 +673,15 @@ st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 #     ).round(0).astype(int)
 #     low_share_table = low_share_df[['District', f'{target_brand} % share', 'Top Competitor', 'Comp Share %', 'Comp Vol (MT)', 'Market_Size']].sort_values(by=share_col_name).reset_index(drop=True)
 #     st.dataframe(low_share_table, use_container_width=True)
-
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
-st.divider()
-st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
+# st.divider()
+# st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-# 1. Filter and Sort
-focus_df = merged[merged[share_col_name] < 50].copy()
-focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
+# # 1. Filter and Sort
+# focus_df = merged[merged[share_col_name] < 50].copy()
+# focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
 
 # 5. Styling to kill Index and White Spaces
 def style_final_table(st_df):
@@ -736,27 +735,105 @@ def style_final_table(st_df):
         
     return styled
 
-if not focus_df.empty:
-    # 2. Format columns
-    focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
-    focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
+# if not focus_df.empty:
+#     # 2. Format columns
+#     focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
+#     focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
     
-    # 3. Prepare display dataframe
-    display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
-    display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
-    display_df['Districts'] = display_df['Districts'].str.title()
+#     # 3. Prepare display dataframe
+#     display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+#     display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
+#     display_df['Districts'] = display_df['Districts'].str.title()
     
-    # 4. Track cluster changes
-    is_new_cluster = ~display_df['Cluster'].duplicated()
-    display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
+#     # 4. Track cluster changes
+#     is_new_cluster = ~display_df['Cluster'].duplicated()
+#     display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
     
     
         
-    # st.table(style_final_table(display_df))
+#     # st.table(style_final_table(display_df))
+#     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
+
+# else:
+#     # Show empty table with headers only
+#     st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
+# ---------------------------------------------------------
+# 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
+# ---------------------------------------------------------
+st.divider()
+st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
+
+focus_df = merged[merged[share_col_name] < 50].copy()
+
+if not focus_df.empty:
+    # 1. Calculate Aggregates
+    cluster_stats = focus_df.groupby('cluster').agg({
+        target_brand: 'sum',
+        'Market_Size': 'sum'
+    }).reset_index()
+
+    cluster_stats['Cluster_Share'] = np.where(
+        cluster_stats['Market_Size'] == 0, 0, 
+        (cluster_stats[target_brand] / cluster_stats['Market_Size']) * 100
+    ).round(0).astype(int)
+
+    # 2. Sort the main dataframe
+    focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
+    
+    # 3. Format district columns
+    focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
+    focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
+
+    # 4. Prepare Display Dataframe
+    display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+    display_df.columns = ['Cluster Summary', 'Districts', f'{target_brand} Share', 'Total Market']
+    display_df['Districts'] = display_df['Districts'].str.title()
+
+    # --- NEW POSITIONING LOGIC ---
+    # --- UPDATED POSITIONING LOGIC (With Single-Row Handler) ---
+    new_labels = []
+    # Count how many focus districts are in each cluster
+    cluster_group_counts = display_df['Cluster Summary'].value_counts()
+    current_counts = {} 
+
+    for idx, row in display_df.iterrows():
+        c_name = row['Cluster Summary']
+        current_counts[c_name] = current_counts.get(c_name, 0) + 1
+        
+        # Get stats for this cluster (from focus_df only)
+        stats = cluster_stats[cluster_stats['cluster'] == c_name].iloc[0]
+        
+        # Summary text format
+        summary_text = (
+            f"<span style='font-size:13px; color:#1e40af;'>"
+            f"<b>{int(stats[target_brand])} MT ({stats['Cluster_Share']}%) | {int(stats['Market_Size'])} MT</b>"
+            f"</span>"
+        )
+        
+        # Check if this cluster only has one district in the table
+        total_in_cluster = cluster_group_counts[c_name]
+
+        if total_in_cluster == 1:
+            # FOR KANPUR TYPE: Combine name and stats in one cell
+            new_labels.append(f"<b>{c_name}</b><br>{summary_text}")
+        else:
+            # FOR VARANASI TYPE: Split across rows
+            if current_counts[c_name] == 1:
+                new_labels.append(f"<b>{c_name}</b>")
+            elif current_counts[c_name] == 2:
+                new_labels.append(summary_text)
+            else:
+                new_labels.append("")
+
+    display_df['Cluster Summary'] = new_labels
+    # ------------------------------
+
+    # Create the horizontal border tracker
+    # We need a fresh copy of the original cluster column to detect changes for borders
+    is_new_cluster = ~focus_df['cluster'].duplicated()
+
+    # Display
     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
 
 else:
-    # Show empty table with headers only
-    # empty_df = pd.DataFrame(columns=['Cluster', 'Districts', f'{target_brand} Share', 'Total Market'])
-    # st.markdown(style_final_table(empty_df).to_html(), unsafe_allow_html=True)
     st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
