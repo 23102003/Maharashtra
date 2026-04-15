@@ -771,8 +771,8 @@ if not focus_df.empty:
         
         # Summary text format
         summary_text = (
-            f"<span style='font-size:11px; color:#1e40af;'>"
-            f"{int(stats[target_brand])} MT ({stats['Cluster_Share']}%) | {int(stats['Market_Size'])} MT"
+            f"<span style='font-size:12px; color:#1e40af;'>"
+            f"<b>{int(stats[target_brand])} MT ({stats['Cluster_Share']}%) | {int(stats['Market_Size'])} MT</b>"
             f"</span>"
         )
         
