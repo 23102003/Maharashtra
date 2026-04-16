@@ -670,187 +670,187 @@ def style_final_table(st_df):
         
     return styled
 
-# ---------------------------------------------------------
-# 5. DISTRIBUTOR COVERAGE MAP (Maharashtra Only)
-# ---------------------------------------------------------
-if target_state == "Maharashtra":
-    st.divider()
-    st.subheader("Distribution Network Coverage")
+# # ---------------------------------------------------------
+# # 5. DISTRIBUTOR COVERAGE MAP (Maharashtra Only)
+# # ---------------------------------------------------------
+# if target_state == "Maharashtra":
+#     st.divider()
+#     st.subheader("Distribution Network Coverage")
 
-    # 1. Calculate Distributor Counts
-    def get_dist_count(val):
-        if isinstance(val, list): return len(val)
-        if pd.isna(val) or val == 'NA': return 0
-        return 1
+#     # 1. Calculate Distributor Counts
+#     def get_dist_count(val):
+#         if isinstance(val, list): return len(val)
+#         if pd.isna(val) or val == 'NA': return 0
+#         return 1
 
-    df['dist_count'] = df['Distributors_List'].apply(get_dist_count)
+#     df['dist_count'] = df['Distributors_List'].apply(get_dist_count)
     
-    # 2. Coverage Coloring Logic
-    def get_coverage_color(count):
-        if count == 0: return "lightgray"
-        return "#93c5fd"  
+#     # 2. Coverage Coloring Logic
+#     def get_coverage_color(count):
+#         if count == 0: return "lightgray"
+#         return "#93c5fd"  
         
-    df['coverage_color'] = df['dist_count'].apply(get_coverage_color)
+#     df['coverage_color'] = df['dist_count'].apply(get_coverage_color)
 
-    # 3. Create the Map
-    fig_dist = go.Figure()
-    merged_dist = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
-    current_cluster_map_m = cluster_config.get(target_state, {})
+#     # 3. Create the Map
+#     fig_dist = go.Figure()
+#     merged_dist = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
+#     current_cluster_map_m = cluster_config.get(target_state, {})
 
-    # Now apply the map
-    merged_dist['cluster'] = merged_dist['district_upper'].map(current_cluster_map_m)
-    merged_dist = merged_dist[merged_dist.geometry.notnull()]
+#     # Now apply the map
+#     merged_dist['cluster'] = merged_dist['district_upper'].map(current_cluster_map_m)
+#     merged_dist = merged_dist[merged_dist.geometry.notnull()]
     
-    # 2. Fix invalid geometries (self-intersections)
-    merged_dist['geometry'] = merged_dist.geometry.buffer(0)
+#     # 2. Fix invalid geometries (self-intersections)
+#     merged_dist['geometry'] = merged_dist.geometry.buffer(0)
     
-    # 3. Ensure everything is a GeoDataFrame again
-    merged_dist = gpd.GeoDataFrame(merged_dist, geometry='geometry')
-    clusters_m = merged_dist.dissolve(by='cluster')
+#     # 3. Ensure everything is a GeoDataFrame again
+#     merged_dist = gpd.GeoDataFrame(merged_dist, geometry='geometry')
+#     clusters_m = merged_dist.dissolve(by='cluster')
 
-    # A. DISTRICT POLYGONS
-    for _, row in merged_dist.iterrows():
-        if row.geometry:
-            geom = row.geometry
-            polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
-            # --- UPDATED: Format Distributor Names for Hover (New Line per Name) ---
-            dist_info = row.get('Distributors_List', 'NA')
+#     # A. DISTRICT POLYGONS
+#     for _, row in merged_dist.iterrows():
+#         if row.geometry:
+#             geom = row.geometry
+#             polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
+#             # --- UPDATED: Format Distributor Names for Hover (New Line per Name) ---
+#             dist_info = row.get('Distributors_List', 'NA')
             
-            if isinstance(dist_info, list):
-                # Joins names with a line break
-                dist_display = "<br>".join([f"• {d}" for d in dist_info])
-            elif pd.isna(dist_info) or dist_info == 'NA':
-                dist_display = "None"
-            else:
-                dist_display = f"• {dist_info}"
+#             if isinstance(dist_info, list):
+#                 # Joins names with a line break
+#                 dist_display = "<br>".join([f"• {d}" for d in dist_info])
+#             elif pd.isna(dist_info) or dist_info == 'NA':
+#                 dist_display = "None"
+#             else:
+#                 dist_display = f"• {dist_info}"
             
-            # Hover Text
-            hover_text = f"<b>{row['District']}</b><br><b>Distributors:</b><br>{dist_display}"
+#             # Hover Text
+#             hover_text = f"<b>{row['District']}</b><br><b>Distributors:</b><br>{dist_display}"
             
-            for poly in polys:
-                x, y = poly.exterior.xy
-                fig_dist.add_trace(go.Scatter(
-                    x=list(x), y=list(y),
-                    fill="toself",
-                    fillcolor=row['coverage_color'],
-                    line=dict(color="#1e293b", width=0.5),
-                    hoverinfo='text',
-                    text=hover_text,
-                    showlegend=False
-                ))
+#             for poly in polys:
+#                 x, y = poly.exterior.xy
+#                 fig_dist.add_trace(go.Scatter(
+#                     x=list(x), y=list(y),
+#                     fill="toself",
+#                     fillcolor=row['coverage_color'],
+#                     line=dict(color="#1e293b", width=0.5),
+#                     hoverinfo='text',
+#                     text=hover_text,
+#                     showlegend=False
+#                 ))
 
-    # B. CLUSTER OUTLINES (Reusing the 'clusters' GeoDataFrame from earlier)
-    for _, row in clusters.iterrows():
-        geom = row.geometry
-        polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
-        for poly in polys:
-            x, y = poly.exterior.xy
-            fig_dist.add_trace(go.Scatter(
-                x=list(x), y=list(y),
-                line=dict(color="#1e293b", width=2.5),
-                hoverinfo='skip',
-                showlegend=False,
-                mode='lines'
-            ))
+#     # B. CLUSTER OUTLINES (Reusing the 'clusters' GeoDataFrame from earlier)
+#     for _, row in clusters.iterrows():
+#         geom = row.geometry
+#         polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
+#         for poly in polys:
+#             x, y = poly.exterior.xy
+#             fig_dist.add_trace(go.Scatter(
+#                 x=list(x), y=list(y),
+#                 line=dict(color="#1e293b", width=2.5),
+#                 hoverinfo='skip',
+#                 showlegend=False,
+#                 mode='lines'
+#             ))
 
-    # C. LABELS AND COUNT BOXES
-    dist_annotations = []
-    for _, row in merged_dist.iterrows():
-        if row.geometry:
-            centroid = row.geometry.centroid
-            is_hub = str(row['district_upper']).upper() == str(row['cluster']).upper()
+#     # C. LABELS AND COUNT BOXES
+#     dist_annotations = []
+#     for _, row in merged_dist.iterrows():
+#         if row.geometry:
+#             centroid = row.geometry.centroid
+#             is_hub = str(row['district_upper']).upper() == str(row['cluster']).upper()
             
-            # Label
-            dist_annotations.append(dict(
-                x=centroid.x, y=centroid.y + 0.1,
-                text=row['district'].upper() if is_hub else row['district'].title(),
-                showarrow=False,
-                font=dict(size=11, color="black", family="Arial Black" if is_hub else "Arial"),
-                xref="x", yref="y"
-            ))
+#             # Label
+#             dist_annotations.append(dict(
+#                 x=centroid.x, y=centroid.y + 0.1,
+#                 text=row['district'].upper() if is_hub else row['district'].title(),
+#                 showarrow=False,
+#                 font=dict(size=11, color="black", family="Arial Black" if is_hub else "Arial"),
+#                 xref="x", yref="y"
+#             ))
             
-            # Count Box (Square as requested)
-            dist_annotations.append(dict(
-                x=centroid.x, y=centroid.y - 0.1,
-                text=f"<b>{int(row['dist_count'])}</b>",
-                showarrow=False,
-                font=dict(size=12, color="white"),
-                bgcolor="#1e40af" if row['dist_count'] > 0 else "gray",
-                bordercolor="black", borderwidth=1, borderpad=4,
-                xref="x", yref="y"
-            ))
+#             # Count Box (Square as requested)
+#             dist_annotations.append(dict(
+#                 x=centroid.x, y=centroid.y - 0.1,
+#                 text=f"<b>{int(row['dist_count'])}</b>",
+#                 showarrow=False,
+#                 font=dict(size=12, color="white"),
+#                 bgcolor="#1e40af" if row['dist_count'] > 0 else "gray",
+#                 bordercolor="black", borderwidth=1, borderpad=4,
+#                 xref="x", yref="y"
+#             ))
 
-    fig_dist.update_layout(
-        annotations=dist_annotations,
-        dragmode=False,
-        xaxis=dict(fixedrange=True, visible=False),
-        yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1),
-        plot_bgcolor='white',
-        margin=dict(l=0, r=0, t=0, b=0),
-        height=600,
-        showlegend=False
-    )
+#     fig_dist.update_layout(
+#         annotations=dist_annotations,
+#         dragmode=False,
+#         xaxis=dict(fixedrange=True, visible=False),
+#         yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1),
+#         plot_bgcolor='white',
+#         margin=dict(l=0, r=0, t=0, b=0),
+#         height=600,
+#         showlegend=False
+#     )
 
-    st.plotly_chart(fig_dist, use_container_width=True, config={'displayModeBar': False}) 
+#     st.plotly_chart(fig_dist, use_container_width=True, config={'displayModeBar': False}) 
 
-    # ---------------------------------------------------------
-    # 7. MAHARASHTRA DISTRIBUTOR TABLE
-    # ---------------------------------------------------------
-    st.subheader("📍 Maharashtra Distribution Network Detail")
+#     # ---------------------------------------------------------
+#     # 7. MAHARASHTRA DISTRIBUTOR TABLE
+#     # ---------------------------------------------------------
+#     st.subheader("📍 Maharashtra Distribution Network Detail")
     
-    # 1. Prepare the Data
-    dist_df = merged_dist[['cluster', 'District', 'Distributors_List']].copy()
-    dist_df = dist_df.sort_values(by=['cluster', 'District'])
+#     # 1. Prepare the Data
+#     dist_df = merged_dist[['cluster', 'District', 'Distributors_List']].copy()
+#     dist_df = dist_df.sort_values(by=['cluster', 'District'])
     
-    # Format Distributor Names for the Table
-    def format_dist_table(val):
-        if isinstance(val, list):
-            return "<br>".join([f"{d}" for d in val])
-        if pd.isna(val) or val == 'NA':
-            return "<span style='color: gray;'>No Distributor</span>"
-        return f"{val}"
+#     # Format Distributor Names for the Table
+#     def format_dist_table(val):
+#         if isinstance(val, list):
+#             return "<br>".join([f"{d}" for d in val])
+#         if pd.isna(val) or val == 'NA':
+#             return "<span style='color: gray;'>No Distributor</span>"
+#         return f"{val}"
     
-    dist_df['Distributors'] = dist_df['Distributors_List'].apply(format_dist_table)
+#     dist_df['Distributors'] = dist_df['Distributors_List'].apply(format_dist_table)
     
-    # 2. Apply Cluster Labeling Logic (Name on Row 1, Stats on Row 2)
-    # Since this is a network table, Line 2 shows the count of partners
-    new_labels = []
-    dist_group_counts = dist_df['cluster'].value_counts()
-    current_counts = {}
+#     # 2. Apply Cluster Labeling Logic (Name on Row 1, Stats on Row 2)
+#     # Since this is a network table, Line 2 shows the count of partners
+#     new_labels = []
+#     dist_group_counts = dist_df['cluster'].value_counts()
+#     current_counts = {}
     
-    for idx, row in dist_df.iterrows():
-        c_name = row['cluster']
-        current_counts[c_name] = current_counts.get(c_name, 0) + 1
+#     for idx, row in dist_df.iterrows():
+#         c_name = row['cluster']
+#         current_counts[c_name] = current_counts.get(c_name, 0) + 1
         
-        # total_partners = merged_dist[merged_dist['cluster'] == c_name]['dist_count'].sum()
+#         # total_partners = merged_dist[merged_dist['cluster'] == c_name]['dist_count'].sum()
         
-        line1 = f"<b>{c_name}</b>"
-        # line2 = f"<span style='font-size:12px; color:#1e40af;'><b>Total Partners: {int(total_partners)}</b></span>"
+#         line1 = f"<b>{c_name}</b>"
+#         # line2 = f"<span style='font-size:12px; color:#1e40af;'><b>Total Partners: {int(total_partners)}</b></span>"
         
-        if dist_group_counts[c_name] == 1:
-            new_labels.append(f"{line1}")
-        else:
-            if current_counts[c_name] == 1:
-                new_labels.append(line1)
-            else:
-                new_labels.append("")
+#         if dist_group_counts[c_name] == 1:
+#             new_labels.append(f"{line1}")
+#         else:
+#             if current_counts[c_name] == 1:
+#                 new_labels.append(line1)
+#             else:
+#                 new_labels.append("")
     
-    # 3. Final Prep for Display
-    dist_display_df = dist_df[['cluster', 'District', 'Distributors']].copy()
-    dist_display_df['cluster'] = new_labels # Apply the formatted labels
-    dist_display_df.columns = ['Cluster', 'District', 'Distributors']
-    dist_display_df['District'] = dist_display_df['District'].str.title()
-    display_df = dist_df[['cluster', 'District', 'Distributors']].copy()
-    display_df['cluster'] = new_labels 
-    display_df.columns = ['Cluster', 'District', 'Distributors']
-    display_df['District'] = display_df['District'].str.title()
-    # 4. Display the Table
-    # We reuse your existing is_new_cluster logic for borders
-    is_new_cluster = ~dist_df['cluster'].duplicated()
+#     # 3. Final Prep for Display
+#     dist_display_df = dist_df[['cluster', 'District', 'Distributors']].copy()
+#     dist_display_df['cluster'] = new_labels # Apply the formatted labels
+#     dist_display_df.columns = ['Cluster', 'District', 'Distributors']
+#     dist_display_df['District'] = dist_display_df['District'].str.title()
+#     display_df = dist_df[['cluster', 'District', 'Distributors']].copy()
+#     display_df['cluster'] = new_labels 
+#     display_df.columns = ['Cluster', 'District', 'Distributors']
+#     display_df['District'] = display_df['District'].str.title()
+#     # 4. Display the Table
+#     # We reuse your existing is_new_cluster logic for borders
+#     is_new_cluster = ~dist_df['cluster'].duplicated()
     
-    # We pass the boolean series directly into your style function
-    # Note: Ensure style_final_table is defined as per your snippet
-    st.markdown(style_final_table(dist_display_df).to_html(), unsafe_allow_html=True)
+#     # We pass the boolean series directly into your style function
+#     # Note: Ensure style_final_table is defined as per your snippet
+#     st.markdown(style_final_table(dist_display_df).to_html(), unsafe_allow_html=True)
     
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
