@@ -618,7 +618,6 @@ fig.update_layout(
 
 st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
-
 # ---------------------------------------------------------
 # 5. DISTRIBUTOR COVERAGE MAP (Maharashtra Only)
 # ---------------------------------------------------------
@@ -643,10 +642,22 @@ if target_state == "Maharashtra":
 
     # 3. Create the Map
     fig_dist = go.Figure()
-    merged = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
+    merged_dist = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
+    current_cluster_map_m = cluster_config.get(target_state, {})
+
+    # Now apply the map
+    merged_dist['cluster'] = merged_dist['district_upper'].map(current_cluster_map_m)
+    merged_dist = merged_dist[merged_dist.geometry.notnull()]
+    
+    # 2. Fix invalid geometries (self-intersections)
+    merged_dist['geometry'] = merged_dist.geometry.buffer(0)
+    
+    # 3. Ensure everything is a GeoDataFrame again
+    merged_dist = gpd.GeoDataFrame(merged_dist, geometry='geometry')
+    clusters_m = merged_dist.dissolve(by='cluster')
 
     # A. DISTRICT POLYGONS
-    for _, row in merged.iterrows():
+    for _, row in merged_dist.iterrows():
         if row.geometry:
             geom = row.geometry
             polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
@@ -678,11 +689,11 @@ if target_state == "Maharashtra":
 
     # C. LABELS AND COUNT BOXES
     dist_annotations = []
-    for _, row in merged.iterrows():
+    for _, row in merged_dist.iterrows():
         if row.geometry:
             centroid = row.geometry.centroid
             is_hub = str(row['district_upper']).upper() == str(row['cluster']).upper()
-
+            
             # Label
             dist_annotations.append(dict(
                 x=centroid.x, y=centroid.y + 0.1,
@@ -714,7 +725,7 @@ if target_state == "Maharashtra":
         showlegend=False
     )
 
-    st.plotly_chart(fig_dist, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig_dist, use_container_width=True, config={'displayModeBar': False}) 
     
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
