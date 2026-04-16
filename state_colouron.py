@@ -805,7 +805,7 @@ if target_state == "Maharashtra":
     # Format Distributor Names for the Table
     def format_dist_table(val):
         if isinstance(val, list):
-            return "<br>".join([f"• {d}" for d in val])
+            return "<br>".join([f"{d}" for d in val])
         if pd.isna(val) or val == 'NA':
             return "<span style='color: gray;'>No Distributor</span>"
         return f"{val}"
