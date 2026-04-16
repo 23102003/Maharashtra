@@ -757,11 +757,11 @@ if not focus_df.empty:
 
    # --- UPDATED POSITIONING LOGIC ---
     new_labels = []
-    cluster_group_counts = display_df['Cluster Summary'].value_counts()
+    cluster_group_counts = display_df['Cluster'].value_counts()
     current_counts = {} 
 
     for idx, row in display_df.iterrows():
-        c_name = row['Cluster Summary']
+        c_name = row['Cluster']
         current_counts[c_name] = current_counts.get(c_name, 0) + 1
         
         # Get stats for this cluster (calculated from focus_df only)
@@ -794,7 +794,7 @@ if not focus_df.empty:
             else:
                 new_labels.append("")
 
-    display_df['Cluster Summary'] = new_labels
+    display_df['Cluster'] = new_labels
     # ---------------------------------------------------------
     # Create the horizontal border tracker
     # We need a fresh copy of the original cluster column to detect changes for borders
