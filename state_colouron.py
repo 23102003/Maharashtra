@@ -670,8 +670,6 @@ def style_final_table(st_df):
         
     return styled
 
-
-
 # ---------------------------------------------------------
 # 5. DISTRIBUTOR COVERAGE MAP (Maharashtra Only)
 # ---------------------------------------------------------
@@ -847,7 +845,7 @@ if target_state == "Maharashtra":
     
     # 4. Display the Table
     # We reuse your existing is_new_cluster logic for borders
-    is_new_cluster_dist = ~dist_df['cluster'].duplicated()
+    is_new_cluster = ~dist_df['cluster'].duplicated()
     
     # We pass the boolean series directly into your style function
     # Note: Ensure style_final_table is defined as per your snippet
