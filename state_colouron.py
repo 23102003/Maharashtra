@@ -701,28 +701,103 @@ def style_final_table(st_df):
         
     return styled
 
-# if not focus_df.empty:
-#     # 2. Format columns
-#     focus_df['Share_Display'] = focus_df.apply(lambda x: f"{int(x[target_brand])} MT ({int(x[share_col_name])}%)", axis=1)
-#     focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
-    
-#     # 3. Prepare display dataframe
-#     display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
-#     display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
-#     display_df['Districts'] = display_df['Districts'].str.title()
-    
-#     # 4. Track cluster changes
-#     is_new_cluster = ~display_df['Cluster'].duplicated()
-#     display_df['Cluster'] = np.where(display_df['Cluster'].duplicated(), "", display_df['Cluster'])
-    
-    
-        
-#     # st.table(style_final_table(display_df))
-#     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
+# ---------------------------------------------------------
+# 5. DISTRIBUTOR COVERAGE MAP (Maharashtra Only)
+# ---------------------------------------------------------
+if target_state == "Maharashtra":
+    st.divider()
+    st.subheader("Distribution Network Coverage")
 
-# else:
-#     # Show empty table with headers only
-#     st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
+    # 1. Calculate Distributor Counts
+    def get_dist_count(val):
+        if isinstance(val, list): return len(val)
+        if pd.isna(val) or val == 'NA': return 0
+        return 1
+
+    df['dist_count'] = df['Distributors_List'].apply(get_dist_count)
+    
+    # 2. Coverage Coloring Logic
+    def get_coverage_color(count):
+        if count == 0: return "lightgray"
+        return "#10b981"  # Success Green for coverage
+
+    df['coverage_color'] = df['dist_count'].apply(get_coverage_color)
+
+    # 3. Create the Map
+    fig_dist = go.Figure()
+    merged_dist = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
+
+    # A. DISTRICT POLYGONS
+    for _, row in merged_dist.iterrows():
+        if row.geometry:
+            geom = row.geometry
+            polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
+            for poly in polys:
+                x, y = poly.exterior.xy
+                fig_dist.add_trace(go.Scatter(
+                    x=list(x), y=list(y),
+                    fill="toself",
+                    fillcolor=row['coverage_color'],
+                    line=dict(color="#1e293b", width=0.5),
+                    hoverinfo='text',
+                    text=f"<b>{row['District']}</b><br>Distributors: {row['dist_count']}",
+                    showlegend=False
+                ))
+
+    # B. CLUSTER OUTLINES (Reusing the 'clusters' GeoDataFrame from earlier)
+    for _, row in clusters.iterrows():
+        geom = row.geometry
+        polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
+        for poly in polys:
+            x, y = poly.exterior.xy
+            fig_dist.add_trace(go.Scatter(
+                x=list(x), y=list(y),
+                line=dict(color="#1e293b", width=2.5),
+                hoverinfo='skip',
+                showlegend=False,
+                mode='lines'
+            ))
+
+    # C. LABELS AND COUNT BOXES
+    dist_annotations = []
+    for _, row in merged_dist.iterrows():
+        if row.geometry:
+            centroid = row.geometry.centroid
+            is_hub = str(row['district_upper']).upper() == str(row['cluster']).upper()
+            
+            # Label
+            dist_annotations.append(dict(
+                x=centroid.x, y=centroid.y + 0.1,
+                text=row['district'].upper() if is_hub else row['district'].title(),
+                showarrow=False,
+                font=dict(size=11, color="black", family="Arial Black" if is_hub else "Arial"),
+                xref="x", yref="y"
+            ))
+            
+            # Count Box (Square as requested)
+            dist_annotations.append(dict(
+                x=centroid.x, y=centroid.y - 0.1,
+                text=f"<b>{int(row['dist_count'])}</b>",
+                showarrow=False,
+                font=dict(size=12, color="white"),
+                bgcolor="#064e3b" if row['dist_count'] > 0 else "gray",
+                bordercolor="black", borderwidth=1, borderpad=4,
+                xref="x", yref="y"
+            ))
+
+    fig_dist.update_layout(
+        annotations=dist_annotations,
+        dragmode=False,
+        xaxis=dict(fixedrange=True, visible=False),
+        yaxis=dict(fixedrange=True, visible=False, scaleanchor="x", scaleratio=1),
+        plot_bgcolor='white',
+        margin=dict(l=0, r=0, t=0, b=0),
+        height=600,
+        showlegend=False
+    )
+
+    st.plotly_chart(fig_dist, use_container_width=True, config={'displayModeBar': False})
+    
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
