@@ -678,7 +678,7 @@ if target_state == "Maharashtra":
 
     # C. LABELS AND COUNT BOXES
     dist_annotations = []
-    for _, row in merged_dist.iterrows():
+    for _, row in merged.iterrows():
         if row.geometry:
             centroid = row.geometry.centroid
             is_hub = str(row['district_upper']).upper() == str(row['cluster']).upper()
