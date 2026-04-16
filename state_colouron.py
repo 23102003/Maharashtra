@@ -740,6 +740,64 @@ if target_state == "Maharashtra":
     )
 
     st.plotly_chart(fig_dist, use_container_width=True, config={'displayModeBar': False}) 
+
+    # ---------------------------------------------------------
+    # 7. MAHARASHTRA DISTRIBUTOR TABLE
+    # ---------------------------------------------------------
+    st.subheader("📍 Maharashtra Distribution Network Detail")
+    
+    # 1. Prepare the Data
+    dist_df = df[['cluster', 'District', 'Distributors_List']].copy()
+    dist_df = dist_df.sort_values(by=['cluster', 'District'])
+    
+    # Format Distributor Names for the Table
+    def format_dist_table(val):
+        if isinstance(val, list):
+            return "<br>".join([f"• {d}" for d in val])
+        if pd.isna(val) or val == 'NA':
+            return "<span style='color: gray;'>No Distributor</span>"
+        return f"• {val}"
+    
+    dist_df['Distributors'] = dist_df['Distributors_List'].apply(format_dist_table)
+    
+    # 2. Apply Cluster Labeling Logic (Name on Row 1, Stats on Row 2)
+    # Since this is a network table, Line 2 shows the count of partners
+    new_labels = []
+    dist_group_counts = dist_df['cluster'].value_counts()
+    current_counts = {}
+    
+    for idx, row in dist_df.iterrows():
+        c_name = row['cluster']
+        current_counts[c_name] = current_counts.get(c_name, 0) + 1
+        
+        total_partners = df[df['cluster'] == c_name]['dist_count'].sum()
+        
+        line1 = f"<b>{c_name}</b>"
+        line2 = f"<span style='font-size:12px; color:#1e40af;'><b>Total Partners: {int(total_partners)}</b></span>"
+        
+        if dist_group_counts[c_name] == 1:
+            new_labels.append(f"{line1}<br>{line2}")
+        else:
+            if current_counts[c_name] == 1:
+                new_labels.append(line1)
+            elif current_counts[c_name] == 2:
+                new_labels.append(line2)
+            else:
+                new_labels.append("")
+    
+    # 3. Final Prep for Display
+    dist_display_df = dist_df[['cluster', 'District', 'Distributors']].copy()
+    dist_display_df['cluster'] = new_labels # Apply the formatted labels
+    dist_display_df.columns = ['Cluster Summary', 'District', 'Assigned Distributors']
+    dist_display_df['District'] = dist_display_df['District'].str.title()
+    
+    # 4. Display the Table
+    # We reuse your existing is_new_cluster logic for borders
+    is_new_cluster_dist = ~dist_df['cluster'].duplicated()
+    
+    # We pass the boolean series directly into your style function
+    # Note: Ensure style_final_table is defined as per your snippet
+    st.markdown(style_final_table(dist_display_df).to_html(), unsafe_allow_html=True)
     
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
