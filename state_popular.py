@@ -809,7 +809,7 @@ if not focus_df.empty:
         
         # Line 2: JSW - Brand Volume (Share %)
         line2 = (
-            f"<span style='font-size:13px; color:#1e40af;'>"
+            f"<span style='font-size:14px; color:#1e40af;'>"
             f"<b>JSW - {int(stats[target_brand])} MT ({stats['Cluster_Share']}%)</b>"
             f"</span>"
         )
