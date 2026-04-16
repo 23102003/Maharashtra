@@ -786,48 +786,50 @@ if not focus_df.empty:
 
     # 4. Prepare Display Dataframe
     display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
-    display_df.columns = ['Cluster Summary', 'Districts', f'{target_brand} Share', 'Total Market']
+    display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
     display_df['Districts'] = display_df['Districts'].str.title()
 
-    # --- NEW POSITIONING LOGIC ---
-    # --- UPDATED POSITIONING LOGIC (With Single-Row Handler) ---
+   # --- UPDATED POSITIONING LOGIC ---
     new_labels = []
-    # Count how many focus districts are in each cluster
-    cluster_group_counts = display_df['Cluster Summary'].value_counts()
+    cluster_group_counts = display_df['Cluster'].value_counts()
     current_counts = {} 
 
     for idx, row in display_df.iterrows():
-        c_name = row['Cluster Summary']
+        c_name = row['Cluster']
         current_counts[c_name] = current_counts.get(c_name, 0) + 1
         
-        # Get stats for this cluster (from focus_df only)
+        # Get stats for this cluster (calculated from focus_df only)
         stats = cluster_stats[cluster_stats['cluster'] == c_name].iloc[0]
         
-        # Summary text format
-        summary_text = (
+        # Line 1: Cluster Name (Total Market Size)
+        line1 = (
+            f"<b>{c_name} "
+            f"<span style='color:#1e40af;'>({int(stats['Market_Size'])} MT)</span></b>"
+        )
+        
+        # Line 2: JSW - Brand Volume (Share %)
+        line2 = (
             f"<span style='font-size:13px; color:#1e40af;'>"
-            f"<b>{int(stats[target_brand])} MT ({stats['Cluster_Share']}%) | {int(stats['Market_Size'])} MT</b>"
+            f"<b>JSW - {int(stats[target_brand])} MT ({stats['Cluster_Share']}%)</b>"
             f"</span>"
         )
         
-        # Check if this cluster only has one district in the table
         total_in_cluster = cluster_group_counts[c_name]
 
         if total_in_cluster == 1:
-            # FOR KANPUR TYPE: Combine name and stats in one cell
-            new_labels.append(f"<b>{c_name}</b><br>{summary_text}")
+            # Single district: Combine both lines in one cell
+            new_labels.append(f"{line1}<br>{line2}")
         else:
-            # FOR VARANASI TYPE: Split across rows
+            # Multiple districts: Split across first and second row
             if current_counts[c_name] == 1:
-                new_labels.append(f"<b>{c_name}</b>")
+                new_labels.append(line1)
             elif current_counts[c_name] == 2:
-                new_labels.append(summary_text)
+                new_labels.append(line2)
             else:
                 new_labels.append("")
 
-    display_df['Cluster Summary'] = new_labels
-    # ------------------------------
-
+    display_df['Cluster'] = new_labels
+    # ---------------------------------------------------------
     # Create the horizontal border tracker
     # We need a fresh copy of the original cluster column to detect changes for borders
     is_new_cluster = ~focus_df['cluster'].duplicated()
