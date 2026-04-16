@@ -770,7 +770,7 @@ if target_state == "Maharashtra":
         c_name = row['cluster']
         current_counts[c_name] = current_counts.get(c_name, 0) + 1
         
-        total_partners = df[df['cluster'] == c_name]['dist_count'].sum()
+        total_partners = merged_dist[merged_dist['cluster'] == c_name]['dist_count'].sum()
         
         line1 = f"<b>{c_name}</b>"
         line2 = f"<span style='font-size:12px; color:#1e40af;'><b>Total Partners: {int(total_partners)}</b></span>"
@@ -788,7 +788,7 @@ if target_state == "Maharashtra":
     # 3. Final Prep for Display
     dist_display_df = dist_df[['cluster', 'District', 'Distributors']].copy()
     dist_display_df['cluster'] = new_labels # Apply the formatted labels
-    dist_display_df.columns = ['Cluster Summary', 'District', 'Assigned Distributors']
+    dist_display_df.columns = ['Cluster', 'District', 'Distributors']
     dist_display_df['District'] = dist_display_df['District'].str.title()
     
     # 4. Display the Table
