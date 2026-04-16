@@ -709,7 +709,7 @@ if target_state == "Maharashtra":
                 text=f"<b>{int(row['dist_count'])}</b>",
                 showarrow=False,
                 font=dict(size=12, color="white"),
-                bgcolor="#3b82f6" if row['dist_count'] > 0 else "gray",
+                bgcolor="#1e40af" if row['dist_count'] > 0 else "gray",
                 bordercolor="black", borderwidth=1, borderpad=4,
                 xref="x", yref="y"
             ))
