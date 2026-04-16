@@ -636,7 +636,7 @@ if target_state == "Maharashtra":
     # 2. Coverage Coloring Logic
     def get_coverage_color(count):
         if count == 0: return "lightgray"
-        return "#94a3b8"  # Success Green for coverage
+        return "#3b82f6"  
         
     df['coverage_color'] = df['dist_count'].apply(get_coverage_color)
 
@@ -709,7 +709,7 @@ if target_state == "Maharashtra":
                 text=f"<b>{int(row['dist_count'])}</b>",
                 showarrow=False,
                 font=dict(size=12, color="white"),
-                bgcolor="#475569" if row['dist_count'] > 0 else "gray",
+                bgcolor="#93c5fd" if row['dist_count'] > 0 else "gray",
                 bordercolor="black", borderwidth=1, borderpad=4,
                 xref="x", yref="y"
             ))
