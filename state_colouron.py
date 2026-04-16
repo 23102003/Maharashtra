@@ -643,10 +643,10 @@ if target_state == "Maharashtra":
 
     # 3. Create the Map
     fig_dist = go.Figure()
-    merged_dist = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
+    merged = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
 
     # A. DISTRICT POLYGONS
-    for _, row in merged_dist.iterrows():
+    for _, row in merged.iterrows():
         if row.geometry:
             geom = row.geometry
             polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
