@@ -618,6 +618,60 @@ fig.update_layout(
 
 st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
+# 5. Styling to kill Index and White Spaces
+def style_final_table(st_df):
+    styled = st_df.style.set_table_styles([
+        {
+            'selector': '', 
+            'props': [
+                ('border-collapse', 'collapse !important'), 
+                ('border-spacing', '0 !important'),
+                ('width', 'auto'),
+                ('margin-left', '0'),
+                ('margin-right', 'auto')
+            ]
+        },
+        {
+            'selector': 'th',
+            'props': [
+                ('background-color', '#b8cce4'), 
+                ('color', 'black'), 
+                ('border', '1px solid black'), 
+                ('font-weight', 'bold'), 
+                ('padding', '2px 5px')
+            ]
+        },
+        {
+            'selector': 'td',
+            'props': [
+                ('padding', '2px 5px'), 
+                ('color', 'black'), 
+                ('border-left', '1px solid black'), 
+                ('border-right', '1px solid black'), 
+                ('border-bottom', 'none'), 
+                ('border-top', 'none'),
+                ('margin', '0'),
+                ('border-collapse', 'collapse')
+            ]
+        }
+    ]).hide(axis="index") # CRITICAL: This removes the numbered column
+
+    # Apply top border only when cluster changes
+    for i, row_is_new in enumerate(is_new_cluster):
+        if row_is_new:
+            styled.set_table_styles({
+                display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
+            }, overwrite=False, axis=1)
+    
+    # Bottom border for the last row
+    styled.set_table_styles({
+        display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
+    }, overwrite=False, axis=1)
+        
+    return styled
+
+
+
 # ---------------------------------------------------------
 # 5. DISTRIBUTOR COVERAGE MAP (Maharashtra Only)
 # ---------------------------------------------------------
@@ -802,60 +856,6 @@ if target_state == "Maharashtra":
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
-
-# 5. Styling to kill Index and White Spaces
-def style_final_table(st_df):
-    styled = st_df.style.set_table_styles([
-        {
-            'selector': '', 
-            'props': [
-                ('border-collapse', 'collapse !important'), 
-                ('border-spacing', '0 !important'),
-                ('width', 'auto'),
-                ('margin-left', '0'),
-                ('margin-right', 'auto')
-            ]
-        },
-        {
-            'selector': 'th',
-            'props': [
-                ('background-color', '#b8cce4'), 
-                ('color', 'black'), 
-                ('border', '1px solid black'), 
-                ('font-weight', 'bold'), 
-                ('padding', '2px 5px')
-            ]
-        },
-        {
-            'selector': 'td',
-            'props': [
-                ('padding', '2px 5px'), 
-                ('color', 'black'), 
-                ('border-left', '1px solid black'), 
-                ('border-right', '1px solid black'), 
-                ('border-bottom', 'none'), 
-                ('border-top', 'none'),
-                ('margin', '0'),
-                ('border-collapse', 'collapse')
-            ]
-        }
-    ]).hide(axis="index") # CRITICAL: This removes the numbered column
-
-    # Apply top border only when cluster changes
-    for i, row_is_new in enumerate(is_new_cluster):
-        if row_is_new:
-            styled.set_table_styles({
-                display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
-            }, overwrite=False, axis=1)
-    
-    # Bottom border for the last row
-    styled.set_table_styles({
-        display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
-    }, overwrite=False, axis=1)
-        
-    return styled
-
-
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
