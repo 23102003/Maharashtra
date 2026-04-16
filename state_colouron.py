@@ -752,7 +752,7 @@ if not focus_df.empty:
 
     # 4. Prepare Display Dataframe
     display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
-    display_df.columns = ['Cluster Summary', 'Districts', f'{target_brand} Share', 'Total Market']
+    display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
     display_df['Districts'] = display_df['Districts'].str.title()
 
    # --- UPDATED POSITIONING LOGIC ---
@@ -775,7 +775,7 @@ if not focus_df.empty:
         
         # Line 2: JSW - Brand Volume (Share %)
         line2 = (
-            f"<span style='font-size:12px; color:#1e40af;'>"
+            f"<span style='font-size:13px; color:#1e40af;'>"
             f"<b>JSW - {int(stats[target_brand])} MT ({stats['Cluster_Share']}%)</b>"
             f"</span>"
         )
