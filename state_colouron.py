@@ -661,17 +661,20 @@ if target_state == "Maharashtra":
         if row.geometry:
             geom = row.geometry
             polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
-            # --- NEW: Format Distributor Names for Hover ---
+            # --- UPDATED: Format Distributor Names for Hover (New Line per Name) ---
             dist_info = row.get('Distributors_List', 'NA')
+            
             if isinstance(dist_info, list):
-                dist_names = ", ".join(dist_info)
+                # Joins names with a line break
+                dist_display = "<br>".join([f"• {d}" for d in dist_info])
             elif pd.isna(dist_info) or dist_info == 'NA':
-                dist_names = "None"
+                dist_display = "None"
             else:
-                dist_names = str(dist_info)
+                dist_display = f"• {dist_info}"
             
             # Hover Text
-            hover_text = f"<b>{row['District']}</b><br>Distributors: {dist_names}"
+            hover_text = f"<b>{row['District']}</b><br><b>Network:</b><br>{dist_display}"
+            
             for poly in polys:
                 x, y = poly.exterior.xy
                 fig_dist.add_trace(go.Scatter(
