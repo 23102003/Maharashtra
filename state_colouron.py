@@ -673,7 +673,7 @@ if target_state == "Maharashtra":
                 dist_display = f"• {dist_info}"
             
             # Hover Text
-            hover_text = f"<b>{row['District']}</b><br><b>Network:</b><br>{dist_display}"
+            hover_text = f"<b>{row['District']}</b><br><b>Distributors:</b><br>{dist_display}"
             
             for poly in polys:
                 x, y = poly.exterior.xy
