@@ -617,89 +617,7 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
-# # ---------------------------------------------------------
-# # 5. TABLES (Unchanged)
-# # ---------------------------------------------------------
-# st.divider()
-# t1, t2 = st.tabs([f"--- Districts with High {target_brand} Share (50%+) ---", f"--- Competitive Analysis: Low {target_brand} Share States ---"])
 
-# with t1:
-#     high_share_table = df[df[share_col_name] >= 50][['District', share_col_name, target_brand, 'Market_Size']].sort_values(by=share_col_name, ascending=False).reset_index(drop=True)
-#     high_share_table.columns = ['District',share_col_name, f'{target_brand} (MT)', 'Total Market (MT)']
-#     st.dataframe(high_share_table, use_container_width=True)
-
-# with t2:
-#     comp_cols = ["TATA_Prisma", "Tata_Liner", "TATA_Durashine", "Others"]
-#     low_share_df = df[df[share_col_name] < 50].copy()
-#     low_share_df['Top Competitor'] = low_share_df[comp_cols].idxmax(axis=1)
-#     low_share_df['Comp Vol (MT)'] = low_share_df[comp_cols].max(axis=1)
-#     low_share_df['Comp Share %'] = np.where(
-#         low_share_df['Market_Size'] == 0, 0, (low_share_df['Comp Vol (MT)'] / low_share_df['Market_Size']) * 100
-#     ).round(0).astype(int)
-#     low_share_table = low_share_df[['District', f'{target_brand} % share', 'Top Competitor', 'Comp Share %', 'Comp Vol (MT)', 'Market_Size']].sort_values(by=share_col_name).reset_index(drop=True)
-#     st.dataframe(low_share_table, use_container_width=True)
-
-# ---------------------------------------------------------
-# 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
-# ---------------------------------------------------------
-# st.divider()
-# st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
-
-# # 1. Filter and Sort
-# focus_df = merged[merged[share_col_name] < 50].copy()
-# focus_df = focus_df.sort_values(by=['cluster', share_col_name], ascending=[True, True])
-
-# 5. Styling to kill Index and White Spaces
-def style_final_table(st_df):
-    styled = st_df.style.set_table_styles([
-        {
-            'selector': '', 
-            'props': [
-                ('border-collapse', 'collapse !important'), 
-                ('border-spacing', '0 !important'),
-                ('width', 'auto'),
-                ('margin-left', '0'),
-                ('margin-right', 'auto')
-            ]
-        },
-        {
-            'selector': 'th',
-            'props': [
-                ('background-color', '#b8cce4'), 
-                ('color', 'black'), 
-                ('border', '1px solid black'), 
-                ('font-weight', 'bold'), 
-                ('padding', '2px 5px')
-            ]
-        },
-        {
-            'selector': 'td',
-            'props': [
-                ('padding', '2px 5px'), 
-                ('color', 'black'), 
-                ('border-left', '1px solid black'), 
-                ('border-right', '1px solid black'), 
-                ('border-bottom', 'none'), 
-                ('border-top', 'none'),
-                ('margin', '0'),
-                ('border-collapse', 'collapse')
-            ]
-        }
-    ]).hide(axis="index") # CRITICAL: This removes the numbered column
-
-    # Apply top border only when cluster changes
-    for i, row_is_new in enumerate(is_new_cluster):
-        if row_is_new:
-            styled.set_table_styles({
-                display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
-            }, overwrite=False, axis=1)
-    
-    # Bottom border for the last row
-    styled.set_table_styles({
-        display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
-    }, overwrite=False, axis=1)
-        
-    return styled
 
 # ---------------------------------------------------------
 # 5. DISTRIBUTOR COVERAGE MAP (Maharashtra Only)
@@ -764,7 +682,7 @@ if target_state == "Maharashtra":
         if row.geometry:
             centroid = row.geometry.centroid
             is_hub = str(row['district_upper']).upper() == str(row['cluster']).upper()
-            
+
             # Label
             dist_annotations.append(dict(
                 x=centroid.x, y=centroid.y + 0.1,
@@ -801,6 +719,60 @@ if target_state == "Maharashtra":
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
+
+# 5. Styling to kill Index and White Spaces
+def style_final_table(st_df):
+    styled = st_df.style.set_table_styles([
+        {
+            'selector': '', 
+            'props': [
+                ('border-collapse', 'collapse !important'), 
+                ('border-spacing', '0 !important'),
+                ('width', 'auto'),
+                ('margin-left', '0'),
+                ('margin-right', 'auto')
+            ]
+        },
+        {
+            'selector': 'th',
+            'props': [
+                ('background-color', '#b8cce4'), 
+                ('color', 'black'), 
+                ('border', '1px solid black'), 
+                ('font-weight', 'bold'), 
+                ('padding', '2px 5px')
+            ]
+        },
+        {
+            'selector': 'td',
+            'props': [
+                ('padding', '2px 5px'), 
+                ('color', 'black'), 
+                ('border-left', '1px solid black'), 
+                ('border-right', '1px solid black'), 
+                ('border-bottom', 'none'), 
+                ('border-top', 'none'),
+                ('margin', '0'),
+                ('border-collapse', 'collapse')
+            ]
+        }
+    ]).hide(axis="index") # CRITICAL: This removes the numbered column
+
+    # Apply top border only when cluster changes
+    for i, row_is_new in enumerate(is_new_cluster):
+        if row_is_new:
+            styled.set_table_styles({
+                display_df.index[i]: [{'selector': 'td', 'props': [('border-top', '1px solid black')]}]
+            }, overwrite=False, axis=1)
+    
+    # Bottom border for the last row
+    styled.set_table_styles({
+        display_df.index[-1]: [{'selector': 'td', 'props': [('border-bottom', '1px solid black')]}]
+    }, overwrite=False, axis=1)
+        
+    return styled
+
+
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
