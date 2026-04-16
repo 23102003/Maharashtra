@@ -210,9 +210,9 @@ df[share_col_name] = df[share_col_name].round(0).astype(int)
 state_distributor_configs = {
     "Maharashtra": {
         'AKOLA': 'Hussain', 'BULDHANA': 'Hussain', 'WASHIM': 'Hussain',
-          'AURANGABAD': 'Prince Steel', 'BEED': 'NA',
-          'JALNA': 'NA', 'LATUR': 'Prince Steel', 'OSMANABAD': 'NA',
-          'HINGOLI': 'NA', 'NANDED': 'NA', 'PARBHANI': 'NA',
+          'AURANGABAD': 'Prince Steel', 'BEED': 'Prince Steel',
+          'JALNA': 'Prince Steel', 'LATUR': 'Prince Steel', 'OSMANABAD': 'Prince Steel',
+          'HINGOLI': 'Prince Steel', 'NANDED': 'Prince Steel', 'PARBHANI': 'Prince Steel',
           'KOLHAPUR': 'KD Oswal', 'RATNAGIRI': ['KD', 'Yogi'], 'SANGLI': 'Yogi',
           'SATARA': 'Laxmi', 'SINDHUDURG': ['KD', 'Yogi'],
           'SOLAPUR': ['Manmohan', 'Laxmi', 'Yogi'], 'MUMBAI': ['Arihant', 'Khyati'],
