@@ -842,7 +842,10 @@ if target_state == "Maharashtra":
     dist_display_df['cluster'] = new_labels # Apply the formatted labels
     dist_display_df.columns = ['Cluster', 'District', 'Distributors']
     dist_display_df['District'] = dist_display_df['District'].str.title()
-    
+    display_df = dist_df[['cluster', 'District', 'Distributors']].copy()
+    display_df['cluster'] = new_labels 
+    display_df.columns = ['Cluster', 'District', 'Distributors']
+    display_df['District'] = display_df['District'].str.title()
     # 4. Display the Table
     # We reuse your existing is_new_cluster logic for borders
     is_new_cluster = ~dist_df['cluster'].duplicated()
