@@ -303,22 +303,7 @@ df[share_col_name] = df[share_col_name].round(0).astype(int)
 # 1. State-wise Distributor Mapping
 state_distributor_configs = {
     "Maharashtra": {
-        'AKOLA': 'Hussain', 'BULDHANA': 'Hussain', 'WASHIM': 'Hussain',
-        'AURANGABAD': 'Prince Steel', 'BEED': 'NA',
-        'JALNA': 'NA', 'LATUR': 'Prince Steel', 'OSMANABAD': 'NA',
-        'HINGOLI': 'NA', 'NANDED': 'NA', 'PARBHANI': 'NA',
-        'KOLHAPUR': 'KD Oswal', 'RATNAGIRI': ['KD', 'Yogi'], 'SANGLI': 'Yogi',
-        'SATARA': 'Laxmi', 'SINDHUDURG': ['KD', 'Yogi'],
-        'SOLAPUR': ['Manmohan', 'Laxmi', 'Yogi'], 'MUMBAI': ['Arihant', 'Khyati'],
-        'MUMBAI SUBURBAN': ['Arihant', 'Khyati'], 'PALGHAR': ['Arihant', 'Khyati'],
-        'RAIGARH': ['Arihant', 'Khyati'], 'THANE': ['Arihant', 'Khyati'],
-        'BHANDARA': ['Yogesh', 'Arvind'], 'CHANDRAPUR': ['Yogesh', 'Arvind'],
-        'AMRAVATI': ['Yogesh', 'Arvind'], 'GADCHIROLI': ['Yogesh', 'Arvind'],
-        'GONDIA': ['Yogesh', 'Arvind'], 'NAGPUR': ['Yogesh', 'Arvind'],
-        'WARDHA': ['Yogesh', 'Arvind'], 'YAVATMAL': ['Yogesh', 'Arvind'],
-        'DHULE': ['Manmohan', 'National'], 'JALGAON': ['Manmohan', 'National'],
-        'NANDURBAR': ['Manmohan', 'National'], 'NASHIK': 'Manmohan Ispat',
-        'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'
+       
     },
     "Gujarat": {
         'AHMEDABAD': 'Distributor A', 
