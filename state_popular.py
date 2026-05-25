@@ -25,7 +25,7 @@ def get_state_data(state_name):
         "Indradhanush": [30,50,30,250,50,50,300,25,25,175,25,500,50,650,150,0,200,400,0,400,100,750,10,30,30,15,15,1202,10,30,100,300,50,350,1250,250],
         "AM/NS": [150,100,50,550,300,550,575,55,75,200,75,100,0,500,700,0,500,700,500,50,50,150,40,70,700,80,50,200,500,50,200,500,50,300,3500,100],
         "Nepal": [0]*36,
-        "Colourshine": [0]*36,
+        "Colorshine": [0]*36,
         "Supreme": [0]*36,
         "Rhino": [0]*36,
         "Geo Roofing": [0]*36,
@@ -34,7 +34,7 @@ def get_state_data(state_name):
         "APL Navrang": [0]*36,
         "Shyam Metallics":       [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,0,0,0,0,0,0,0,0,0],
         "Kamdhenu":              [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,50,0,0,0,0,0,0,0,0,0],
-         "Others":       [60,30,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,50,20,50,100,500,50,50,0,0,0,0,0,0],
+         "Others":       [60,30,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,50,20,50,100,500,50,50,0,0,0,0,0,0], }
        
     
     # GUJARAT DATA (Placeholder - Replace with your actual data)
@@ -48,7 +48,7 @@ def get_state_data(state_name):
             "Indradhanush": [600, 40, 0, 40, 0, 50, 50, 0, 50, 50, 10, 100, 20, 50, 90, 300, 40, 50, 0, 200, 100, 0, 0, 300, 0, 100, 40, 0, 50, 50, 0, 20, 300],
             "AM/NS": [2400, 150, 200, 100, 80, 110, 40, 60, 120, 25, 300, 110, 150, 5, 50, 100, 20, 40, 0, 800, 100, 2, 4, 500, 2, 200, 80, 5, 40, 25, 1, 60, 170],
             "Nepal": [0]*33,
-            "Colourshine": [0]*33,
+            "colorshine": [0]*33,
             "Supreme": [0]*33,
             "Rhino": [0]*33,
             "Geo Roofing": [0]*33,
@@ -58,7 +58,7 @@ def get_state_data(state_name):
             "APL Navrang": [0]*33,
             "Shyam Metallics":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
             "Jindal Rangeen":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,5,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,15],
-            "Others":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,10,10,0,25,100],
+            "Others":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,10,10,0,25,100], }
 
            
     elif state_name == "Punjab":
@@ -77,7 +77,7 @@ def get_state_data(state_name):
             "Latim": [0, 0, 0, 10, 0, 5, 0, 5, 0, 10, 10, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "Kamdhenu": [0, 0, 0, 20, 10, 5, 5, 10, 5, 20, 50, 0, 0, 5, 0, 0, 0, 5, 5, 0, 0, 10, 0],
             "Nepal": [0]*23,
-            "Colourshine": [0]*23,
+            "colorshine": [0]*23,
             "Supreme": [0]*23,
             "Rhino": [0]*23,
             "Geo Roofing": [0]*23,
@@ -100,7 +100,7 @@ def get_state_data(state_name):
             "AM/NS": [10, 40, 30, 10, 10, 0, 0, 10, 20, 20, 30, 100, 30, 100, 50, 30, 40, 30, 40, 200],
             "Jindal Rangeen": [0, 20, 10, 10, 10, 10, 10, 10, 20, 20, 0, 20, 0, 20, 10, 0, 0, 0, 0, 20],            
             "Nepal": [0]*20,
-            "Colourshine": [0]*20,
+            "colorshine": [0]*20,
             "Supreme": [0]*20,
             "Rhino": [0]*20,
             "Geo Roofing": [0]*20,
@@ -166,7 +166,7 @@ def get_state_data(state_name):
                 10, 3, 6, 11, 4, 4, 50, 10, 65
             ],
             "Nepal": [0]*69,
-            "Colourshine": [0]*69,
+            "colorshine": [0]*69,
             "Supreme": [0]*69,
             "Rhino": [0]*69,
             "Geo Roofing": [0]*69,
@@ -211,11 +211,11 @@ def get_state_data(state_name):
             ],
             "Indradhanush": [0, 0, 0, 0, 0, 0, 30, 20, 0, 0, 0, 30],
             "Kamdhenu": [20, 10, 10, 20, 10, 10, 20, 10, 0, 20, 10, 0],
-            "Shyam Mettalics": [0, 0, 0, 25, 0, 0, 25, 0, 0, 0, 0, 0],
+            "Shyam Metallics": [0, 0, 0, 25, 0, 0, 25, 0, 0, 0, 0, 0],
             "AM/NS": [20, 0, 30, 0, 10, 0, 20, 0, 20, 10, 10, 50],
             "Jindal Rangeen": [25, 0, 25, 0, 0, 0, 0, 25, 0, 0, 0, 25],
             "Nepal": [0]*12,
-            "Colourshine": [0]*12,
+            "colorshine": [0]*12,
             "Supreme": [0]*12,
             "Rhino": [0]*12,
             "Geo Roofing": [0]*12,
@@ -236,11 +236,11 @@ def get_state_data(state_name):
             "APL Navrang": [0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "Jindal Rangeen": [0, 50, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60],
             "Nepal": [0]*13,
-            "Colourshine": [0]*13,
+            "colorshine": [0]*13,
             "Supreme": [0]*13,
             "Rhino": [0]*13,
             "Geo Roofing": [0]*13,
-            "Manaksia": [0, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 150]
+            "Manaksia": [0, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 150],
             "Latim": [0]*13,
             "Others": [0]*13
         }
@@ -291,7 +291,7 @@ state_districts = get_geojson(target_state)
 
 st.title(f"ð {target_state} District wise Market Mapping")
 
-brand_cols = [""Indradhanush", "AM/NS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others""]
+brand_cols = ["Indradhanush", "AM/NS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others""]
 df['Market_Size'] = df[brand_cols].sum(axis=1)
 share_col_name = f'{target_brand} % share'
 df[share_col_name] = np.where(df['Market_Size'] == 0, 0, (df[target_brand] / df['Market_Size']) * 100)
