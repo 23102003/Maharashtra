@@ -291,7 +291,7 @@ state_districts = get_geojson(target_state)
 
 st.title(f"ð {target_state} District wise Market Mapping")
 
-brand_cols = ["Indradhanush", "AM/NS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others""]
+brand_cols = ["Indradhanush", "AM/NS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others"]
 df['Market_Size'] = df[brand_cols].sum(axis=1)
 share_col_name = f'{target_brand} % share'
 df[share_col_name] = np.where(df['Market_Size'] == 0, 0, (df[target_brand] / df['Market_Size']) * 100)
