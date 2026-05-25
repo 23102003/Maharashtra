@@ -362,27 +362,53 @@ current_distributor_lookup = state_distributor_configs.get(target_state, {})
 df['Distributors_List'] = df['District'].map(current_distributor_lookup)
 
 # 4. Tooltip Function (remains the same as it uses the mapped column)
+
 def create_tooltip(row):
+
     tip = f"<b>{row['District']}</b><br>"
     tip += f"Total Market: {row['Market_Size']} MT<br><br>"
+
     share = int(row[share_col_name]) if pd.notna(row[share_col_name]) else 0
+
     tip += f"<b>{target_brand}: {row[target_brand]} MT ({share}%)</b><br><br>"
+
     tip += "<b>Competition:</b><br>"
+
     for b in brand_cols:
-        if b != target_brand and row[b] > 0:
-            b_sh = int((row[b]/row['Market_Size'])*100) if row['Market_Size'] > 0 else 0
-            tip += f"{b}: {row[b]} MT ({b_sh}%)<br>"
-    
+
+        # Skip missing columns safely
+        if b not in row.index:
+            continue
+
+        # Skip target brand
+        if b != target_brand:
+
+            value = row[b]
+
+            # Handle NaN safely
+            if pd.notna(value) and value > 0:
+
+                b_sh = int((value / row['Market_Size']) * 100) if row['Market_Size'] > 0 else 0
+
+                tip += f"{b}: {value} MT ({b_sh}%)<br>"
+
     tip += "<br><b>Distributors:</b><br>"
+
     dist_data = row.get('Distributors_List', 'NA')
-    
+
     if isinstance(dist_data, list):
+
         for d in dist_data:
             tip += f"{d}<br>"
+
     elif pd.notna(dist_data) and dist_data != 'NA':
+
         tip += f"{dist_data}<br>"
+
     else:
+
         tip += "NA<br>"
+
     return tip
 
 df['hover_text'] = df.apply(create_tooltip, axis=1)
