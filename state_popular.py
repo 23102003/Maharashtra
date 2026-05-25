@@ -308,7 +308,7 @@ target_brand = st.sidebar.selectbox("Select Target Brand", ["Indradhanush", "AM/
 df = get_state_data(target_state)
 state_districts = get_geojson(target_state)
 
-st.title(f"ð {target_state} District wise Market Mapping")
+st.title(f" {target_state} District wise Market Mapping")
 
 brand_cols = ["Indradhanush", "AM/NS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others"]
 available_cols = [col for col in brand_cols if col in df.columns]
