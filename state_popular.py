@@ -21,17 +21,21 @@ def get_state_data(state_name):
             'SOLAPUR','MUMBAI', 'MUMBAI SUBURBAN', 'PALGHAR', 'RAIGARH','THANE',
             'BHANDARA', 'CHANDRAPUR', 'AMRAVATI', 'GADCHIROLI', 'GONDIA', 'NAGPUR', 'WARDHA',
             'YAVATMAL', 'DHULE', 'JALGAON', 'NANDURBAR', 'NASHIK', 'PUNE', 'AHMEDNAGAR'
-        ],
-        "Popular": [123,50,20,90,20,0,40,20,0,25,25,205,125,200,225,100,150,50,0,97,60,70,15,28,50,8,40,256,20,15,50,150,40,250,300,261],
-        "Alucolour": [0]*36,
-        "Infinia": [0]*36,
-        "APL Apollo Rooftuff": [5,10,0,0,0,0,0,0,0,0,0,25,0,0,25,10,10,0,0,0,0,0,0,10,0,0,5,50,0,0,0,15,0,40,50,25],
-        "Jindal Sabrang": [5,5,0,50,0,75,50,0,0,25,10,50,25,50,25,15,15,100,0,115,90,80,0,0,5,0,10,50,5,0,25,50,20,150,75,75],
-        "APL Coral": [0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,50,0],
-        "APL Jumbo": [5,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,10,10,0,15,280,10,10,0,0,0,0,0,0],
-        "AM/NS Optigal 10 yW": [0,0,0,30,0,0,30,0,0,0,0,0,0,50,0,0,0,0,0,0,0,0,0,0,0,0,0,20,0,0,0,30,0,0,50,0],
-        "Others": [0]*36
-      }
+        ],      
+        "Indradhanush": [30,50,30,250,50,50,300,25,25,175,25,500,50,650,150,0,200,400,0,400,100,750,10,30,30,15,15,1202,10,30,100,300,50,350,1250,250],
+        "AM/NS": [150,100,50,550,300,550,575,55,75,200,75,100,0,500,700,0,500,700,500,50,50,150,40,70,700,80,50,200,500,50,200,500,50,300,3500,100],
+        "Nepal": [0]*36,
+        "Colourshine": [0]*36,
+        "Supreme": [0]*36,
+        "Rhino": [0]*36,
+        "Geo Roofing": [0]*36,
+        "Manaksia": [0]*36,
+        "Latim": [0]*36,
+        "APL Navrang": [0]*36,
+        "Shyam Metallics":       [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,0,0,0,0,0,0,0,0,0],
+        "Kamdhenu":              [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,50,0,0,0,0,0,0,0,0,0],
+         "Others":       [60,30,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,50,20,50,100,500,50,50,0,0,0,0,0,0],
+       
     
     # GUJARAT DATA (Placeholder - Replace with your actual data)
     elif state_name == "Gujarat":
@@ -41,16 +45,22 @@ def get_state_data(state_name):
                 'JAMNAGAR', 'KACHCHH', 'MORBI', 'ARVALLI', 'BANAS KANTHA', 'MAHESANA', 'PATAN', 'SABAR KANTHA', 'DEVBHUMI DWARKA', 'RAJKOT','SURENDRANAGAR',
                 'DANG', 'NAVSARI', 'SURAT', 'TAPI', 'VALSAD', 'BHARUCH', 'CHHOTAUDEPUR', 'DOHAD', 'MAHISAGAR', 'NARMADA', 'PANCH MAHALS', 'VADODARA'
             ],
-            "Popular": [70, 0, 40, 5, 35, 35, 0, 15, 0, 10, 45, 40, 25, 12, 20, 70, 2, 40, 0, 40, 10, 0, 15, 40, 0, 40, 35, 3, 0, 7, 0, 5, 65],
-            "Alucolour": [0]*33, # Mostly zeros based on visible data
-            "Infinia": [0]*33,   # Mostly zeros based on visible data
-            "APL Apollo Rooftuff": [20, 5, 10, 10, 10, 20, 0, 0, 15, 0, 20, 0, 10, 0, 0, 10, 5, 10, 0, 120, 0, 0, 0, 20, 0, 15, 20, 0, 0, 0, 0, 0, 5],
-            "Jindal Sabrang": [20, 10, 10, 10, 5, 10, 0, 0, 0, 10, 10, 10, 10, 0, 10, 10, 10, 10, 0, 10, 20, 0, 25, 300, 0, 100, 10, 3, 0, 5, 0, 5, 15],
-            "APL Coral": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 20, 0, 0, 0, 0, 0, 5],
-            "APL Jumbo": [20, 5, 20, 0, 10, 22, 0, 0, 12, 0, 20, 10, 20, 0, 0, 10, 0, 10, 0, 10, 10, 0, 0, 30, 0, 15, 20, 0, 0, 0, 0, 0, 5],
-            "AM/NS Optigal 10 yW": [100, 20, 25, 10, 20, 25, 10, 5, 10, 50, 10, 20, 15, 0, 10, 20, 5, 10, 10, 150, 50, 0, 4, 40, 0, 20, 10, 0, 0, 0, 0, 10, 20],
-            "Others": [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0]
-        }
+            "Indradhanush": [600, 40, 0, 40, 0, 50, 50, 0, 50, 50, 10, 100, 20, 50, 90, 300, 40, 50, 0, 200, 100, 0, 0, 300, 0, 100, 40, 0, 50, 50, 0, 20, 300],
+            "AM/NS": [2400, 150, 200, 100, 80, 110, 40, 60, 120, 25, 300, 110, 150, 5, 50, 100, 20, 40, 0, 800, 100, 2, 4, 500, 2, 200, 80, 5, 40, 25, 1, 60, 170],
+            "Nepal": [0]*33,
+            "Colourshine": [0]*33,
+            "Supreme": [0]*33,
+            "Rhino": [0]*33,
+            "Geo Roofing": [0]*33,
+            "Manaksia":  [40,40,40,0,0,0,0,0,0,0,30,30,30,0,0,0,0,0,0,0,0,10,10,0,20,0,5,0,10,0,0,0,20],
+            "Latim": [0]*33,
+            "Kamdhenu": [0]*33,
+            "APL Navrang": [0]*33,
+            "Shyam Metallics":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
+            "Jindal Rangeen":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,5,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,15],
+            "Others":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,10,10,0,25,100],
+
+           
     elif state_name == "Punjab":
         data = {
             "District": [
@@ -60,14 +70,18 @@ def get_state_data(state_name):
                 'RUPNAGAR', 'S.A.S NAGAR', 'SANGRUR', 'BATHINDA', 'FARIDKOT', 
                 'FAZILKA', 'FIROZPUR', 'MOGA', 'SRI MUKTSAR SAHIB'
             ],
-            "Popular": [15, 0, 20, 70, 20, 20, 5, 10, 15, 40, 80, 15, 10, 15, 5, 0, 5, 5, 5, 0, 15, 20, 0],
-            "Alucolour": [0, 0, 0, 10, 0, 10, 0, 0, 0, 10, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            "Infinia": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            "APL Apollo Rooftuff": [5, 0, 5, 30, 10, 10, 10, 10, 5, 50, 30, 10, 5, 10, 10, 5, 5, 5, 5, 5, 10, 10, 5],
-            "Jindal Sabrang": [0, 0, 0, 120, 0, 20, 10, 10, 10, 80, 40, 5, 5, 10, 20, 0, 0, 5, 0, 5, 5, 0, 5],
-            "APL Coral": [0]*23,
-            "APL Jumbo": [0]*23,
-            "AM/NS Optigal 10 yW": [0]*23,
+            "Indradhanush": [0, 0, 0, 200, 10, 20, 0, 20, 20, 80, 200, 10, 10, 10, 0, 0, 0, 10, 10, 10, 20, 10, 10],
+            "AM/NS": [10, 0, 10, 100, 15, 10, 5, 10, 0, 20, 100, 10, 5, 5, 0, 5, 5, 10, 0, 10, 5, 5, 5],
+            "Jindal Prajapati": [10, 0, 5, 20, 5, 5, 5, 0, 0, 40, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Manaksia": [0, 0, 0, 50, 5, 10, 5, 0, 0, 70, 80, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10],
+            "Latim": [0, 0, 0, 10, 0, 5, 0, 5, 0, 10, 10, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Kamdhenu": [0, 0, 0, 20, 10, 5, 5, 10, 5, 20, 50, 0, 0, 5, 0, 0, 0, 5, 5, 0, 0, 10, 0],
+            "Nepal": [0]*23,
+            "Colourshine": [0]*23,
+            "Supreme": [0]*23,
+            "Rhino": [0]*23,
+            "Geo Roofing": [0]*23,
+            "Shyam Metallics": [0]*23,
             "Others": [0]*23
         }
     elif state_name == "Jammu and Kashmir":
@@ -78,14 +92,18 @@ def get_state_data(state_name):
                 'SHUPIYAN', 'ANANTNAG', 'BANDIPURA', 'BARAMULA', 'BADGAM', 
                 'GANDERBAL', 'KUPWARA', 'KULGAM', 'PULWAMA', 'SRINAGAR'
             ],
-           "Popular": [0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 20, 50, 20, 50, 20, 20, 20, 20, 20, 60],
-            "Alucolour": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            "Infinia": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            "APL Apollo Rooftuff": [0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30],
-            "Jindal Sabrang": [20, 30, 20, 20, 10, 10, 20, 20, 20, 30, 20, 80, 10, 80, 30, 20, 20, 10, 20, 120],
-            "APL Coral": [0]*20,
-            "APL Jumbo": [0]*20,
-            "AM/NS Optigal 10 yW": [0]*20,
+           "Indradhanush": [0, 30, 0, 0, 0, 0, 0, 0, 0, 20, 0, 20, 20, 20, 0, 0, 0, 0, 0, 40],
+            "Manaksia": [0, 30, 0, 0, 20, 0, 0, 0, 0, 20, 0, 50, 30, 20, 0, 0, 0, 0, 0, 60],
+            "Latim": [0, 20, 0, 0, 0, 0, 0, 0, 10, 0, 0, 30, 20, 10, 0, 0, 10, 0, 10, 40],
+            "Kamdhenu": [0, 20, 20, 0, 0, 10, 0, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20],
+            "Shyam Metallics": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 0, 0, 0, 0, 0, 40],
+            "AM/NS": [10, 40, 30, 10, 10, 0, 0, 10, 20, 20, 30, 100, 30, 100, 50, 30, 40, 30, 40, 200],
+            "Jindal Rangeen": [0, 20, 10, 10, 10, 10, 10, 10, 20, 20, 0, 20, 0, 20, 10, 0, 0, 0, 0, 20],            
+            "Nepal": [0]*20,
+            "Colourshine": [0]*20,
+            "Supreme": [0]*20,
+            "Rhino": [0]*20,
+            "Geo Roofing": [0]*20,
             "Others": [0]*20
         }
     elif state_name == "Uttar Pradesh":
@@ -101,36 +119,63 @@ def get_state_data(state_name):
                 'BARA BANKI', 'HARDOI', 'KHERI', 'LUCKNOW', 'RAE BARELI', 'SITAPUR', 'UNNAO', 'BHADOHI',
                 'CHANDAULI', 'FATEHPUR', 'GHAZIPUR', 'JAUNPUR', 'KAUSHAMBI', 'MIRZAPUR', 'PRAYAGRAJ',
                 'SONBHADRA', 'VARANASI'
+            ],  
+   
+            "Indradhanush": [
+                60, 5, 6, 30, 15, 3, 2, 30, 5, 10, 6, 5, 2, 2, 3, 10, 8, 7, 70, 315,
+                3, 18, 37, 5, 3, 3, 3, 5, 3, 8, 10, 12, 7, 17, 5, 4, 7, 4, 7, 4,
+                17, 12, 12, 8, 20, 25, 65, 9, 9, 25, 35, 10, 25, 20, 13, 25, 25, 6,     8, 10,
+                12, 15, 13, 10, 16, 17, 16, 11, 40
             ],
-            "Popular": [
-                145, 18, 6, 32, 22, 16, 3, 65, 8, 30, 11, 14, 4, 8, 6, 12, 19, 33, 72, 475,
-                3, 80, 105, 12, 6, 40, 35, 6, 0, 3, 18, 12, 0, 64, 3, 10, 12, 0, 0, 15,
-                10, 10, 10, 15, 10, 30, 45, 10, 35, 275, 10, 10, 15, 15, 65, 115, 30, 15, 15, 30,
-                10, 5, 14, 5, 6, 36, 95, 16, 158
+
+           "AM/NS": [
+                20, 0, 2, 10, 5, 0, 0, 10, 0, 3, 0, 0, 0, 0, 0, 3, 2, 2, 23, 105,
+                0, 6, 12, 0, 0, 0, 3, 4, 5, 12, 2, 3, 5, 18, 2, 2, 3, 2, 2, 2,
+                15, 14, 10, 9, 20, 26, 50, 25, 12, 20, 30, 14, 20, 16, 16, 20, 30, 4, 6, 9,
+                7, 6, 7, 6, 3, 6, 15, 6, 16
             ],
-            "Alucolour": [
+
+            "Dyna": [
+                60, 4, 6, 30, 15, 3, 2, 30, 4, 10, 5, 4, 2, 1, 0, 10, 7, 6, 70, 315,
+                3, 18, 36, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 2, 5, 5, 5, 6, 5, 4, 6, 5, 2, 2, 3, 3, 5,
-                4, 6, 5, 5, 23, 12, 23, 9, 6, 32, 25, 9, 25, 12, 0, 20, 5, 2, 0, 6,
-                10, 6, 8, 4, 2, 10, 15, 6, 12
+                0, 0, 0, 0, 0, 0, 0, 0, 0
             ],
-            "Infinia": [0]*69,
-            "APL Apollo Rooftuff": [
-                68, 8, 6, 28, 20, 14, 3, 78, 8, 26, 10, 13, 5, 7, 6, 12, 17, 29, 63, 435,
-                3, 10, 143, 11, 6, 3, 0, 5, 0, 10, 0, 0, 0, 20, 5, 0, 5, 0, 0, 0,
-                0, 15, 0, 45, 0, 0, 15, 0, 30, 70, 0, 30, 0, 20, 20, 50, 15, 20, 0, 10,
-                20, 0, 0, 0, 0, 0, 30, 10, 30
+           "Manaksia": [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                40, 0, 0, 100, 0, 60, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0
             ],
-            "Jindal Sabrang": [
-                40, 5, 7, 10, 5, 20, 4, 40, 11, 38, 14, 18, 6, 10, 8, 16, 24, 43, 10, 125,
-                4, 45, 93, 15, 8, 4, 10, 20, 0, 10, 0, 10, 0, 40, 0, 0, 10, 0, 0, 0,
-                15, 20, 20, 50, 25, 50, 60, 30, 40, 80, 75, 15, 20, 20, 25, 80, 75, 25, 0, 50,
-                30, 30, 20, 10, 20, 20, 300, 15, 600
+            "Latim": [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 12, 0
             ],
-            "APL Coral": [0]*69,
-            "APL Jumbo": [0]*69,
-            "AM/NS Optigal 10 yW": [0]*69,
-            "Others": [0]*69
+           "APL Navrang": [
+                90, 9, 12, 40, 30, 6, 2, 40, 9, 20, 10, 9, 3, 1, 5, 21, 15, 13, 108, 530,
+                6, 36, 74, 9, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0
+            ],
+           "Jindal Rangeen": [
+                40, 5, 6, 20, 15, 3, 2, 20, 5, 10, 6, 5, 2, 2, 3, 10, 8, 7, 40, 215,
+                3, 18, 37, 5, 3, 3, 8, 10, 6, 13, 13, 5, 7, 30, 7, 7, 15, 5, 6, 10,
+                2, 3, 4, 10, 5, 8, 20, 5, 7, 17, 13, 5, 4, 4, 4, 17, 12, 5, 4, 7,
+                10, 3, 6, 11, 4, 4, 50, 10, 65
+            ],
+            "Nepal": [0]*69,
+            "Colourshine": [0]*69,
+            "Supreme": [0]*69,
+            "Rhino": [0]*69,
+            "Geo Roofing": [0]*69,
+            "Kamdhenu": [0]*69,
+            "Shyam Metallics": [0]*69,
+            "Others": [
+                130, 7, 8, 70, 20, 5, 0, 70, 8, 16, 8, 7, 2, 0, 5, 16, 10, 10, 150,      620, 5, 24, 50, 7, 5, 5, 24, 22, 16, 26, 18, 16, 20, 108, 19, 15, 12, 13, 12, 13, 35,
+                25, 25, 16, 40, 16, 135, 16, 16, 50, 70, 20, 50, 40, 25, 50, 100, 15, 40, 22, 18, 16, 30, 17, 16, 25, 90, 8, 120
+            ],
         }
     elif state_name == "Haryana":
         data = {
@@ -140,29 +185,42 @@ def get_state_data(state_name):
                 'KURUKSHETRA', 'PANCHKULA', 'YAMUNANAGAR', 'CHARKI DADRI', 'JHAJJAR', 
                 'KARNAL', 'PANIPAT', 'ROHTAK', 'SONIPAT'
             ],
-            "Popular": [504, 10, 5, 5, 5, 5, 5, 10, 30, 5, 10, 20, 30, 20, 5, 5, 5, 5, 40, 20, 5, 5],
-            "Alucolour": [0]*22,
-            "Infinia": [0]*22,
-            "APL Apollo Rooftuff": [500, 10, 10, 10, 100, 10, 20, 10, 50, 10, 10, 20, 50, 20, 5, 5, 5, 5, 60, 50, 20, 20],
-            "Jindal Sabrang": [200, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            "APL Coral": [0]*22,
-            "APL Jumbo": [0]*22,
-            "AM/NS Optigal 10 yW": [0]*22,
-            "Others": [0]*22
+
+            "Indradhanush": [90, 5, 5, 5, 5, 5, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],   
+            "AM/NS": [1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Jindal Rangeen": [100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Nepal": [0]*22,
+            "Colorshine": [0]*22,
+            "Rhino": [0]*22,
+            "Supreme": [0]*22,
+            "Geo Roofing": [0]*22,
+            "Dura": [0]*22,
+            "Dyna": [0]*22,
+            "Manaksia": [0]*22,
+            "Latim": [0]*22,
+            "Kamdhenu": [0]*22,
+            "Shyam Metallics": [200, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Others": [350, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0, 0, 30, 60, 20, 0, 0],
+
         }
+
     elif state_name == "Himachal Pradesh":
         data = {
             "District": [
                 'BILASPUR','CHAMBA','HAMIRPUR','KANGRA','KULLU','LAHUL & SPITI','MANDI','UNA','KINNAUR','SHIMLA','SIRMAUR','SOLAN'
             ],
-            "Popular": [10, 10, 10, 55, 20, 10, 20, 40, 10, 10, 10, 45],
-            "Alucolour": [0]*12,
-            "Infinia": [0]*12,
-            "APL Apollo Rooftuff": [10, 10, 30, 30, 15, 15, 20, 10, 10, 50, 15, 25],
-            "Jindal Sabrang": [25, 30, 40, 130, 20, 10, 70, 80, 10, 45, 15, 20],
-            "APL Coral": [0]*12,
-            "APL Jumbo": [0]*12,
-            "AM/NS Optigal 10 yW": [0]*12,
+            "Indradhanush": [0, 0, 0, 0, 0, 0, 30, 20, 0, 0, 0, 30],
+            "Kamdhenu": [20, 10, 10, 20, 10, 10, 20, 10, 0, 20, 10, 0],
+            "Shyam Mettalics": [0, 0, 0, 25, 0, 0, 25, 0, 0, 0, 0, 0],
+            "AM/NS": [20, 0, 30, 0, 10, 0, 20, 0, 20, 10, 10, 50],
+            "Jindal Rangeen": [25, 0, 25, 0, 0, 0, 0, 25, 0, 0, 0, 25],
+            "Nepal": [0]*12,
+            "Colourshine": [0]*12,
+            "Supreme": [0]*12,
+            "Rhino": [0]*12,
+            "Geo Roofing": [0]*12,
+            "Manaksia": [0]*12,
+            "Latim": [0]*12,
             "Others": [0]*12
         }
     elif state_name == "Uttarakhand":
@@ -172,14 +230,18 @@ def get_state_data(state_name):
                 'TEHRI GARHWAL', 'UTTAR KASHI', 'ALMORA', 'BAGESHWAR', 'CHAMPAWAT', 
                 'NAINITAL', 'PITHORAGARH', 'UDHAM SINGH NAGAR'
             ],
-            "Popular": [20, 100, 30, 10, 10, 10, 10, 10, 20, 10, 20, 70, 160],
-            "Alucolour": [0]*13,
-            "Infinia": [0]*13,
-            "APL Apollo Rooftuff": [10, 100, 10, 20, 20, 20, 20, 10, 10, 10, 10, 10, 50],
-            "Jindal Sabrang": [10, 80, 10, 10, 20, 20, 20, 20, 10, 10, 20, 10, 60],
-            "APL Coral": [0]*13,
-            "APL Jumbo": [0]*13,
-            "AM/NS Optigal 10 yW": [0]*13,
+            "Indradhanush": [0]*13,
+            "AM/NS": [0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100],
+            "Shyam Metallics": [0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "APL Navrang": [0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "Jindal Rangeen": [0, 50, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60],
+            "Nepal": [0]*13,
+            "Colourshine": [0]*13,
+            "Supreme": [0]*13,
+            "Rhino": [0]*13,
+            "Geo Roofing": [0]*13,
+            "Manaksia": [0, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 150]
+            "Latim": [0]*13,
             "Others": [0]*13
         }
     
@@ -220,16 +282,16 @@ def get_geojson(state_name):
 # ---------------------------------------------------------
 # Sidebar Selections
 target_state = st.sidebar.selectbox("Select State", ["Uttarakhand","Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
-target_brand = st.sidebar.selectbox("Select Target Brand", ["Popular", "Alucolour", 
-                                                            "Infinia", "APL Apollo Rooftuff", "Jindal Sabrang","APL Coral","APL Jumbo",
-                                                            "AM/NS Optigal 10 yW", "Others"])
+target_brand = st.sidebar.selectbox("Select Target Brand", ["Indradhanush", "AM/NS", 
+                                                            "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang",
+                                                            "Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others"])
 
 df = get_state_data(target_state)
 state_districts = get_geojson(target_state)
 
-st.title(f"📊 {target_state} District wise Market Mapping")
+st.title(f"ð {target_state} District wise Market Mapping")
 
-brand_cols = ["Popular", "Alucolour","Infinia", "APL Apollo Rooftuff", "Jindal Sabrang","APL Coral","APL Jumbo","AM/NS Optigal 10 yW", "Others"]
+brand_cols = [""Indradhanush", "AM/NS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others""]
 df['Market_Size'] = df[brand_cols].sum(axis=1)
 share_col_name = f'{target_brand} % share'
 df[share_col_name] = np.where(df['Market_Size'] == 0, 0, (df[target_brand] / df['Market_Size']) * 100)
@@ -256,7 +318,7 @@ state_distributor_configs = {
         'WARDHA': ['Yogesh', 'Arvind'], 'YAVATMAL': ['Yogesh', 'Arvind'],
         'DHULE': ['Manmohan', 'National'], 'JALGAON': ['Manmohan', 'National'],
         'NANDURBAR': ['Manmohan', 'National'], 'NASHIK': 'Manmohan Ispat',
-        'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'
+        'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'  
     },
     "Gujarat": {
         'AHMEDABAD': 'Distributor A', 
@@ -323,51 +385,51 @@ df['hover_text'] = df.apply(create_tooltip, axis=1)
 # 1. Define the dynamic ranges
 state_ranges = {
     "Maharashtra": [
-        (50, '0–50 MT', '#dbeafe'),
-        (150, '50–150 MT', '#93c5fd'),
-        (300, '150–300 MT', '#3b82f6'),
+        (50, '0â50 MT', '#dbeafe'),
+        (150, '50â150 MT', '#93c5fd'),
+        (300, '150â300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ],
     "Gujarat": [
-        (50, '0–50 MT', '#dbeafe'),
-        (150, '50–150 MT', '#93c5fd'),
-        (300, '150–300 MT', '#3b82f6'),
+        (50, '0â50 MT', '#dbeafe'),
+        (150, '50â150 MT', '#93c5fd'),
+        (300, '150â300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ],
     "Punjab": [
-        (25, '0–25 MT', '#dbeafe'),
-        (100, '25–100 MT', '#93c5fd'),
-        (200, '100–200 MT', '#3b82f6'),
+        (25, '0â25 MT', '#dbeafe'),
+        (100, '25â100 MT', '#93c5fd'),
+        (200, '100â200 MT', '#3b82f6'),
         (float('inf'), '200+ MT', '#1e40af')
     ],
     "Jammu and Kashmir": [
-        (50, '0–50 MT', '#dbeafe'),
-        (150, '50–150 MT', '#93c5fd'),
-        (300, '150–300 MT', '#3b82f6'),
+        (50, '0â50 MT', '#dbeafe'),
+        (150, '50â150 MT', '#93c5fd'),
+        (300, '150â300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ],
     "Uttar Pradesh": [
-        (50, '0–50 MT', '#dbeafe'),
-        (100, '50–100 MT', '#93c5fd'),
-        (300, '100–300 MT', '#3b82f6'),
+        (50, '0â50 MT', '#dbeafe'),
+        (100, '50â100 MT', '#93c5fd'),
+        (300, '100â300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ],
     "Haryana": [
-        (50, '0–50 MT', '#dbeafe'),
-        (100, '50–100 MT', '#93c5fd'),
-        (900, '100–900 MT', '#3b82f6'),
+        (50, '0â50 MT', '#dbeafe'),
+        (100, '50â100 MT', '#93c5fd'),
+        (900, '100â900 MT', '#3b82f6'),
         (float('inf'), '900+ MT', '#1e40af')
     ],
     "Himachal Pradesh": [
-        (25, '0–25 MT', '#dbeafe'),
-        (100, '25–100 MT', '#93c5fd'),
-        (200, '100–200 MT', '#3b82f6'),
+        (25, '0â25 MT', '#dbeafe'),
+        (100, '25â100 MT', '#93c5fd'),
+        (200, '100â200 MT', '#3b82f6'),
         (float('inf'), '200+ MT', '#1e40af')
     ],
     "Uttarakhand": [
-        (25, '0–25 MT', '#dbeafe'),
-        (50, '25–50 MT', '#93c5fd'),
-        (100, '50–100 MT', '#3b82f6'),
+        (25, '0â25 MT', '#dbeafe'),
+        (50, '25â50 MT', '#93c5fd'),
+        (100, '50â100 MT', '#3b82f6'),
         (float('inf'), '100+ MT', '#1e40af')
     ]
 }
@@ -473,7 +535,7 @@ merged['cluster'] = merged['district_upper'].map(current_cluster_map)
 merged = merged[merged.geometry.notnull()]
 
 # 2. Fix invalid geometries (self-intersections)
-merged['geometry'] = merged.geometry.buffer(0)
+merged['geometry'] = merged.geometry.buffer(0) 
 
 # 3. Ensure everything is a GeoDataFrame again
 merged = gpd.GeoDataFrame(merged, geometry='geometry')
@@ -625,7 +687,7 @@ for _, label, color in current_ranges:
         name=label
     ))
 
-for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%', '#f57c00'), ('< 25%', '#d32f2f')]:
+for label, color in [('> 75%', '#1b5e20'), ('50â75%', '#8bc34a'), ('25â50%', '#f57c00'), ('< 25%', '#d32f2f')]:
     fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
                              legendgroup="Share", legendgrouptitle_text=f"{target_brand} %", name=label))
 
@@ -677,7 +739,7 @@ st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
 # st.divider()
-# st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
+# st.subheader(f"ð Key Focus Areas: {target_brand} Share < 50%")
 
 # # 1. Filter and Sort
 # focus_df = merged[merged[share_col_name] < 50].copy()
@@ -756,12 +818,12 @@ def style_final_table(st_df):
 
 # else:
 #     # Show empty table with headers only
-#     st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
+#     st.info(f"â¨ All districts have more than 50%+ share in {target_brand}.")
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
 st.divider()
-st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
+st.subheader(f"ð Key Focus Areas: {target_brand} Share < 50%")
 
 focus_df = merged[merged[share_col_name] < 50].copy()
 
@@ -838,4 +900,4 @@ if not focus_df.empty:
     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
 
 else:
-    st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
+    st.info(f"â¨ All districts have more than 50%+ share in {target_brand}.")
