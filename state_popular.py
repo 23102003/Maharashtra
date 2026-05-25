@@ -23,7 +23,7 @@ def get_state_data(state_name):
             'YAVATMAL', 'DHULE', 'JALGAON', 'NANDURBAR', 'NASHIK', 'PUNE', 'AHMEDNAGAR'
         ],      
         "Indradhanush": [30,50,30,250,50,50,300,25,25,175,25,500,50,650,150,0,200,400,0,400,100,750,10,30,30,15,15,1202,10,30,100,300,50,350,1250,250],
-        "AMNS": [150,100,50,550,300,550,575,55,75,200,75,100,0,500,700,0,500,700,500,50,50,150,40,70,700,80,50,200,500,50,200,500,50,300,3500,100],
+        "AM/NS": [150,100,50,550,300,550,575,55,75,200,75,100,0,500,700,0,500,700,500,50,50,150,40,70,700,80,50,200,500,50,200,500,50,300,3500,100],
         "Nepal": [0]*36,
         "Colourshine": [0]*36,
         "Supreme": [0]*36,
@@ -31,7 +31,7 @@ def get_state_data(state_name):
         "Geo Roofing": [0]*36,
         "Manaksia": [0]*36,
         "Latim": [0]*36,
-        "APL_Navrang": [0]*36,
+        "APL Navrang": [0]*36,
         "Shyam Metallics":       [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,0,0,0,0,0,0,0,0,0],
         "Kamdhenu":              [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,50,0,0,0,0,0,0,0,0,0],
          "Others":       [60,30,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,50,20,50,100,500,50,50,0,0,0,0,0,0],
@@ -46,7 +46,7 @@ def get_state_data(state_name):
                 'DANG', 'NAVSARI', 'SURAT', 'TAPI', 'VALSAD', 'BHARUCH', 'CHHOTAUDEPUR', 'DOHAD', 'MAHISAGAR', 'NARMADA', 'PANCH MAHALS', 'VADODARA'
             ],
             "Indradhanush": [600, 40, 0, 40, 0, 50, 50, 0, 50, 50, 10, 100, 20, 50, 90, 300, 40, 50, 0, 200, 100, 0, 0, 300, 0, 100, 40, 0, 50, 50, 0, 20, 300],
-            "AMNS": [2400, 150, 200, 100, 80, 110, 40, 60, 120, 25, 300, 110, 150, 5, 50, 100, 20, 40, 0, 800, 100, 2, 4, 500, 2, 200, 80, 5, 40, 25, 1, 60, 170],
+            "AM/NS": [2400, 150, 200, 100, 80, 110, 40, 60, 120, 25, 300, 110, 150, 5, 50, 100, 20, 40, 0, 800, 100, 2, 4, 500, 2, 200, 80, 5, 40, 25, 1, 60, 170],
             "Nepal": [0]*33,
             "Colourshine": [0]*33,
             "Supreme": [0]*33,
@@ -55,7 +55,7 @@ def get_state_data(state_name):
             "Manaksia":  [40,40,40,0,0,0,0,0,0,0,30,30,30,0,0,0,0,0,0,0,0,10,10,0,20,0,5,0,10,0,0,0,20],
             "Latim": [0]*33,
             "Kamdhenu": [0]*33,
-            "APL_Navrang": [0]*33,
+            "APL Navrang": [0]*33,
             "Shyam Metallics":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10],
             "Jindal Rangeen":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,5,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,15],
             "Others":         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,10,10,0,25,100],
@@ -71,7 +71,7 @@ def get_state_data(state_name):
                 'FAZILKA', 'FIROZPUR', 'MOGA', 'SRI MUKTSAR SAHIB'
             ],
             "Indradhanush": [0, 0, 0, 200, 10, 20, 0, 20, 20, 80, 200, 10, 10, 10, 0, 0, 0, 10, 10, 10, 20, 10, 10],
-            "AMNS": [10, 0, 10, 100, 15, 10, 5, 10, 0, 20, 100, 10, 5, 5, 0, 5, 5, 10, 0, 10, 5, 5, 5],
+            "AM/NS": [10, 0, 10, 100, 15, 10, 5, 10, 0, 20, 100, 10, 5, 5, 0, 5, 5, 10, 0, 10, 5, 5, 5],
             "Jindal Prajapati": [10, 0, 5, 20, 5, 5, 5, 0, 0, 40, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "Manaksia": [0, 0, 0, 50, 5, 10, 5, 0, 0, 70, 80, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10],
             "Latim": [0, 0, 0, 10, 0, 5, 0, 5, 0, 10, 10, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -97,7 +97,7 @@ def get_state_data(state_name):
             "Latim": [0, 20, 0, 0, 0, 0, 0, 0, 10, 0, 0, 30, 20, 10, 0, 0, 10, 0, 10, 40],
             "Kamdhenu": [0, 20, 20, 0, 0, 10, 0, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20],
             "Shyam Metallics": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 0, 0, 0, 0, 0, 40],
-            "AMNS": [10, 40, 30, 10, 10, 0, 0, 10, 20, 20, 30, 100, 30, 100, 50, 30, 40, 30, 40, 200],
+            "AM/NS": [10, 40, 30, 10, 10, 0, 0, 10, 20, 20, 30, 100, 30, 100, 50, 30, 40, 30, 40, 200],
             "Jindal Rangeen": [0, 20, 10, 10, 10, 10, 10, 10, 20, 20, 0, 20, 0, 20, 10, 0, 0, 0, 0, 20],            
             "Nepal": [0]*20,
             "Colourshine": [0]*20,
@@ -128,7 +128,7 @@ def get_state_data(state_name):
                 12, 15, 13, 10, 16, 17, 16, 11, 40
             ],
 
-           "AMNS": [
+           "AM/NS": [
                 20, 0, 2, 10, 5, 0, 0, 10, 0, 3, 0, 0, 0, 0, 0, 3, 2, 2, 23, 105,
                 0, 6, 12, 0, 0, 0, 3, 4, 5, 12, 2, 3, 5, 18, 2, 2, 3, 2, 2, 2,
                 15, 14, 10, 9, 20, 26, 50, 25, 12, 20, 30, 14, 20, 16, 16, 20, 30, 4, 6, 9,
@@ -187,7 +187,7 @@ def get_state_data(state_name):
             ],
 
             "Indradhanush": [90, 5, 5, 5, 5, 5, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],   
-            "AMNS": [1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "AM/NS": [1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "Jindal Rangeen": [100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "Nepal": [0]*22,
             "Colorshine": [0]*22,
@@ -212,7 +212,7 @@ def get_state_data(state_name):
             "Indradhanush": [0, 0, 0, 0, 0, 0, 30, 20, 0, 0, 0, 30],
             "Kamdhenu": [20, 10, 10, 20, 10, 10, 20, 10, 0, 20, 10, 0],
             "Shyam Mettalics": [0, 0, 0, 25, 0, 0, 25, 0, 0, 0, 0, 0],
-            "AMNS": [20, 0, 30, 0, 10, 0, 20, 0, 20, 10, 10, 50],
+            "AM/NS": [20, 0, 30, 0, 10, 0, 20, 0, 20, 10, 10, 50],
             "Jindal Rangeen": [25, 0, 25, 0, 0, 0, 0, 25, 0, 0, 0, 25],
             "Nepal": [0]*12,
             "Colourshine": [0]*12,
@@ -231,7 +231,7 @@ def get_state_data(state_name):
                 'NAINITAL', 'PITHORAGARH', 'UDHAM SINGH NAGAR'
             ],
             "Indradhanush": [0]*13,
-            "AMNS": [0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100],
+            "AM/NS": [0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100],
             "Shyam Metallics": [0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "APL Navrang": [0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "Jindal Rangeen": [0, 50, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60],
@@ -282,8 +282,8 @@ def get_geojson(state_name):
 # ---------------------------------------------------------
 # Sidebar Selections
 target_state = st.sidebar.selectbox("Select State", ["Uttarakhand","Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
-target_brand = st.sidebar.selectbox("Select Target Brand", ["Indradhanush", "AMNS", 
-                                                            "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL_Navrang",
+target_brand = st.sidebar.selectbox("Select Target Brand", ["Indradhanush", "AM/NS", 
+                                                            "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang",
                                                             "Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others"])
 
 df = get_state_data(target_state)
@@ -291,7 +291,7 @@ state_districts = get_geojson(target_state)
 
 st.title(f"ð {target_state} District wise Market Mapping")
 
-brand_cols = [""Indradhanush", "AMNS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL_Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others""]
+brand_cols = [""Indradhanush", "AM/NS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others""]
 df['Market_Size'] = df[brand_cols].sum(axis=1)
 share_col_name = f'{target_brand} % share'
 df[share_col_name] = np.where(df['Market_Size'] == 0, 0, (df[target_brand] / df['Market_Size']) * 100)
@@ -318,7 +318,7 @@ state_distributor_configs = {
         'WARDHA': ['Yogesh', 'Arvind'], 'YAVATMAL': ['Yogesh', 'Arvind'],
         'DHULE': ['Manmohan', 'National'], 'JALGAON': ['Manmohan', 'National'],
         'NANDURBAR': ['Manmohan', 'National'], 'NASHIK': 'Manmohan Ispat',
-        'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'  
+        'PUNE': 'Manmohan Ispat', 'AHMEDNAGAR': 'Jai Associates'
     },
     "Gujarat": {
         'AHMEDABAD': 'Distributor A', 
@@ -385,51 +385,51 @@ df['hover_text'] = df.apply(create_tooltip, axis=1)
 # 1. Define the dynamic ranges
 state_ranges = {
     "Maharashtra": [
-        (50, '0â50 MT', '#dbeafe'),
-        (150, '50â150 MT', '#93c5fd'),
-        (300, '150â300 MT', '#3b82f6'),
+        (50, '0–50 MT', '#dbeafe'),
+        (150, '50–150 MT', '#93c5fd'),
+        (300, '150–300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ],
     "Gujarat": [
-        (50, '0â50 MT', '#dbeafe'),
-        (150, '50â150 MT', '#93c5fd'),
-        (300, '150â300 MT', '#3b82f6'),
+        (50, '0–50 MT', '#dbeafe'),
+        (150, '50–150 MT', '#93c5fd'),
+        (300, '150–300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ],
     "Punjab": [
-        (25, '0â25 MT', '#dbeafe'),
-        (100, '25â100 MT', '#93c5fd'),
-        (200, '100â200 MT', '#3b82f6'),
+        (25, '0–25 MT', '#dbeafe'),
+        (100, '25–100 MT', '#93c5fd'),
+        (200, '100–200 MT', '#3b82f6'),
         (float('inf'), '200+ MT', '#1e40af')
     ],
     "Jammu and Kashmir": [
-        (50, '0â50 MT', '#dbeafe'),
-        (150, '50â150 MT', '#93c5fd'),
-        (300, '150â300 MT', '#3b82f6'),
+        (50, '0–50 MT', '#dbeafe'),
+        (150, '50–150 MT', '#93c5fd'),
+        (300, '150–300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ],
     "Uttar Pradesh": [
-        (50, '0â50 MT', '#dbeafe'),
-        (100, '50â100 MT', '#93c5fd'),
-        (300, '100â300 MT', '#3b82f6'),
+        (50, '0–50 MT', '#dbeafe'),
+        (100, '50–100 MT', '#93c5fd'),
+        (300, '100–300 MT', '#3b82f6'),
         (float('inf'), '300+ MT', '#1e40af')
     ],
     "Haryana": [
-        (50, '0â50 MT', '#dbeafe'),
-        (100, '50â100 MT', '#93c5fd'),
-        (900, '100â900 MT', '#3b82f6'),
+        (50, '0–50 MT', '#dbeafe'),
+        (100, '50–100 MT', '#93c5fd'),
+        (900, '100–900 MT', '#3b82f6'),
         (float('inf'), '900+ MT', '#1e40af')
     ],
     "Himachal Pradesh": [
-        (25, '0â25 MT', '#dbeafe'),
-        (100, '25â100 MT', '#93c5fd'),
-        (200, '100â200 MT', '#3b82f6'),
+        (25, '0–25 MT', '#dbeafe'),
+        (100, '25–100 MT', '#93c5fd'),
+        (200, '100–200 MT', '#3b82f6'),
         (float('inf'), '200+ MT', '#1e40af')
     ],
     "Uttarakhand": [
-        (25, '0â25 MT', '#dbeafe'),
-        (50, '25â50 MT', '#93c5fd'),
-        (100, '50â100 MT', '#3b82f6'),
+        (25, '0–25 MT', '#dbeafe'),
+        (50, '25–50 MT', '#93c5fd'),
+        (100, '50–100 MT', '#3b82f6'),
         (float('inf'), '100+ MT', '#1e40af')
     ]
 }
@@ -535,7 +535,7 @@ merged['cluster'] = merged['district_upper'].map(current_cluster_map)
 merged = merged[merged.geometry.notnull()]
 
 # 2. Fix invalid geometries (self-intersections)
-merged['geometry'] = merged.geometry.buffer(0) 
+merged['geometry'] = merged.geometry.buffer(0)
 
 # 3. Ensure everything is a GeoDataFrame again
 merged = gpd.GeoDataFrame(merged, geometry='geometry')
@@ -687,7 +687,7 @@ for _, label, color in current_ranges:
         name=label
     ))
 
-for label, color in [('> 75%', '#1b5e20'), ('50â75%', '#8bc34a'), ('25â50%', '#f57c00'), ('< 25%', '#d32f2f')]:
+for label, color in [('> 75%', '#1b5e20'), ('50–75%', '#8bc34a'), ('25–50%', '#f57c00'), ('< 25%', '#d32f2f')]:
     fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers', marker=dict(size=10, color=color, symbol='square'),
                              legendgroup="Share", legendgrouptitle_text=f"{target_brand} %", name=label))
 
@@ -739,7 +739,7 @@ st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
 # st.divider()
-# st.subheader(f"ð Key Focus Areas: {target_brand} Share < 50%")
+# st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
 # # 1. Filter and Sort
 # focus_df = merged[merged[share_col_name] < 50].copy()
@@ -818,12 +818,12 @@ def style_final_table(st_df):
 
 # else:
 #     # Show empty table with headers only
-#     st.info(f"â¨ All districts have more than 50%+ share in {target_brand}.")
+#     st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
 # ---------------------------------------------------------
 # 6. DYNAMIC KEY FOCUS AREAS (FINAL FORMATTING)
 # ---------------------------------------------------------
 st.divider()
-st.subheader(f"ð Key Focus Areas: {target_brand} Share < 50%")
+st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
 focus_df = merged[merged[share_col_name] < 50].copy()
 
@@ -900,4 +900,4 @@ if not focus_df.empty:
     st.markdown(style_final_table(display_df).to_html(), unsafe_allow_html=True)
 
 else:
-    st.info(f"â¨ All districts have more than 50%+ share in {target_brand}.")
+    st.info(f"✨ All districts have more than 50%+ share in {target_brand}.")
