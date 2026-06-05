@@ -144,15 +144,26 @@ def get_state_data(state_name):
 
                 }
     elif state_name == "Delhi":
-        data = {
-        "District": ["DELHI"],
-        "Colour_Frame": [0],
-        "AM/NS": [0],
-        "APL Apollo": [0],
-        "PROMPT": [0],
-        "HI TECH": [0],
-        "RCS": [0],
-        "Others": [0]
+       data = {
+        "District": [
+            "Central",
+            "East",
+            "New Delhi",
+            "North East",
+            "North West",
+            "Shahadara",
+            "South",
+            "South East",
+            "South West",
+            "West"
+        ],
+        "Colour_Frame": [120, 80, 150, 60, 100, 50, 200, 90, 70, 110],
+        "AM/NS": [50, 30, 80, 20, 40, 10, 100, 30, 25, 60],
+        "APL Apollo": [20, 15, 25, 10, 15, 5, 30, 10, 10, 20],
+        "PROMPT": [10, 5, 10, 5, 10, 5, 15, 5, 5, 10],
+        "HI TECH": [5, 5, 10, 5, 5, 5, 10, 5, 5, 5],
+        "RCS": [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+        "Others": [30, 20, 20, 15, 25, 10, 40, 20, 15, 20]
     }
     
     return pd.DataFrame(data)
@@ -450,17 +461,17 @@ cluster_config = {
         'NAINITAL':'Kumaon', 'PITHORAGARH':'Kumaon', 'UDHAM SINGH NAGAR':'Kumaon'
     },
     "Delhi": {
-    'Central Delhi': 'Delhi',
-    'East': 'Delhi',
+    'CENTRAL DELHI': 'Delhi',
+    'EAST': 'Delhi',
     'NEW DELHI': 'Delhi',
-    'NORTH DELHI': 'Delhi',
-    'NORTH EAST DELHI': 'Delhi',
-    'NORTH WEST DELHI': 'Delhi',
+    'NORTH': 'Delhi',
+    'NORTH EAST': 'Delhi',
+    'NORTH WEST': 'Delhi',
     'SHAHDARA': 'Delhi',
-    'SOUTH DELHI': 'Delhi',
-    'SOUTH EAST DELHI': 'Delhi',
-    'SOUTH WEST DELHI': 'Delhi',
-    'WEST DELHI': 'Delhi'
+    'SOUTH': 'Delhi',
+    'SOUTH EAST': 'Delhi',
+    'SOUTH WEST': 'Delhi',
+    'WEST': 'Delhi'
 }
 }
 
