@@ -195,7 +195,11 @@ def get_geojson(state_name):
         'NAINIT>L':'NAINITAL',
         'PITHOR>GARH':'PITHORAGARH'
     })
-    state_gdf['district_upper'] = state_gdf['district'].str.upper()
+    state_gdf['district_upper'] = (
+    state_gdf['district']
+    .str.upper()
+    .str.strip()
+    )
     return state_gdf
 
 # ---------------------------------------------------------
