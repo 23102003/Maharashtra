@@ -205,16 +205,14 @@ def get_geojson(state_name):
 # ---------------------------------------------------------
 # Sidebar Selections
 target_state = st.sidebar.selectbox("Select State", ["Uttarakhand","Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
-target_brand = st.sidebar.selectbox("Select Target Brand", ["Indradhanush", "AM/NS", 
-                                                            "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang",
-                                                            "Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others"])
+target_brand = st.sidebar.selectbox("Select Target Brand", [ "Colour_Frame", "AM/NS", "APL Apollo","PROMPT", "HI TECH", "RCS", "Others")
 
 df = get_state_data(target_state)
 state_districts = get_geojson(target_state)
 
 st.title(f" {target_state} District wise Market Mapping")
 
-brand_cols = ["Indradhanush", "AM/NS", "Nepal", "Kamdhenu", "Jindal Rangeen","Jindal Prajapati","APL Navrang","Colorshine","Supreme","Rhino","Geo Roofing","Manaksia","Latim","Dyna","Shyam Metallics", "Others"]
+brand_cols = ["Colour_Frame", "AM/NS", "APL Apollo","PROMPT", "HI TECH", "RCS", "Others"]
 available_cols = [col for col in brand_cols if col in df.columns]
 df['Market_Size'] = df[available_cols].sum(axis=1)
 share_col_name = f'{target_brand} % share'
