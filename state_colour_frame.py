@@ -407,6 +407,9 @@ merged[target_brand] = merged[target_brand].fillna(0)
 merged['Market_Size'] = merged['Market_Size'].fillna(0)
 merged[share_col_name] = merged[share_col_name].fillna(0)
 
+merged['district'] = merged['district'].fillna("")
+merged['district_upper'] = merged['district_upper'].fillna("")
+
 
 # You can define a dictionary for Gujarat Clusters here
 cluster_config = {
@@ -494,12 +497,15 @@ cluster_config = {
 
 # current_cluster_map = cluster_config.get(target_state, {})
 # merged['cluster'] = merged['district_upper'].map(current_cluster_map)
+
+
 # clusters = merged.dissolve(by='cluster')
 if target_state == "Delhi":
     merged['cluster'] = "Delhi"
 else:
     current_cluster_map = cluster_config.get(target_state, {})
     merged['cluster'] = merged['district_upper'].map(current_cluster_map)
+    merged = merged.dropna(subset=['cluster'])
 
 # 2. Fix invalid geometries (self-intersections)
 merged['geometry'] = merged.geometry.buffer(0)
