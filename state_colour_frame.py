@@ -475,7 +475,7 @@ cluster_config = {
         'NAINITAL':'Kumaon', 'PITHORAGARH':'Kumaon', 'UDHAM SINGH NAGAR':'Kumaon'
     },
     "Delhi": {
-    'CENTRAL DELHI': 'Delhi',
+    'CENTRAL': 'Delhi',
     'EAST': 'Delhi',
     'NEW DELHI': 'Delhi',
     'NORTH': 'Delhi',
