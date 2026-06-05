@@ -392,8 +392,20 @@ def get_s_color(share):
 
 df['market_color'] = df['Market_Size'].apply(lambda x: get_m_color(x, target_state))
 df['share_color'] = df[share_col_name].apply(get_s_color)
+merged = state_districts.merge(
+    df,
+    left_on='district_upper',
+    right_on='District',
+    how='left'
+)
 
-merged = state_districts.merge(df, left_on='district_upper', right_on='District', how='left')
+# Fill missing values after merge
+merged[target_brand] = merged[target_brand].fillna(0)
+merged['Market_Size'] = merged['Market_Size'].fillna(0)
+merged[share_col_name] = merged[share_col_name].fillna(0)
+
+# Optional: fill tooltip fields
+merged['hover_text'] = merged['hover_text'].fillna('No Data Available')
 
 # You can define a dictionary for Gujarat Clusters here
 cluster_config = {
