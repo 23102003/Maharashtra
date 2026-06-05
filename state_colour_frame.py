@@ -351,7 +351,13 @@ state_ranges = {
         (50, '25–50 MT', '#93c5fd'),
         (100, '50–100 MT', '#3b82f6'),
         (float('inf'), '100+ MT', '#1e40af')
-    ]
+    ],
+    "Delhi": [
+    (50, '0–50 MT', '#dbeafe'),
+    (100, '50–100 MT', '#93c5fd'),
+    (300, '100–300 MT', '#3b82f6'),
+    (float('inf'), '300+ MT', '#1e40af')
+   ]
 }
 
 # 2. Updated color function
