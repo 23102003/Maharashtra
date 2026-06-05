@@ -451,7 +451,7 @@ cluster_config = {
     },
     "Delhi": {
     'Central Delhi': 'Delhi',
-    'EAST DELHI': 'Delhi',
+    'East Delhi': 'Delhi',
     'NEW DELHI': 'Delhi',
     'NORTH DELHI': 'Delhi',
     'NORTH EAST DELHI': 'Delhi',
