@@ -14,7 +14,7 @@ st.set_page_config(page_title="Regional Brand Analysis", layout="wide")
 def get_state_data(state_name):
 
         
-elif state_name == "Punjab":
+if state_name == "Punjab":
         data = {
             "District": [
                 'AMRITSAR', 'GURDASPUR', 'HOSHIARPUR', 'JALANDHAR', 'KAPURTHALA', 
