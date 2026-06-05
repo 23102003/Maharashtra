@@ -12,29 +12,7 @@ st.set_page_config(page_title="Regional Brand Analysis", layout="wide")
 # ---------------------------------------------------------
 @st.cache_data
 def get_state_data(state_name):
-    # MAHARASHTRA DATA
-    if state_name == "Maharashtra":
-        data = {
-            "District": [
-            'AKOLA', 'BULDHANA','WASHIM', 'AURANGABAD', 'BEED', 'JALNA', 'LATUR', 'OSMANABAD',
-            'HINGOLI', 'NANDED','PARBHANI', 'KOLHAPUR', 'RATNAGIRI', 'SANGLI', 'SATARA', 'SINDHUDURG',
-            'SOLAPUR','MUMBAI', 'MUMBAI SUBURBAN', 'PALGHAR', 'RAIGARH','THANE',
-            'BHANDARA', 'CHANDRAPUR', 'AMRAVATI', 'GADCHIROLI', 'GONDIA', 'NAGPUR', 'WARDHA',
-            'YAVATMAL', 'DHULE', 'JALGAON', 'NANDURBAR', 'NASHIK', 'PUNE', 'AHMEDNAGAR'
-        ],      
-        
-        }
-       
-    
-    # GUJARAT DATA (Placeholder - Replace with your actual data)
-    elif state_name == "Gujarat":
-        data = {
-            "District": [
-                'AHMADABAD', 'ANAND', 'GANDHINAGAR', 'KHEDA', 'AMRELI', 'BHAVNAGAR', 'BOTAD', 'GIR SOMNATH', 'JUNAGADH', 'PORBANDAR',
-                'JAMNAGAR', 'KACHCHH', 'MORBI', 'ARVALLI', 'BANAS KANTHA', 'MAHESANA', 'PATAN', 'SABAR KANTHA', 'DEVBHUMI DWARKA', 'RAJKOT','SURENDRANAGAR',
-                'DANG', 'NAVSARI', 'SURAT', 'TAPI', 'VALSAD', 'BHARUCH', 'CHHOTAUDEPUR', 'DOHAD', 'MAHISAGAR', 'NARMADA', 'PANCH MAHALS', 'VADODARA'
-            ],
-        }
+
         
 elif state_name == "Punjab":
         data = {
