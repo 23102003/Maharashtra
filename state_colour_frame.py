@@ -829,7 +829,7 @@ if not focus_df.empty:
         
         # Get stats for this cluster (calculated from focus_df only)
         
-       stats_df = cluster_stats.loc[cluster_stats['cluster'] == c_name]
+        stats_df = cluster_stats.loc[cluster_stats['cluster'] == c_name]
         if len(stats_df) > 0:
            stats = stats_df.iloc[0]   
        
