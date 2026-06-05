@@ -828,7 +828,13 @@ if not focus_df.empty:
         current_counts[c_name] = current_counts.get(c_name, 0) + 1
         
         # Get stats for this cluster (calculated from focus_df only)
-        stats = cluster_stats[cluster_stats['cluster'] == c_name].iloc[0]
+        
+        stats_df = cluster_stats[cluster_stats['cluster'] == c_name]
+
+       if stats_df.empty:
+       continue
+
+      stats = stats_df.iloc[0]
         
         # Line 1: Cluster Name (Total Market Size)
         line1 = (
