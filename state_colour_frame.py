@@ -34,8 +34,8 @@ def get_state_data(state_name):
                 'JAMNAGAR', 'KACHCHH', 'MORBI', 'ARVALLI', 'BANAS KANTHA', 'MAHESANA', 'PATAN', 'SABAR KANTHA', 'DEVBHUMI DWARKA', 'RAJKOT','SURENDRANAGAR',
                 'DANG', 'NAVSARI', 'SURAT', 'TAPI', 'VALSAD', 'BHARUCH', 'CHHOTAUDEPUR', 'DOHAD', 'MAHISAGAR', 'NARMADA', 'PANCH MAHALS', 'VADODARA'
             ],
-           
-            }
+        }
+        
 elif state_name == "Punjab":
         data = {
             "District": [
@@ -205,7 +205,7 @@ def get_geojson(state_name):
 # ---------------------------------------------------------
 # Sidebar Selections
 target_state = st.sidebar.selectbox("Select State", ["Uttarakhand","Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
-target_brand = st.sidebar.selectbox("Select Target Brand", [ "Colour_Frame", "AM/NS", "APL Apollo","PROMPT", "HI TECH", "RCS", "Others")
+target_brand = st.sidebar.selectbox("Select Target Brand", [ "Colour_Frame", "AM/NS", "APL Apollo","PROMPT", "HI TECH", "RCS", "Others"])
 
 df = get_state_data(target_state)
 state_districts = get_geojson(target_state)
