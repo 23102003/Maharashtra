@@ -448,7 +448,20 @@ cluster_config = {
         'RUDRA PRAYAG':'Garhwal', 'TEHRI GARHWAL':'Garhwal', 'UTTAR KASHI':'Garhwal',
         'ALMORA':'Kumaon', 'BAGESHWAR':'Kumaon', 'CHAMPAWAT':'Kumaon', 
         'NAINITAL':'Kumaon', 'PITHORAGARH':'Kumaon', 'UDHAM SINGH NAGAR':'Kumaon'
-    }
+    },
+    "Delhi": {
+    'CENTRAL DELHI': 'Delhi',
+    'EAST DELHI': 'Delhi',
+    'NEW DELHI': 'Delhi',
+    'NORTH DELHI': 'Delhi',
+    'NORTH EAST DELHI': 'Delhi',
+    'NORTH WEST DELHI': 'Delhi',
+    'SHAHDARA': 'Delhi',
+    'SOUTH DELHI': 'Delhi',
+    'SOUTH EAST DELHI': 'Delhi',
+    'SOUTH WEST DELHI': 'Delhi',
+    'WEST DELHI': 'Delhi'
+}
 }
 
 # current_cluster_map = cluster_config.get(target_state, {})
