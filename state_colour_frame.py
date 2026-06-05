@@ -31,8 +31,8 @@ def get_state_data(state_name):
             "RCS": [0] * 23,
             "Others": [0] * 23
         }
-                elif state_name == "Jammu and Kashmir":
-                       data = {       
+    elif state_name == "Jammu and Kashmir":
+        data = {       
             "District": [
                 'DODA', 'JAMMU', 'KATHUA', 'KISHTWAR', 'PUNCH', 
                 'RAJAURI', 'RAMBAN', 'RIASI', 'SAMBA', 'UDHAMPUR', 
