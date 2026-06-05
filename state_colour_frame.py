@@ -12,22 +12,24 @@ st.set_page_config(page_title="Regional Brand Analysis", layout="wide")
 # ---------------------------------------------------------
 @st.cache_data
 def get_state_data(state_name):
-        if state_name == "Punjab":
-                 data = {
+
+    if state_name == "Punjab":
+        data = {
             "District": [
-                'AMRITSAR', 'GURDASPUR', 'HOSHIARPUR', 'JALANDHAR', 'KAPURTHALA', 
-                'PATHANKOT', 'SHAHID BHAGAT SINGH NAGAR', 'TARN TARAN', 'BARNALA', 
-                'FATEHGARH SAHIB', 'LUDHIANA', 'MALER KOTLA', 'MANSA', 'PATIALA', 
-                'RUPNAGAR', 'S.A.S NAGAR', 'SANGRUR', 'BATHINDA', 'FARIDKOT', 
+                'AMRITSAR', 'GURDASPUR', 'HOSHIARPUR', 'JALANDHAR',
+                'KAPURTHALA', 'PATHANKOT', 'SHAHID BHAGAT SINGH NAGAR',
+                'TARN TARAN', 'BARNALA', 'FATEHGARH SAHIB', 'LUDHIANA',
+                'MALER KOTLA', 'MANSA', 'PATIALA', 'RUPNAGAR',
+                'S.A.S NAGAR', 'SANGRUR', 'BATHINDA', 'FARIDKOT',
                 'FAZILKA', 'FIROZPUR', 'MOGA', 'SRI MUKTSAR SAHIB'
             ],
             "Colour_Frame": [0, 0, 0, 80, 0, 0, 0, 0, 0, 0, 1220, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "AM/NS": [0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "APL Apollo": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "PROMPT": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-             "HI TECH": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-              "RCS": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            "Others": [0]*23
+            "HI TECH": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "RCS": [0] * 23,
+            "Others": [0] * 23
         }
                 elif state_name == "Jammu and Kashmir":
                        data = {       
