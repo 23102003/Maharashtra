@@ -256,7 +256,10 @@ state_distributor_configs = {
     },
     "Uttarakhand": {
         'BAGESHWAR': 'Distributor A'
-    }  
+    }
+    "Delhi": {
+       
+    },
 }
 
 # 2. Get the specific lookup for the selected state
