@@ -256,7 +256,7 @@ state_distributor_configs = {
     },
     "Uttarakhand": {
         'BAGESHWAR': 'Distributor A'
-    }
+    },
     "Delhi": {
        
     },
