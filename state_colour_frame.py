@@ -400,6 +400,10 @@ merged = state_districts.merge(
     how='left'
 )
 
+merged[target_brand] = merged[target_brand].fillna(0)
+merged['Market_Size'] = merged['Market_Size'].fillna(0)
+merged[share_col_name] = merged[share_col_name].fillna(0)
+
 
 # You can define a dictionary for Gujarat Clusters here
 cluster_config = {
