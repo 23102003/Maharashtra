@@ -29,8 +29,8 @@ def get_state_data(state_name):
               "RCS": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "Others": [0]*23
         }
-    elif state_name == "Jammu and Kashmir":
-        data = {
+                elif state_name == "Jammu and Kashmir":
+                       data = {       
             "District": [
                 'DODA', 'JAMMU', 'KATHUA', 'KISHTWAR', 'PUNCH', 
                 'RAJAURI', 'RAMBAN', 'RIASI', 'SAMBA', 'UDHAMPUR', 
@@ -46,8 +46,8 @@ def get_state_data(state_name):
 
             "Others": [0]*20 ,
         }
-    elif state_name == "Uttar Pradesh":
-        data = {
+                        elif state_name == "Uttar Pradesh":
+                                 data = {
             "District": [
                 'AGRA', 'ALIGARH', 'ETAH', 'FIROZABAD', 'HATHRAS', 'KASGANJ', 'MAINPURI', 'MATHURA',
                 'AMROHA', 'BAREILLY', 'BIJNOR', 'BUDAUN', 'PILIBHIT', 'RAMPUR', 'SAMBHAL', 'SHAHJAHANPUR',
@@ -92,9 +92,8 @@ def get_state_data(state_name):
             
             "Others": [0]*69,
         }
-
-    elif state_name == "Haryana":
-        data = {
+                         elif state_name == "Haryana":       
+                                 data = { 
             "District": [
                 'FARIDABAD', 'GURUGRAM', 'MAHENDRAGARH', 'NUH', 'PALWAL', 'REWARI', 
                 'BHIWANI', 'FATEHABAD', 'HISAR', 'JIND', 'SIRSA', 'AMBALA', 'KAITHAL', 
@@ -113,9 +112,8 @@ def get_state_data(state_name):
    
 
         }
-
-    elif state_name == "Himachal Pradesh":
-        data = {
+                         elif state_name == "Himachal Pradesh":
+                               data = {  
             "District": [
                 'BILASPUR','CHAMBA','HAMIRPUR','KANGRA','KULLU','LAHUL & SPITI','MANDI','UNA','KINNAUR','SHIMLA','SIRMAUR','SOLAN'
             ],
@@ -127,8 +125,8 @@ def get_state_data(state_name):
               "RCS": [0]*12,
             "Others": [0]*12,
         }
-    elif state_name == "Uttarakhand":
-        data = {
+                           elif state_name == "Uttarakhand":
+                                  data = { 
             "District": [
                 'CHAMOLI', 'DEHRADUN', 'HARIDWAR', 'PAURI GARHWAL', 'RUDRA PRAYAG', 
                 'TEHRI GARHWAL', 'UTTAR KASHI', 'ALMORA', 'BAGESHWAR', 'CHAMPAWAT', 
