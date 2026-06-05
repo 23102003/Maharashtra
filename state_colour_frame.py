@@ -143,6 +143,17 @@ def get_state_data(state_name):
             "Others": [0]*13,
 
                 }
+    elif state_name == "Delhi":
+        data = {
+        "District": ["DELHI"],
+        "Colour_Frame": [0],
+        "AM/NS": [0],
+        "APL Apollo": [0],
+        "PROMPT": [0],
+        "HI TECH": [0],
+        "RCS": [0],
+        "Others": [0]
+    }
     
     return pd.DataFrame(data)
 
@@ -180,7 +191,7 @@ def get_geojson(state_name):
 # 2. SELECTION & PROCESSING
 # ---------------------------------------------------------
 # Sidebar Selections
-target_state = st.sidebar.selectbox("Select State", ["Uttarakhand","Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
+target_state = st.sidebar.selectbox("Select State", ["Uttarakhand","Delhi","Himachal Pradesh","Haryana","Uttar Pradesh","Jammu and Kashmir","Punjab","Gujarat", "Maharashtra"])
 target_brand = st.sidebar.selectbox("Select Target Brand", [ "Colour_Frame", "AM/NS", "APL Apollo","PROMPT", "HI TECH", "RCS", "Others"])
 
 df = get_state_data(target_state)
