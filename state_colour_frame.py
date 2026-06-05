@@ -574,7 +574,7 @@ total_brand_pct = (total_brand_vol / total_mkt_size * 100) if total_mkt_size > 0
 annotations.append(dict(
     x=0.99, y=0.01, xref="paper", yref="paper",
     text=(
-        f"<b>Total Mass Market</b><br>"
+        f"<b>Total Thicker Market</b><br>"
         f"<b><span style='font-size:20px;color:#1e40af;'>{total_mkt_size} MT</span></b><br><br>"
         f"<b>JSW {target_brand} Share</b><br>"
         f"<b><span style='font-size:18px;color:#1b5e20;'>{total_brand_vol} MT ({total_brand_pct:.0f}%)</span></b>"
