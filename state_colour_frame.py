@@ -151,19 +151,20 @@ def get_state_data(state_name):
             "NEW DELHI",
             "NORTH EAST",
             "NORTH WEST",
-            "SHAHDARA",
+            "SHAHADARA",
             "SOUTH",
             "SOUTH EAST",
             "SOUTH WEST",
             "WEST"
+            "NAZUL"
         ],
-        "Colour_Frame": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0],
-        "AM/NS": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0],
-        "APL Apollo": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0],
-        "PROMPT": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0],
-        "HI TECH": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0],
-        "RCS": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0],
-        "Others": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0]
+        "Colour_Frame": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0,0],
+        "AM/NS": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0,0],
+        "APL Apollo": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0],
+        "PROMPT": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0 , 0],
+        "HI TECH": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0],
+        "RCS": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0],
+        "Others": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0]
     }
     
     return pd.DataFrame(data)
@@ -487,11 +488,12 @@ cluster_config = {
     'NORTH': 'Delhi',
     'NORTH EAST': 'Delhi',
     'NORTH WEST': 'Delhi',
-    'SHAHDARA': 'Delhi',
+    'SHAHADARA': 'Delhi',
     'SOUTH': 'Delhi',
     'SOUTH EAST': 'Delhi',
     'SOUTH WEST': 'Delhi',
     'WEST': 'Delhi'
+    'NAZUL' : 'Delhi'
 }
 }
 
