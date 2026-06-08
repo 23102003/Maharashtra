@@ -798,7 +798,10 @@ st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
 focus_df = merged[merged[share_col_name] < 50].copy()
-
+# DEBUG
+st.write(
+    focus_df[['district', 'cluster', 'Market_Size', share_col_name]]
+)
 if not focus_df.empty:
     # 1. Calculate Aggregates
     cluster_stats = merged.groupby('cluster').agg({
