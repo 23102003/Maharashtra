@@ -151,7 +151,7 @@ def get_state_data(state_name):
             "New Delhi",
             "North East",
             "North West",
-            "Shahdara",
+            "SHAHDARA",
             "South",
             "South East",
             "South West",
