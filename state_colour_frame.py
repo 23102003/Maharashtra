@@ -146,16 +146,16 @@ def get_state_data(state_name):
     elif state_name == "Delhi":
        data = {
         "District": [
-            "Central",
-            "East",
-            "New Delhi",
-            "North East",
-            "North West",
+            "CENTRAL",
+            "EAST",
+            "NEW DELHI",
+            "NORTH EAST",
+            "NORTH WEST",
             "SHAHDARA",
-            "South",
-            "South East",
-            "South West",
-            "West"
+            "SOUTH",
+            "SOUTH EAST",
+            "SOUTH WEST",
+            "WEST"
         ],
         "Colour_Frame": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0],
         "AM/NS": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0],
