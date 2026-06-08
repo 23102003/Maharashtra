@@ -155,7 +155,7 @@ def get_state_data(state_name):
             "SOUTH",
             "SOUTH EAST",
             "SOUTH WEST",
-            "WEST"
+            "WEST",
             "NAZUL"
         ],
         "Colour_Frame": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0,0],
@@ -492,7 +492,7 @@ cluster_config = {
     'SOUTH': 'Delhi',
     'SOUTH EAST': 'Delhi',
     'SOUTH WEST': 'Delhi',
-    'WEST': 'Delhi'
+    'WEST': 'Delhi',
     'NAZUL' : 'Delhi'
 }
 }
