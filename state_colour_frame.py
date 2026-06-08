@@ -799,7 +799,7 @@ def style_final_table(st_df):
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-focus_df = merged[merged[share_col_name] < 50].copy()
+# focus_df = merged[merged[share_col_name] < 50].copy()
 
 if not focus_df.empty:
     # 1. Calculate Aggregates
@@ -821,7 +821,7 @@ if not focus_df.empty:
     focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
 
     # 4. Prepare Display Dataframe
-    # display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+    display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
     display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
     display_df['Districts'] = display_df['Districts'].str.title()
 
