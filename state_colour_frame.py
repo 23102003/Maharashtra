@@ -500,18 +500,11 @@ cluster_config = {
 
 
 # clusters = merged.dissolve(by='cluster')
-if target_state == "Delhi":
-    merged['cluster'] = "Delhi"
-else:
-    current_cluster_map = cluster_config.get(target_state, {})
-    merged['cluster'] = merged['district_upper'].map(current_cluster_map)
-   
-    # Debug unmapped districts
-    st.write(
-        merged[merged['cluster'].isna()]
-        [['district_upper']] 
-        )
-    merged = merged.dropna(subset=['cluster'])
+current_cluster_map = cluster_config.get(target_state, {})
+
+# Now apply the map
+merged['cluster'] = merged['district_upper'].map(current_cluster_map)
+merged = merged[merged.geometry.notnull()]
 
 # 2. Fix invalid geometries (self-intersections)
 merged['geometry'] = merged.geometry.buffer(0)
