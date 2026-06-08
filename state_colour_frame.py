@@ -511,7 +511,7 @@ else:
         merged[merged['cluster'].isna()]
         [['district_upper']] 
         )
-     merged = merged.dropna(subset=['cluster'])
+    merged = merged.dropna(subset=['cluster'])
 
 # 2. Fix invalid geometries (self-intersections)
 merged['geometry'] = merged.geometry.buffer(0)
