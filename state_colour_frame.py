@@ -821,7 +821,7 @@ if not focus_df.empty:
     focus_df['Market_Size_Display'] = focus_df['Market_Size'].apply(lambda x: f"{int(x)} MT")
 
     # 4. Prepare Display Dataframe
-    display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
+    # display_df = focus_df[['cluster', 'district', 'Share_Display', 'Market_Size_Display']].copy()
     display_df.columns = ['Cluster', 'Districts', f'{target_brand} Share', 'Total Market']
     display_df['Districts'] = display_df['Districts'].str.title()
 
