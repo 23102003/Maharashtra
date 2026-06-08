@@ -396,20 +396,15 @@ def get_s_color(share):
 
 df['market_color'] = df['Market_Size'].apply(lambda x: get_m_color(x, target_state))
 df['share_color'] = df[share_col_name].apply(get_s_color)
-
-merged = state_districts.merge(
-    df,
-    left_on='district_upper',
-    right_on='District',
-    how='left'
+merged = state_districts.merge( df, left_on='district_upper', right_on='District', how='left'
 )
 
-merged[target_brand] = merged[target_brand].fillna(0)
-merged['Market_Size'] = merged['Market_Size'].fillna(0)
-merged[share_col_name] = merged[share_col_name].fillna(0)
+# merged[target_brand] = merged[target_brand].fillna(0)
+# merged['Market_Size'] = merged['Market_Size'].fillna(0)
+# merged[share_col_name] = merged[share_col_name].fillna(0)
 
-merged['district'] = merged['district'].fillna("")
-merged['district_upper'] = merged['district_upper'].fillna("")
+# merged['district'] = merged['district'].fillna("")
+# merged['district_upper'] = merged['district_upper'].fillna("")
 
 
 # You can define a dictionary for Gujarat Clusters here
@@ -799,7 +794,7 @@ def style_final_table(st_df):
 st.divider()
 st.subheader(f"📍 Key Focus Areas: {target_brand} Share < 50%")
 
-# focus_df = merged[merged[share_col_name] < 50].copy()
+focus_df = merged[merged[share_col_name] < 50].copy()
 
 if not focus_df.empty:
     # 1. Calculate Aggregates
