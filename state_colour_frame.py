@@ -559,18 +559,33 @@ for _, row in merged.iterrows():
             ))
 
 # B. CLUSTER OUTLINES
-for _, row in clusters.iterrows():
-    geom = row.geometry
-    polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
-    for poly in polys:
-        x, y = poly.exterior.xy
-        fig.add_trace(go.Scatter(
-            x=list(x), y=list(y),
-            line=dict(color="#1e293b", width=2.5),
-            hoverinfo='skip',
-            showlegend=False,
-            mode='lines'
-        ))
+#for _, row in clusters.iterrows():
+#    geom = row.geometry
+#    polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
+#    for poly in polys:
+#        x, y = poly.exterior.xy
+#        fig.add_trace(go.Scatter(
+#            x=list(x), y=list(y),
+#            line=dict(color="#1e293b", width=2.5),
+#            hoverinfo='skip',
+#            showlegend=False,
+#            mode='lines'
+#        ))
+
+# B. CLUSTER OUTLINES (skip if only one cluster, e.g. Delhi)
+if len(clusters) > 1:
+    for _, row in clusters.iterrows():
+        geom = row.geometry
+        polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
+        for poly in polys:
+            x, y = poly.exterior.xy
+            fig.add_trace(go.Scatter(
+                x=list(x), y=list(y),
+                line=dict(color="#1e293b", width=2.5),
+                hoverinfo='skip',
+                showlegend=False,
+                mode='lines'
+            ))
 
 # C. LABELS AND BOXES
 annotations = []
