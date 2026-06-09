@@ -571,13 +571,13 @@ for _, row in merged.iterrows():
 #            showlegend=False,
 #            mode='lines'
 #        ))
-
 # B. CLUSTER OUTLINES (skip if only one cluster, e.g. Delhi)
 if len(clusters) > 1:
     for _, row in clusters.iterrows():
         geom = row.geometry
         polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
         for poly in polys:
+            # Exterior
             x, y = poly.exterior.xy
             fig.add_trace(go.Scatter(
                 x=list(x), y=list(y),
@@ -586,6 +586,9 @@ if len(clusters) > 1:
                 showlegend=False,
                 mode='lines'
             ))
+            # Skip interiors/holes to avoid dot artifacts
+            # for interior in poly.interiors:  ← do NOT draw these
+
 
 # C. LABELS AND BOXES
 annotations = []
