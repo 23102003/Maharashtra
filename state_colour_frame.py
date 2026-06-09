@@ -546,6 +546,8 @@ for _, row in merged.iterrows():
         geom = row.geometry
         polys = [geom] if geom.geom_type == 'Polygon' else geom.geoms
         for poly in polys:
+            if poly.area < 0.001:  # ← ADD THIS to skip tiny artifact fragments
+                continue         
             x, y = poly.exterior.xy
             fig.add_trace(go.Scatter(
                 x=list(x), y=list(y),
