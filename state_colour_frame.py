@@ -157,14 +157,15 @@ def get_state_data(state_name):
             "SOUTH WEST",
             "WEST",
             "NAZUL"
+            "NORTH"
         ],
-        "Colour_Frame": [0, 0, 400, 0, 0, 0, 0, 0, 0, 0,0],
-        "AM/NS": [0, 0, 120, 0, 0, 0, 0, 0, 0, 0,0],
-        "APL Apollo": [0, 0, 80, 0, 0, 0, 0, 0, 0, 0, 0],
-        "PROMPT": [0, 0, 200, 0, 0, 0, 0, 0, 0, 0 , 0],
-        "HI TECH": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "RCS": [0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0],
-        "Others": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0]
+        "Colour_Frame": [0, 0, 400, 0, 0, 0, 0, 0, 0, 0,0,0],
+        "AM/NS": [0, 0, 120, 0, 0, 0, 0, 0, 0, 0,0,0],
+        "APL Apollo": [0, 0, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "PROMPT": [0, 0, 200, 0, 0, 0, 0, 0, 0, 0 , 0, 0],
+        "HI TECH": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "RCS": [0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "Others": [0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
     
     return pd.DataFrame(data)
@@ -196,6 +197,22 @@ def get_geojson(state_name):
         'NAINIT>L':'NAINITAL',
         'PITHOR>GARH':'PITHORAGARH'
     })
+    state_gdf['district'] = state_gdf['district'].str.upper().replace({
+    # ... your existing replacements ...
+    
+    # ADD THESE for Delhi:
+    'NORTH DELHI': 'NORTH',
+    'CENTRAL DELHI': 'CENTRAL',
+    'EAST DELHI': 'EAST',
+    'NEW DELHI': 'NEW DELHI',
+    'NORTH EAST DELHI': 'NORTH EAST',
+    'NORTH WEST DELHI': 'NORTH WEST',
+    'SHAHDARA': 'SHAHADARA',        # ← common spelling variant
+    'SOUTH DELHI': 'SOUTH',
+    'SOUTH EAST DELHI': 'SOUTH EAST',
+    'SOUTH WEST DELHI': 'SOUTH WEST',
+    'WEST DELHI': 'WEST',
+})
     state_gdf['district_upper'] = (
     state_gdf['district']
     .str.upper()
@@ -581,7 +598,8 @@ for _, row in merged.iterrows():
             "Uttar Pradesh": -0.05,
             "Haryana":0,
             "Himachal Pradesh":0,
-            "Uttarakhand":0   
+            "Uttarakhand":0 ,
+            "Delhi" : -0.03
         }
         # Get the offset for the current state, default to -0.1 if not found
         current_offset = state_y_offsets.get(target_state, -0.1)
